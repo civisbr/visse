@@ -28,7 +28,7 @@ jobs:
           persist-credentials: false
       - uses: oven-sh/setup-bun@0c5077e51419868618aeaa5fe8019c62421857d6 # v2
         with:
-          bun-version: 1.3.x
+          bun-version: 1.4.0
       - run: bun install --frozen-lockfile --ignore-scripts
       - run: bun run test
       - run: bun scripts/dados/red-flags.ts
@@ -40,7 +40,7 @@ jobs:
           name: dados-contratos
           path: public/data/red-flags.json
           if-no-files-found: error
-          retention-days: 7
+          retention-days: 30
 
   obras:
     runs-on: ubuntu-latest
@@ -53,7 +53,7 @@ jobs:
           persist-credentials: false
       - uses: oven-sh/setup-bun@0c5077e51419868618aeaa5fe8019c62421857d6 # v2
         with:
-          bun-version: 1.3.x
+          bun-version: 1.4.0
       - run: bun install --frozen-lockfile --ignore-scripts
       - run: bun scripts/dados/obras.ts
       - run: bun scripts/dados/validar.ts obras
@@ -62,7 +62,7 @@ jobs:
           name: dados-obras
           path: public/data/obras.json
           if-no-files-found: error
-          retention-days: 7
+          retention-days: 30
 
   gastos:
     runs-on: ubuntu-latest
@@ -75,7 +75,7 @@ jobs:
           persist-credentials: false
       - uses: oven-sh/setup-bun@0c5077e51419868618aeaa5fe8019c62421857d6 # v2
         with:
-          bun-version: 1.3.x
+          bun-version: 1.4.0
       - run: bun install --frozen-lockfile --ignore-scripts
       - run: bun run test
       - run: bun scripts/dados/gastos.ts
@@ -85,7 +85,7 @@ jobs:
           name: dados-gastos
           path: public/data/gastos.json
           if-no-files-found: error
-          retention-days: 7
+          retention-days: 30
 
   publicar:
     needs: [contratos, obras, gastos]
@@ -107,8 +107,29 @@ jobs:
         env:
           GH_TOKEN: ${{ github.token }}
           RUN_ID: ${{ github.run_id }}
+          RUN_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
+          RESULTADO_CONTRATOS: ${{ needs.contratos.result }}
+          RESULTADO_OBRAS: ${{ needs.obras.result }}
+          RESULTADO_GASTOS: ${{ needs.gastos.result }}
         run: |
           if [ -z "$(git status --porcelain -- public/data)" ]; then exit 0; fi
+          # Só resume fonte que teve sucesso nesta execução; o arquivo das demais é o antigo da main.
+          linha() {
+            if [ "$2" != "success" ]; then echo "- $1: não atualizado nesta execução ($2)"; return; fi
+            jq -er "$4" "$3" || echo "- $1: resumo indisponível"
+          }
+          resumo=$(
+            echo "Dados gerados pelo workflow Atualizar dados: $RUN_URL (commit $GITHUB_SHA)."
+            echo
+            linha Contratos "$RESULTADO_CONTRATOS" public/data/red-flags.json \
+              '"- Contratos: \(.analisados|numbers) analisados em \(.janelaDias|numbers) dias, \(.alertasTotal|numbers) alertas (\(.cnpjFalhas|numbers) falhas de CNPJ)"'
+            linha Obras "$RESULTADO_OBRAS" public/data/obras.json \
+              '"- Obras: \(.obras|length) registros, UFs com falha: \(.ufsComFalha|length)"'
+            linha Gastos "$RESULTADO_GASTOS" public/data/gastos.json \
+              '"- Gastos: exercício \(.exercicio|numbers), \(.cobertura.publicados|numbers) de \(.cobertura.piloto|numbers) municípios, \(.cobertura.semPessoal|numbers) sem dados de pessoal"'
+            echo
+            echo "Conferir os arquivos em public/data antes de aprovar."
+          )
           ramo="dados/auto-$RUN_ID"
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
@@ -118,4 +139,4 @@ jobs:
           git push origin "$ramo"
           gh pr create --base main --head "$ramo" \
             --title "Update public data (run $RUN_ID)" \
-            --body "Dados gerados pelo workflow Atualizar dados, execução $RUN_ID. Conferir os arquivos em public/data antes de aprovar."
+            --body "$resumo"
