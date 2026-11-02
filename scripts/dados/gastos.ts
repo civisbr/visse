@@ -1,6 +1,7 @@
 import { appendFile, mkdir, writeFile } from "node:fs/promises";
 import { municipioValido } from "../../src/lib/gastos-data";
 import { coletarGastos } from "./gastos-coleta";
+import { criarCliente } from "./siconfi-http";
 import { selecionarMunicipios, type Ente, type ItemSiconfi } from "./gastos-regras";
 
 const BASE = "https://apidatalake.tesouro.gov.br/ords/siconfi/tt";
@@ -8,26 +9,7 @@ const HEADERS = {
   "user-agent": "visse-dados/1.0 (+https://github.com/civisbr/visse)",
   accept: "application/json",
 };
-const pausa = (ms: number) => new Promise((ok) => setTimeout(ok, ms));
-
-async function get<T>(url: string, tentativas = 3): Promise<T> {
-  for (let i = 1; ; i++) {
-    try {
-      const r = await fetch(url, { headers: HEADERS, signal: AbortSignal.timeout(45_000) });
-      if (!r.ok) {
-        if (r.status >= 400 && r.status < 500 && r.status !== 429) i = tentativas;
-        const espera = Number(r.headers.get("retry-after"));
-        if ((r.status === 429 || r.status === 503) && Number.isFinite(espera) && espera > 0)
-          await pausa(Math.min(espera, 60) * 1000);
-        throw new Error(`HTTP ${r.status}`);
-      }
-      return (await r.json()) as T;
-    } catch (e) {
-      if (i >= tentativas) throw new Error(`${url}: ${(e as Error).message}`);
-      await pausa(2000 * i);
-    }
-  }
-}
+const get = criarCliente({ headers: HEADERS });
 
 const itens = async (rota: string, q: Record<string, string>) =>
   (await get<{ items?: ItemSiconfi[] }>(`${BASE}/${rota}?${new URLSearchParams(q)}`)).items ?? [];
@@ -44,7 +26,8 @@ if (universo.length < MINIMO_UNIVERSO)
     `Só ${universo.length} municípios selecionados; esperado ao menos ${MINIMO_UNIVERSO}`,
   );
 
-const coleta = await coletarGastos(itens, universo, new Date().getFullYear());
+// O ritmo das consultas é controlado pelo cliente HTTP; a pausa por trabalhador seria redundante.
+const coleta = await coletarGastos(itens, universo, new Date().getFullYear(), { pausaMs: 0 });
 const { exercicio, semDespesas, semPessoal, falhas } = coleta;
 // Registro incoerente no SICONFI é descartado aqui; do contrário o validador barraria a publicação inteira.
 const municipios = coleta.municipios.filter(municipioValido);
@@ -82,9 +65,10 @@ await writeFile(
   ) + "\n",
 );
 console.log(`${municipios.length} municípios gravados (${exercicio})`);
+console.log(`Cliente SICONFI: ${JSON.stringify(get.estatisticas)}`);
 const resumo = process.env["GITHUB_STEP_SUMMARY"];
 if (resumo)
   await appendFile(
     resumo,
-    `### Gastos municipais ${exercicio}\n\n- Universo: ${universo.length}\n- Publicados: ${municipios.length}\n- Sem envio de despesas: ${semDespesas}\n- Sem dados de pessoal: ${semPessoal}\n- Falhas de consulta: ${falhas.length}\n`,
+    `### Gastos municipais ${exercicio}\n\n- Universo: ${universo.length}\n- Publicados: ${municipios.length}\n- Sem envio de despesas: ${semDespesas}\n- Sem dados de pessoal: ${semPessoal}\n- Falhas de consulta: ${falhas.length}\n- Consultas: ${get.estatisticas.chamadas} (429: ${get.estatisticas.http429}, 503: ${get.estatisticas.http503}, tempo bloqueado: ${Math.round(get.estatisticas.bloqueadoMs / 1000)}s)\n`,
   );

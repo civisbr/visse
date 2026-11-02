@@ -183,4 +183,18 @@ describe("coletarGastos", () => {
     }).catch(() => {});
     expect(logs.every((l) => !l.includes("\n"))).toBe(true);
   });
+
+  it("não recua de ano quando a parada antecipada vem só de falhas do RGF", async () => {
+    const muitos = Array.from({ length: 60 }, (_, i) => ente(i + 1));
+    const anos = new Set<string>();
+    const consulta: Consulta = async (rota, q) => {
+      anos.add(q["an_exercicio"] ?? "");
+      if (rota === "rgf") throw new Error("HTTP 429");
+      return rreo;
+    };
+    await expect(coletarGastos(consulta, muitos, 2026, opcoes)).rejects.toThrow(
+      /Falhas de rede em 2025/,
+    );
+    expect([...anos]).toEqual(["2025"]);
+  });
 });

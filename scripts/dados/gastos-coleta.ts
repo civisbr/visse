@@ -135,6 +135,7 @@ export async function coletarGastos(
     };
     await Promise.all(Array.from({ length: Math.max(1, concorrencia) }, trabalhador));
 
+    const parouCedo = desistir();
     achados.sort((a, b) => a.codIbge - b.codIbge);
     log(
       `${ano}: ${achados.length}/${universo.length} municípios com dados (${semDespesas} sem envio, ${falhas.length} falhas, ${falhasRgf} falhas só do RGF)`,
@@ -143,9 +144,10 @@ export async function coletarGastos(
       escolhido = { achados, ano };
       break;
     }
-    if (falhas.length > 0)
+    // Parada antecipada vinda só de falhas do RGF não gera entrada em `falhas`, mas também não é falta de envio.
+    if (falhas.length > 0 || parouCedo)
       throw new Error(
-        `Falhas de rede em ${ano} (${falhas[0] ?? ""}); abortando para não recuar de ano indevidamente`,
+        `Falhas de rede em ${ano} (${falhas[0] ?? "coleta interrompida por falhas seguidas"}); abortando para não recuar de ano indevidamente`,
       );
   }
 
