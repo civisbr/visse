@@ -1,5 +1,11 @@
 import { describe, expect, it } from "vitest";
-import { aditivoAlto, empresaRecente, mesesEntre, type Contrato } from "../../scripts/dados/regras";
+import {
+  aditivoAlto,
+  naturezaSemAlertaRecente,
+  empresaRecente,
+  mesesEntre,
+  type Contrato,
+} from "../../scripts/dados/regras";
 
 const base: Contrato = {
   id: "x",
@@ -45,5 +51,18 @@ describe("proteções", () => {
     expect(pareceCpfNoNome("JOAO DA SILVA 12345678901")).toBe(true);
     expect(pareceCpfNoNome("JOAO DA SILVA 123.456.789-01")).toBe(true);
     expect(pareceCpfNoNome("ARRUDA & AGUIAR LTDA")).toBe(false);
+  });
+});
+
+describe("natureza jurídica sem alerta de empresa recente", () => {
+  it("cobre consórcio e grupo de sociedades pelo código cadastral", () => {
+    expect(naturezaSemAlertaRecente(2151)).toBe(true);
+    expect(naturezaSemAlertaRecente(2160)).toBe(true);
+  });
+  it("não depende do nome: LTDA chamada de consórcio continua sujeita à regra", () => {
+    expect(naturezaSemAlertaRecente(2062)).toBe(false);
+    expect(naturezaSemAlertaRecente(undefined)).toBe(false);
+    const c = { ...base, fornecedor: "CONSÓRCIO FACHADA LTDA" };
+    expect(empresaRecente(c, "2026-04-01")?.regra).toBe("empresa-recente");
   });
 });

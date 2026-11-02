@@ -24,8 +24,14 @@ const elegiveis = contratos
   .filter((c) => c.valorInicial >= 100_000)
   .sort((a, b) => b.valorInicial - a.valorInicial);
 const candidatos = elegiveis.slice(0, MAX_CNPJ);
+let excluidosConsorcio = 0;
 for (const c of candidatos) {
-  const a = empresaRecente(c, (await consultaCnpj(c.cnpj)).abertura);
+  const d = await consultaCnpj(c.cnpj);
+  if (d.consorcio) {
+    excluidosConsorcio++;
+    continue;
+  }
+  const a = empresaRecente(c, d.abertura);
   if (a) alertas.push(a);
 }
 
@@ -35,7 +41,7 @@ if (falhas > candidatos.length * 0.1)
   throw new Error(`${falhas} de ${candidatos.length} consultas de CNPJ falharam`);
 if (falhas > 0) console.log(`::warning::${falhas} consultas de CNPJ falharam`, falhasCnpj);
 console.log(
-  `CNPJ: ${candidatos.length} consultados, ${elegiveis.length - candidatos.length} cortados por MAX_CNPJ`,
+  `CNPJ: ${candidatos.length} consultados, ${elegiveis.length - candidatos.length} cortados por MAX_CNPJ, ${excluidosConsorcio} consórcios fora da regra de empresa recente`,
 );
 
 alertas.sort((a, b) => b.prioridade - a.prioridade);

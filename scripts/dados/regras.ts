@@ -43,6 +43,12 @@ export function pareceCpfNoNome(nome: string): boolean {
   return /\d{3}\.?\d{3}\.?\d{3}-?\d{2}\b/.test(nome);
 }
 
+// Consórcio de sociedades (2151) e grupo de sociedades (2160) nascem para disputar e executar um contrato específico;
+// CNPJ recente é o esperado, não indício. O critério é a natureza jurídica cadastral, não o nome, que é texto livre.
+export function naturezaSemAlertaRecente(codigo: unknown): boolean {
+  return codigo === 2151 || codigo === 2160;
+}
+
 export function aditivoAlto(c: Contrato): Alerta | null {
   if (!(c.valorInicial > 0) || !(c.valorAcumulado > c.valorInicial)) return null;
   // Em centavos inteiros: a divisão em ponto flutuante poderia marcar exatamente 25%.
