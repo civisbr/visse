@@ -65,4 +65,10 @@ describe("validações e textos extras", () => {
     expect(com(49)).toContain("acima do limite de alerta");
     expect(com(52)).toContain("acima do limite prudencial");
   });
+
+  it("rejeita arquivo com mais de 2000 municípios", () => {
+    const muitos = Array.from({ length: 2001 }, (_, i) => ({ ...m, codIbge: 2_000_000 + i }));
+    expect(lerGastos({ ...ok, municipios: muitos })).toBeNull();
+    expect(lerGastos({ ...ok, municipios: muitos.slice(0, 2000) })?.municipios).toHaveLength(2000);
+  });
 });

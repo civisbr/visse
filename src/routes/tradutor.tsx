@@ -1,7 +1,8 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useQuery } from "@tanstack/react-query";
-import { useState } from "react";
+import { useMemo, useState } from "react";
 import { ProjectPage, meta } from "@/components/ProjectPage";
+import { CidadeCombobox } from "@/components/CidadeCombobox";
 import { carregarGastos, explicarMunicipio } from "@/lib/gastos-data";
 import { dataBr, diasDesde } from "@/lib/red-flags-data";
 
@@ -43,6 +44,12 @@ function GastosReais() {
     staleTime: 3_600_000,
   });
   const [cod, setCod] = useState<number | null>(null);
+  const lista = useMemo(() => {
+    const ordem = new Intl.Collator("pt-BR");
+    return [...(data?.municipios ?? [])].sort(
+      (a, b) => a.uf.localeCompare(b.uf) || ordem.compare(a.nome, b.nome),
+    );
+  }, [data]);
   if (isPending)
     return (
       <p role="status" className="mb-8 text-muted-foreground">
@@ -62,9 +69,6 @@ function GastosReais() {
         com números aproximados.
       </p>
     );
-  const lista = [...data.municipios].sort(
-    (a, b) => a.uf.localeCompare(b.uf) || a.nome.localeCompare(b.nome, "pt-BR"),
-  );
   const m = lista.find((x) => x.codIbge === cod) ?? lista[0];
   if (!m) return null;
   const atraso = diasDesde(data.geradoEm);
@@ -74,8 +78,8 @@ function GastosReais() {
         Contas reais de {data.exercicio}
       </h3>
       <p className="mt-1 text-sm text-muted-foreground">
-        Amostra de {lista.length} cidades do Nordeste (até 3 por estado, com 10 a 30 mil habitantes)
-        · atualizado em {dataBr(data.geradoEm)} · fonte: {data.fonte}
+        {lista.length.toLocaleString("pt-BR")} cidades do Nordeste que já enviaram os dados de{" "}
+        {data.exercicio} ao Tesouro · atualizado em {dataBr(data.geradoEm)} · fonte: {data.fonte}
       </p>
       <p className="mt-3 rounded-lg border border-border bg-secondary p-3 text-sm font-semibold">
         {data.aviso}
@@ -85,20 +89,10 @@ function GastosReais() {
           Estes dados têm {atraso} dias e podem estar desatualizados.
         </p>
       )}
-      <label className="mt-4 block text-sm font-bold">
-        Escolha a cidade
-        <select
-          className="field mt-1"
-          value={m.codIbge}
-          onChange={(e) => setCod(Number(e.target.value))}
-        >
-          {lista.map((x) => (
-            <option key={x.codIbge} value={x.codIbge}>
-              {x.nome} ({x.uf})
-            </option>
-          ))}
-        </select>
-      </label>
+      <div className="mt-4 text-sm font-bold">
+        <label htmlFor="cidade-gastos">Escolha a cidade</label>
+        <CidadeCombobox id="cidade-gastos" cidades={lista} selecionada={m} onSelecionar={setCod} />
+      </div>
       <div className="mt-4 rounded-lg border border-border bg-secondary p-5">
         <h4 className="text-xl font-bold">Em palavras simples</h4>
         <div className="mt-3 space-y-3">

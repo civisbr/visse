@@ -25,33 +25,27 @@ export type Pessoal = {
 };
 
 const NORDESTE = new Set(["MA", "PI", "CE", "RN", "PB", "PE", "AL", "SE", "BA"]);
-const ALVO_POP = 20_000;
 
 const num = (v: unknown): v is number => typeof v === "number" && Number.isFinite(v);
 
-// Piloto: por UF, os 3 municípios de 10 a 30 mil habitantes mais próximos de 20 mil (critério fixo e reproduzível).
-export function selecionarPiloto(entes: Ente[], porUf = 3): Ente[] {
-  const validos = entes.filter(
-    (e) =>
-      Number.isInteger(e.cod_ibge) &&
-      typeof e.ente === "string" &&
-      e.ente.length <= 80 &&
-      e.esfera === "M" &&
-      NORDESTE.has(e.uf) &&
-      num(e.populacao) &&
-      e.populacao >= 10_000 &&
-      e.populacao <= 30_000,
-  );
-  return [...NORDESTE].sort().flatMap((uf) =>
-    validos
-      .filter((e) => e.uf === uf)
-      .sort(
-        (a, b) =>
-          Math.abs(a.populacao - ALVO_POP) - Math.abs(b.populacao - ALVO_POP) ||
-          a.cod_ibge - b.cod_ibge,
-      )
-      .slice(0, porUf),
-  );
+// Todos os municípios do Nordeste com cadastro utilizável; população válida é exigida porque o front a valida.
+export function selecionarMunicipios(entes: Ente[]): Ente[] {
+  const vistos = new Set<number>();
+  return entes
+    .filter(
+      (e) =>
+        Number.isInteger(e.cod_ibge) &&
+        typeof e.ente === "string" &&
+        e.ente.length > 0 &&
+        e.ente.length <= 80 &&
+        !/[\p{Cc}\p{Cf}]/u.test(e.ente) &&
+        e.esfera === "M" &&
+        NORDESTE.has(e.uf) &&
+        num(e.populacao) &&
+        e.populacao > 0,
+    )
+    .filter((e) => !vistos.has(e.cod_ibge) && !!vistos.add(e.cod_ibge))
+    .sort((a, b) => a.uf.localeCompare(b.uf) || a.cod_ibge - b.cod_ibge);
 }
 
 // RREO Anexo 02, despesas liquidadas até o 6º bimestre, só orçamento fiscal/seguridade (sem intra-orçamentárias).

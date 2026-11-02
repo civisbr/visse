@@ -18,33 +18,45 @@ export type Resultado = {
   semDespesas: number;
   semPessoal: number;
   falhas: string[];
+  falhasRgf: number;
 };
 
 export type Consulta = (rota: string, q: Record<string, string>) => Promise<ItemSiconfi[]>;
 
+type Opcoes = { pausaMs?: number; concorrencia?: number; log?: (msg: string) => void };
+
+// Abaixo disso o exercício é considerado ainda não fechado e o anterior é usado.
+const COBERTURA_MINIMA = 0.7;
+const MAX_FALHAS_SEGUIDAS = 20;
+const MIN_PROCESSADOS_PARA_PROPORCAO = 40;
+
 // Texto vindo da API não pode quebrar linha: "::" no início de linha vira comando de workflow.
 const limpo = (t: string) => t.replace(/[\r\n]+/g, " ");
+const mensagem = (e: unknown) => limpo(String((e as Error)?.message ?? e));
 
-type Opcoes = { pausaMs?: number; log?: (msg: string) => void };
-
-// Usa o exercício completo mais recente em que a maioria dos municípios já enviou os dados.
+// Usa o exercício completo mais recente em que a maior parte dos municípios já enviou os dados.
 // Só recua de ano quando a causa é falta de envio; falha de rede aborta, para não publicar ano velho por engano.
 export async function coletarGastos(
   itens: Consulta,
-  piloto: Ente[],
+  universo: Ente[],
   anoAtual: number,
-  { pausaMs = 200, log = console.log }: Opcoes = {},
+  { pausaMs = 200, concorrencia = 4, log = console.log }: Opcoes = {},
 ): Promise<Resultado> {
   const pausa = (ms: number) => new Promise((ok) => setTimeout(ok, ms));
   let escolhido: { achados: Coletado[]; ano: number } | null = null;
   let semDespesas = 0;
   let falhas: string[] = [];
+  let falhasRgf = 0;
 
   for (const ano of [anoAtual - 1, anoAtual - 2]) {
     const achados: Coletado[] = [];
     semDespesas = 0;
     falhas = [];
-    for (const e of piloto) {
+    falhasRgf = 0;
+    let seguidas = 0;
+    let processados = 0;
+
+    const processa = async (e: Ente) => {
       try {
         const desp = extrairDespesas(
           await itens("rreo", {
@@ -57,8 +69,8 @@ export async function coletarGastos(
         );
         if (!desp) {
           semDespesas++;
-          log(`::notice::${e.cod_ibge} ${limpo(e.ente)}: sem despesas por função em ${ano}`);
-          continue;
+          seguidas = 0;
+          return;
         }
         // Município pequeno pode publicar o RGF por semestre em vez de quadrimestre.
         const rgf = async (p: string, n: string) =>
@@ -76,6 +88,7 @@ export async function coletarGastos(
           );
         let pessoal: Coletado["pessoal"] = null;
         let rgfPeriodicidade: Coletado["rgfPeriodicidade"] = null;
+        let rgfFalhou = false;
         try {
           pessoal = await rgf("Q", "3");
           if (pessoal) rgfPeriodicidade = "quadrimestral";
@@ -83,12 +96,11 @@ export async function coletarGastos(
             pessoal = await rgf("S", "2");
             if (pessoal) rgfPeriodicidade = "semestral";
           }
-        } catch (err) {
-          log(
-            `::warning::${e.cod_ibge} ${limpo(e.ente)}: RGF indisponível (${limpo((err as Error).message)})`,
-          );
+        } catch {
+          falhasRgf++;
+          rgfFalhou = true;
         }
-        if (!pessoal) log(`::notice::${e.cod_ibge} ${limpo(e.ente)}: sem RGF de pessoal em ${ano}`);
+        seguidas = rgfFalhou ? seguidas + 1 : 0;
         achados.push({
           codIbge: e.cod_ibge,
           nome: e.ente,
@@ -99,27 +111,47 @@ export async function coletarGastos(
           rgfPeriodicidade,
         });
       } catch (err) {
-        falhas.push(`${e.cod_ibge}: ${limpo((err as Error).message)}`);
+        seguidas++;
+        falhas.push(`${e.cod_ibge}: ${mensagem(err)}`);
+      } finally {
+        processados++;
       }
-      await pausa(pausaMs);
-    }
+    };
+
+    // Com o servidor fora do ar ou travado, não vale percorrer o Nordeste inteiro só para descobrir isso.
+    const desistir = () =>
+      seguidas >= MAX_FALHAS_SEGUIDAS ||
+      falhas.length > universo.length / 3 ||
+      (processados >= MIN_PROCESSADOS_PARA_PROPORCAO && falhas.length > processados / 2);
+
+    // Pool: um município lento não segura os demais trabalhadores.
+    let proximo = 0;
+    const trabalhador = async () => {
+      while (proximo < universo.length && !desistir()) {
+        const e = universo[proximo++];
+        if (e) await processa(e);
+        await pausa(pausaMs);
+      }
+    };
+    await Promise.all(Array.from({ length: Math.max(1, concorrencia) }, trabalhador));
+
+    achados.sort((a, b) => a.codIbge - b.codIbge);
     log(
-      `${ano}: ${achados.length}/${piloto.length} municípios com dados (${semDespesas} sem envio, ${falhas.length} falhas)`,
+      `${ano}: ${achados.length}/${universo.length} municípios com dados (${semDespesas} sem envio, ${falhas.length} falhas, ${falhasRgf} falhas só do RGF)`,
     );
-    if (achados.length >= piloto.length / 2) {
+    if (achados.length >= universo.length * COBERTURA_MINIMA) {
       escolhido = { achados, ano };
       break;
     }
     if (falhas.length > 0)
       throw new Error(
-        `Falhas de rede em ${ano} (${limpo(falhas[0] ?? "")}); abortando para não recuar de ano indevidamente`,
+        `Falhas de rede em ${ano} (${falhas[0] ?? ""}); abortando para não recuar de ano indevidamente`,
       );
   }
 
   if (!escolhido) throw new Error("Nenhum município com dados; abortando sem gravar");
-  if (falhas.length > piloto.length / 3)
-    throw new Error(`${falhas.length} consultas falharam: ${falhas[0]}`);
-  for (const f of falhas) log(`::warning::${limpo(f)}`);
+  for (const f of falhas.slice(0, 5)) log(`::warning::${f}`);
+  if (falhas.length > 5) log(`::warning::mais ${falhas.length - 5} falhas de consulta; ver o log`);
 
   // Maioria sem pessoal indica mudança de esquema do RGF, não ausência de envio.
   const semPessoal = escolhido.achados.filter((m) => !m.pessoal).length;
@@ -134,5 +166,6 @@ export async function coletarGastos(
     semDespesas,
     semPessoal,
     falhas,
+    falhasRgf,
   };
 }

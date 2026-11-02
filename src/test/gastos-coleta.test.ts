@@ -80,19 +80,71 @@ describe("coletarGastos", () => {
     await expect(coletarGastos(consulta, piloto, 2026, opcoes)).rejects.toThrow(/Nenhum município/);
   });
 
-  it("aceita até um terço de falhas e aborta acima disso", async () => {
+  it("tolera falhas isoladas quando o ano tem cobertura, e aborta quando faltam dados", async () => {
     const seis = [1, 2, 3, 4, 5, 6].map(ente);
     const comFalhas =
       (n: number): Consulta =>
       async (rota, q) => {
-        if (rota === "rreo" && Number(q["id_ente"]) <= n) throw new Error("HTTP 500");
+        if (rota === "rreo" && Number(q["id_ente"]) > 6 - n) throw new Error("HTTP 500");
         return rota === "rreo" ? rreo : rgf;
       };
-    const ok = await coletarGastos(comFalhas(2), seis, 2026, opcoes);
-    expect(ok.falhas).toHaveLength(2);
-    await expect(coletarGastos(comFalhas(3), seis, 2026, opcoes)).rejects.toThrow(
-      /consultas falharam/,
+    const um = { ...opcoes, concorrencia: 1 };
+    const ok = await coletarGastos(comFalhas(1), seis, 2026, um);
+    expect(ok.falhas).toHaveLength(1);
+    await expect(coletarGastos(comFalhas(3), seis, 2026, um)).rejects.toThrow(/Falhas de rede/);
+  });
+
+  it("com concorrência maior que 1 devolve tudo ordenado por código", async () => {
+    const muitos = Array.from({ length: 25 }, (_, i) => ente(100 - i));
+    const consulta: Consulta = async (rota) => {
+      await new Promise((ok) => setTimeout(ok, Math.random() * 3));
+      return rota === "rreo" ? rreo : rgf;
+    };
+    const r = await coletarGastos(consulta, muitos, 2026, { ...opcoes, concorrencia: 4 });
+    const cods = r.municipios.map((m) => m.codIbge);
+    expect(cods).toEqual([...cods].sort((a, b) => a - b));
+    expect(cods).toHaveLength(25);
+  });
+
+  it("para cedo quando as falhas são seguidas, sem percorrer todo o universo", async () => {
+    const muitos = Array.from({ length: 200 }, (_, i) => ente(i + 1));
+    let chamadas = 0;
+    const consulta: Consulta = async () => {
+      chamadas++;
+      throw new Error("HTTP 503");
+    };
+    await expect(coletarGastos(consulta, muitos, 2026, opcoes)).rejects.toThrow(/Falhas de rede/);
+    expect(chamadas).toBeLessThan(40);
+  });
+
+  it("não recua de ano quando a falha de rede interrompe o primeiro ano", async () => {
+    const vistos = new Set<string>();
+    const consulta: Consulta = async (_rota, q) => {
+      vistos.add(q["an_exercicio"] ?? "");
+      throw new Error("HTTP 500");
+    };
+    await expect(coletarGastos(consulta, piloto, 2026, opcoes)).rejects.toThrow(
+      /Falhas de rede em 2025/,
     );
+    expect([...vistos]).toEqual(["2025"]);
+  });
+
+  it("usa o ano anterior apenas quando o mais recente tem menos de 70% de envio", async () => {
+    const dez = Array.from({ length: 10 }, (_, i) => ente(i + 1));
+    const comEnvio =
+      (n: number): Consulta =>
+      async (rota, q) =>
+        rota === "rreo" ? (Number(q["id_ente"]) <= n ? rreo : []) : rgf;
+    expect((await coletarGastos(comEnvio(7), dez, 2026, opcoes)).exercicio).toBe(2025);
+    const abaixo: Consulta = async (rota, q) =>
+      rota === "rreo"
+        ? q["an_exercicio"] === "2024"
+          ? rreo
+          : Number(q["id_ente"]) <= 6
+            ? rreo
+            : []
+        : rgf;
+    expect((await coletarGastos(abaixo, dez, 2026, opcoes)).exercicio).toBe(2024);
   });
 
   it("envia os parâmetros esperados ao SICONFI", async () => {

@@ -2,7 +2,7 @@ import { describe, expect, it } from "vitest";
 import {
   extrairDespesas,
   extrairPessoal,
-  selecionarPiloto,
+  selecionarMunicipios,
   type Ente,
 } from "../../scripts/dados/gastos-regras";
 
@@ -57,23 +57,24 @@ describe("gastos", () => {
     });
     expect(extrairPessoal([])).toBeNull();
   });
-  it("seleciona 3 municípios por UF perto de 20 mil habitantes", () => {
-    const e = (cod: number, uf: string, populacao: number): Ente => ({
+  it("seleciona todos os municípios do Nordeste com população válida, sem duplicar", () => {
+    const e = (cod: number, uf: string, populacao: number, esfera = "M"): Ente => ({
       cod_ibge: cod,
-      ente: `M${cod}`,
+      ente: `C${cod}`,
       uf,
       regiao: "NE",
-      esfera: "M",
+      esfera,
       populacao,
     });
-    const r = selecionarPiloto([
-      e(1, "BA", 19_000),
-      e(2, "BA", 21_000),
-      e(3, "BA", 29_000),
-      e(4, "BA", 12_000),
-      e(5, "BA", 5_000),
-      e(6, "SP", 20_000),
+    const r = selecionarMunicipios([
+      e(3, "BA", 900_000),
+      e(1, "BA", 1_000),
+      e(2, "CE", 5_000),
+      e(4, "CE", 0),
+      e(5, "SP", 20_000),
+      e(6, "PE", 7_000, "E"),
+      e(1, "BA", 1_000),
     ]);
-    expect(r.map((x) => x.cod_ibge)).toEqual([1, 2, 4]);
+    expect(r.map((x) => x.cod_ibge)).toEqual([1, 3, 2]);
   });
 });

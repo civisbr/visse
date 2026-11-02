@@ -47,7 +47,7 @@ function pessoalValido(p: unknown): boolean {
   );
 }
 
-function municipioValido(m: unknown): m is MunicipioGastos {
+export function municipioValido(m: unknown): m is MunicipioGastos {
   if (!m || typeof m !== "object") return false;
   const x = m as Record<string, unknown>;
   return (
@@ -87,7 +87,7 @@ export function lerGastos(bruto: unknown): DadosGastos | null {
   )
     return null;
   const gerado = Date.parse(d["geradoEm"]);
-  if (!Number.isFinite(gerado) || gerado > Date.now() + 86_400_000 || d["municipios"].length > 200)
+  if (!Number.isFinite(gerado) || gerado > Date.now() + 86_400_000 || d["municipios"].length > 2000)
     return null;
   const vistos = new Set<number>();
   const municipios = d["municipios"]

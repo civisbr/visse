@@ -24,6 +24,12 @@ const lido =
 if (alvo === "red-flags" && !(Number(bruto["analisados"]) > 0))
   throw new Error("red-flags.json sem contratos analisados");
 if (alvo === "gastos" && lista.length === 0) throw new Error("gastos.json sem municípios");
+if (alvo === "gastos") {
+  const cob = bruto["cobertura"] as Record<string, unknown> | undefined;
+  const universo = Number(cob?.["universo"]);
+  if (!(universo >= 1700) || lista.length < universo * 0.5)
+    throw new Error(`gastos.json com cobertura insuficiente (${lista.length} de ${universo})`);
+}
 if (!lido) throw new Error(`${alvo}.json inválido para o front`);
 if (lido.length !== lista.length)
   throw new Error(

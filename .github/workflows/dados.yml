@@ -66,7 +66,7 @@ jobs:
 
   gastos:
     runs-on: ubuntu-latest
-    timeout-minutes: 20
+    timeout-minutes: 120
     permissions:
       contents: read
     steps:
@@ -116,8 +116,9 @@ jobs:
           # Só resume fonte que teve sucesso nesta execução; o arquivo das demais é o antigo da main.
           linha() {
             if [ "$2" != "success" ]; then echo "- $1: não atualizado nesta execução ($2)"; return; fi
-            jq -er "$4" "$3" || echo "- $1: resumo indisponível"
+            jq -er --argjson antes "${ANTES:-0}" "$4" "$3" || echo "- $1: resumo indisponível"
           }
+          ANTES=$(git show HEAD:public/data/gastos.json 2>/dev/null | jq -r '.municipios|length' 2>/dev/null || echo 0)
           resumo=$(
             echo "Dados gerados pelo workflow Atualizar dados: $RUN_URL (commit $GITHUB_SHA)."
             echo
@@ -126,7 +127,7 @@ jobs:
             linha Obras "$RESULTADO_OBRAS" public/data/obras.json \
               '"- Obras: \(.obras|length) registros, UFs com falha: \(.ufsComFalha|length)"'
             linha Gastos "$RESULTADO_GASTOS" public/data/gastos.json \
-              '"- Gastos: exercício \(.exercicio|numbers), \(.cobertura.publicados|numbers) de \(.cobertura.piloto|numbers) municípios, \(.cobertura.semPessoal|numbers) sem dados de pessoal"'
+              '"- Gastos: exercício \(.exercicio|numbers), \(.cobertura.publicados|numbers) de \(.cobertura.universo|numbers) municípios (antes: \($antes)), \(.cobertura.semPessoal|numbers) sem dados de pessoal"'
             echo
             echo "Conferir os arquivos em public/data antes de aprovar."
           )

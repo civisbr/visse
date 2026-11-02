@@ -1,6 +1,7 @@
-import { mkdir, writeFile } from "node:fs/promises";
+import { appendFile, mkdir, writeFile } from "node:fs/promises";
+import { municipioValido } from "../../src/lib/gastos-data";
 import { coletarGastos } from "./gastos-coleta";
-import { selecionarPiloto, type Ente, type ItemSiconfi } from "./gastos-regras";
+import { selecionarMunicipios, type Ente, type ItemSiconfi } from "./gastos-regras";
 
 const BASE = "https://apidatalake.tesouro.gov.br/ords/siconfi/tt";
 const HEADERS = {
@@ -15,6 +16,9 @@ async function get<T>(url: string, tentativas = 3): Promise<T> {
       const r = await fetch(url, { headers: HEADERS, signal: AbortSignal.timeout(45_000) });
       if (!r.ok) {
         if (r.status >= 400 && r.status < 500 && r.status !== 429) i = tentativas;
+        const espera = Number(r.headers.get("retry-after"));
+        if ((r.status === 429 || r.status === 503) && Number.isFinite(espera) && espera > 0)
+          await pausa(Math.min(espera, 60) * 1000);
         throw new Error(`HTTP ${r.status}`);
       }
       return (await r.json()) as T;
@@ -32,14 +36,25 @@ const respEntes = await get<{ items: Ente[]; hasMore?: boolean }>(`${BASE}/entes
 if (respEntes.hasMore) throw new Error("/entes paginou; a lista está incompleta");
 const entes = respEntes.items;
 if (!Array.isArray(entes) || entes.length < 1000) throw new Error("Lista de entes inesperada");
-const piloto = selecionarPiloto(entes);
-if (piloto.length === 0) throw new Error("Nenhum município selecionado");
+const universo = selecionarMunicipios(entes);
+// O Nordeste tem 1.794 municípios; bem abaixo disso indica mudança no cadastro de entes, não um universo menor.
+const MINIMO_UNIVERSO = 1700;
+if (universo.length < MINIMO_UNIVERSO)
+  throw new Error(
+    `Só ${universo.length} municípios selecionados; esperado ao menos ${MINIMO_UNIVERSO}`,
+  );
 
-const { municipios, exercicio, semDespesas, semPessoal, falhas } = await coletarGastos(
-  itens,
-  piloto,
-  new Date().getFullYear(),
-);
+const coleta = await coletarGastos(itens, universo, new Date().getFullYear());
+const { exercicio, semDespesas, semPessoal, falhas } = coleta;
+// Registro incoerente no SICONFI é descartado aqui; do contrário o validador barraria a publicação inteira.
+const municipios = coleta.municipios.filter(municipioValido);
+const rejeitados = coleta.municipios.length - municipios.length;
+if (rejeitados > 0)
+  console.log(`::warning::${rejeitados} município(s) com dados incoerentes descartados`);
+if (rejeitados > coleta.municipios.length * 0.05)
+  throw new Error(
+    `${rejeitados} municípios descartados por dados incoerentes; esquema pode ter mudado`,
+  );
 
 await mkdir("public/data", { recursive: true });
 await writeFile(
@@ -52,11 +67,13 @@ await writeFile(
       geradoEm: new Date().toISOString(),
       exercicio,
       cobertura: {
-        piloto: piloto.length,
+        universo: universo.length,
         publicados: municipios.length,
         semDespesas,
         semPessoal,
         falhas: falhas.length,
+        falhasRgf: coleta.falhasRgf,
+        rejeitados,
       },
       municipios,
     },
@@ -65,3 +82,9 @@ await writeFile(
   ) + "\n",
 );
 console.log(`${municipios.length} municípios gravados (${exercicio})`);
+const resumo = process.env["GITHUB_STEP_SUMMARY"];
+if (resumo)
+  await appendFile(
+    resumo,
+    `### Gastos municipais ${exercicio}\n\n- Universo: ${universo.length}\n- Publicados: ${municipios.length}\n- Sem envio de despesas: ${semDespesas}\n- Sem dados de pessoal: ${semPessoal}\n- Falhas de consulta: ${falhas.length}\n`,
+  );
