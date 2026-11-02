@@ -1,0 +1,321 @@
+{
+ "aviso": "Valores liquidados e percentuais informados pelas próprias prefeituras ao Tesouro Nacional (SICONFI), que podem ser retificados e não equivalem a parecer do Tribunal de Contas. Saúde e educação são despesas por função e incluem recursos de outras esferas. A população vem do cadastro de entes mais recente. Os mínimos legais de 15% e 25% usam outra base de cálculo e não são avaliados aqui.",
+ "fonte": "SICONFI / Tesouro Nacional (RREO Anexo 02 e RGF Anexo 01, Poder Executivo)",
+ "geradoEm": "2026-11-02T17:10:14.880Z",
+ "exercicio": 2025,
+ "cobertura": {
+  "piloto": 27,
+  "publicados": 18,
+  "semDespesas": 9,
+  "semPessoal": 0,
+  "falhas": 0
+ },
+ "municipios": [
+  {
+   "codIbge": 2700102,
+   "nome": "Água Branca",
+   "uf": "AL",
+   "populacao": 19550,
+   "despesaTotal": 130850756.13,
+   "saude": 23846618.17,
+   "educacao": 70975626.11,
+   "pessoal": {
+    "percentual": 47.27,
+    "limite": 54,
+    "alerta": 48.6,
+    "prudencial": 51.3,
+    "rcl": 150501975.85
+   },
+   "rgfPeriodicidade": "quadrimestral"
+  },
+  {
+   "codIbge": 2709103,
+   "nome": "Taquarana",
+   "uf": "AL",
+   "populacao": 19428,
+   "despesaTotal": 170014320.37,
+   "saude": 25453487.12,
+   "educacao": 79744689.69,
+   "pessoal": {
+    "percentual": 50.2,
+    "limite": 54,
+    "alerta": 48.6,
+    "prudencial": 51.3,
+    "rcl": 162604924.23
+   },
+   "rgfPeriodicidade": "quadrimestral"
+  },
+  {
+   "codIbge": 2925956,
+   "nome": "Rafael Jambeiro",
+   "uf": "BA",
+   "populacao": 20081,
+   "despesaTotal": 106707176.63,
+   "saude": 28213034.05,
+   "educacao": 42441905.76,
+   "pessoal": {
+    "percentual": 47.46,
+    "limite": 54,
+    "alerta": 48.6,
+    "prudencial": 51.3,
+    "rcl": 102518968.28
+   },
+   "rgfPeriodicidade": "quadrimestral"
+  },
+  {
+   "codIbge": 2908101,
+   "nome": "Cocos",
+   "uf": "BA",
+   "populacao": 19865,
+   "despesaTotal": 145272093,
+   "saude": 31450552.28,
+   "educacao": 52003851.62,
+   "pessoal": {
+    "percentual": 53.65,
+    "limite": 54,
+    "alerta": 48.6,
+    "prudencial": 51.3,
+    "rcl": 132488503.9
+   },
+   "rgfPeriodicidade": "quadrimestral"
+  },
+  {
+   "codIbge": 2923357,
+   "nome": "Ourolândia",
+   "uf": "BA",
+   "populacao": 20141,
+   "despesaTotal": 120953046.47,
+   "saude": 26356287.62,
+   "educacao": 43946146.72,
+   "pessoal": {
+    "percentual": 47.22,
+    "limite": 54,
+    "alerta": 48.6,
+    "prudencial": 51.3,
+    "rcl": 103590048.22
+   },
+   "rgfPeriodicidade": "quadrimestral"
+  },
+  {
+   "codIbge": 2301307,
+   "nome": "Araripe",
+   "uf": "CE",
+   "populacao": 20194,
+   "despesaTotal": 135238092.7,
+   "saude": 33259162.37,
+   "educacao": 53486526.19,
+   "pessoal": {
+    "percentual": 50.67,
+    "limite": 54,
+    "alerta": 48.6,
+    "prudencial": 51.3,
+    "rcl": 115122394.21
+   },
+   "rgfPeriodicidade": "quadrimestral"
+  },
+  {
+   "codIbge": 2302008,
+   "nome": "Barro",
+   "uf": "CE",
+   "populacao": 19569,
+   "despesaTotal": 98581480.58,
+   "saude": 31765499.61,
+   "educacao": 37123031.79,
+   "pessoal": {
+    "percentual": 49.34,
+    "limite": 54,
+    "alerta": 48.6,
+    "prudencial": 51.3,
+    "rcl": 90927604.58
+   },
+   "rgfPeriodicidade": "quadrimestral"
+  },
+  {
+   "codIbge": 2505105,
+   "nome": "Cuité",
+   "uf": "PB",
+   "populacao": 20208,
+   "despesaTotal": 105428900.05,
+   "saude": 30332064.96,
+   "educacao": 31928249.98,
+   "pessoal": {
+    "percentual": 53.35,
+    "limite": 54,
+    "alerta": 48.6,
+    "prudencial": 51.3,
+    "rcl": 96920737.09
+   },
+   "rgfPeriodicidade": "quadrimestral"
+  },
+  {
+   "codIbge": 2514503,
+   "nome": "São José de Piranhas",
+   "uf": "PB",
+   "populacao": 19561,
+   "despesaTotal": 112282478.48,
+   "saude": 28573084.88,
+   "educacao": 43988256.47,
+   "pessoal": {
+    "percentual": 54.09,
+    "limite": 54,
+    "alerta": 48.6,
+    "prudencial": 51.3,
+    "rcl": 102633355.73
+   },
+   "rgfPeriodicidade": "quadrimestral"
+  },
+  {
+   "codIbge": 2507101,
+   "nome": "Itapororoca",
+   "uf": "PB",
+   "populacao": 19165,
+   "despesaTotal": 104643018.8,
+   "saude": 20475181.88,
+   "educacao": 47726089.31,
+   "pessoal": {
+    "percentual": 50.44,
+    "limite": 54,
+    "alerta": 48.6,
+    "prudencial": 51.3,
+    "rcl": 99505609.02
+   },
+   "rgfPeriodicidade": "quadrimestral"
+  },
+  {
+   "codIbge": 2601052,
+   "nome": "Araçoiaba",
+   "uf": "PE",
+   "populacao": 19996,
+   "despesaTotal": 115564012.78,
+   "saude": 26769391.88,
+   "educacao": 40955730.82,
+   "pessoal": {
+    "percentual": 42.19,
+    "limite": 54,
+    "alerta": 48.6,
+    "prudencial": 51.3,
+    "rcl": 97138507.89
+   },
+   "rgfPeriodicidade": "quadrimestral"
+  },
+  {
+   "codIbge": 2608503,
+   "nome": "Lagoa de Itaenga",
+   "uf": "PE",
+   "populacao": 19863,
+   "despesaTotal": 113106981.92,
+   "saude": 26355626.18,
+   "educacao": 35148572.99,
+   "pessoal": {
+    "percentual": 46.52,
+    "limite": 54,
+    "alerta": 48.6,
+    "prudencial": 51.3,
+    "rcl": 109523288.19
+   },
+   "rgfPeriodicidade": "quadrimestral"
+  },
+  {
+   "codIbge": 2202604,
+   "nome": "Castelo do Piauí",
+   "uf": "PI",
+   "populacao": 19669,
+   "despesaTotal": 106689211.07,
+   "saude": 25766133.19,
+   "educacao": 39480904.16,
+   "pessoal": {
+    "percentual": 48.38,
+    "limite": 54,
+    "alerta": 48.6,
+    "prudencial": 51.3,
+    "rcl": 78494507.13
+   },
+   "rgfPeriodicidade": "quadrimestral"
+  },
+  {
+   "codIbge": 2202307,
+   "nome": "Canto do Buriti",
+   "uf": "PI",
+   "populacao": 19639,
+   "despesaTotal": 107114422.71,
+   "saude": 30882330.06,
+   "educacao": 41256334.21,
+   "pessoal": {
+    "percentual": 46.62,
+    "limite": 54,
+    "alerta": 48.6,
+    "prudencial": 51.3,
+    "rcl": 99015059.35
+   },
+   "rgfPeriodicidade": "quadrimestral"
+  },
+  {
+   "codIbge": 2402303,
+   "nome": "Caraúbas",
+   "uf": "RN",
+   "populacao": 20182,
+   "despesaTotal": 111164267.03,
+   "saude": 27108282.68,
+   "educacao": 35217580.74,
+   "pessoal": {
+    "percentual": 40.45,
+    "limite": 54,
+    "alerta": 48.6,
+    "prudencial": 51.3,
+    "rcl": 104031007.19
+   },
+   "rgfPeriodicidade": "quadrimestral"
+  },
+  {
+   "codIbge": 2801405,
+   "nome": "Carira",
+   "uf": "SE",
+   "populacao": 20314,
+   "despesaTotal": 122525738.47,
+   "saude": 17772365.66,
+   "educacao": 56589491.76,
+   "pessoal": {
+    "percentual": 50.08,
+    "limite": 54,
+    "alerta": 48.6,
+    "prudencial": 51.3,
+    "rcl": 119720669.98
+   },
+   "rgfPeriodicidade": "quadrimestral"
+  },
+  {
+   "codIbge": 2800209,
+   "nome": "Aquidabã",
+   "uf": "SE",
+   "populacao": 20556,
+   "despesaTotal": 115087555.62,
+   "saude": 23600852.09,
+   "educacao": 49057781.88,
+   "pessoal": {
+    "percentual": 55.73,
+    "limite": 54,
+    "alerta": 48.6,
+    "prudencial": 51.3,
+    "rcl": 117170546.54
+   },
+   "rgfPeriodicidade": "quadrimestral"
+  },
+  {
+   "codIbge": 2806206,
+   "nome": "Salgado",
+   "uf": "SE",
+   "populacao": 20825,
+   "despesaTotal": 97331337.65,
+   "saude": 20463378.44,
+   "educacao": 38526202.09,
+   "pessoal": {
+    "percentual": 57.21,
+    "limite": 54,
+    "alerta": 48.6,
+    "prudencial": 51.3,
+    "rcl": 95481002.69
+   },
+   "rgfPeriodicidade": "quadrimestral"
+  }
+ ]
+}

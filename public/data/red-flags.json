@@ -1,0 +1,31 @@
+{
+ "aviso": "Indicador estatístico automático sobre dados abertos. Não indica irregularidade nem culpa; serve apenas para priorizar conferência nas fontes oficiais.",
+ "fonte": "PNCP (pncp.gov.br) e BrasilAPI (CNPJ)",
+ "geradoEm": "2026-11-02T17:37:30.401Z",
+ "janelaDias": 14,
+ "analisados": 4943,
+ "cnpjConsultados": 400,
+ "cnpjCortados": 1213,
+ "cnpjFalhas": 0,
+ "alertasTotal": 3,
+ "alertas": [
+  {
+   "contrato": {
+    "id": "08924078000104-2-000079/2026",
+    "orgao": "MUNICIPIO DE UIRAUNA",
+    "municipio": "Uiraúna",
+    "uf": "PB",
+    "objeto": "Contratação de empresa especializada em engenharia para execução da obra de implantação de sistema de esgotamento sanitário no Município de Uiraúna/PB, conforme Plano de Trabalho vinculado ao Termo de Compromisso nº 970638/2024/MCIDADES/CAIXA, firmado entre a União, por intermédio do Ministério das Cidades, representado pela Caixa Econômica Federal, e o Município de Uiraúna/PB",
+    "fornecedor": "CONSÓRCIO NOVA UIRAÚNA",
+    "cnpj": "68723724000105",
+    "valorInicial": 27097798.12,
+    "valorAcumulado": 27097798.12,
+    "assinatura": "2026-09-11",
+    "link": "https://pncp.gov.br/app/contratos/08924078000104/2026/79"
+   },
+   "regra": "empresa-recente",
+   "detalhe": "CNPJ com início de atividade em 2026-08-21, 0 mês(es) antes da assinatura.",
+   "prioridade": 100
+  }
+ ]
+}
