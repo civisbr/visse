@@ -6,9 +6,9 @@ on:
   workflow_dispatch:
     inputs:
       dias:
-        description: Janela em dias (1 a 60)
+        description: Janela em dias (1 a 60); a coleta do PNCP leva cerca de 2,5 min por dia de janela
         type: number
-        default: 14
+        default: 30
 
 permissions: {}
 
@@ -19,7 +19,7 @@ concurrency:
 jobs:
   contratos:
     runs-on: ubuntu-latest
-    timeout-minutes: 45
+    timeout-minutes: 240
     permissions:
       contents: read
     steps:
@@ -33,7 +33,7 @@ jobs:
       - run: bun run test
       - run: bun scripts/dados/red-flags.ts
         env:
-          DIAS: ${{ inputs.dias || '14' }}
+          DIAS: ${{ inputs.dias || '30' }}
       - run: bun scripts/dados/validar.ts red-flags
       - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
         with:
@@ -123,7 +123,7 @@ jobs:
             echo "Dados gerados pelo workflow Atualizar dados: $RUN_URL (commit $GITHUB_SHA)."
             echo
             linha Contratos "$RESULTADO_CONTRATOS" public/data/red-flags.json \
-              '"- Contratos: \(.analisados|numbers) analisados em \(.janelaDias|numbers) dias, \(.alertasTotal|numbers) alertas (\(.cnpjFalhas|numbers) falhas de CNPJ)"'
+              '"- Contratos: \(.analisados|numbers) analisados em \(.janelaDias|numbers) dias, \(.alertasTotal|numbers) alertas detectados, \(.alertas|length) publicados (CNPJ: \(.cnpjConsultados|numbers) consultados, \(.cnpjCortados|numbers) sem checagem, \(.cnpjFalhas|numbers) falhas)"'
             linha Obras "$RESULTADO_OBRAS" public/data/obras.json \
               '"- Obras: \(.obras|length) registros, UFs com falha: \(.ufsComFalha|length)"'
             linha Gastos "$RESULTADO_GASTOS" public/data/gastos.json \

@@ -117,7 +117,11 @@ function DadosReais() {
     staleTime: 3_600_000,
   });
   if (isPending)
-    return <p role="status" className="mb-8 text-muted-foreground">Carregando os dados mais recentes…</p>;
+    return (
+      <p role="status" className="mb-8 text-muted-foreground">
+        Carregando os dados mais recentes…
+      </p>
+    );
   if (isError) {
     return (
       <p role="alert" className="mb-8 rounded-lg border border-border bg-card p-4 text-sm">
@@ -151,13 +155,24 @@ function DadosReais() {
         </a>
         .
       </p>
+      {data.cnpjCortados !== null && data.cnpjCortados > 0 && data.cnpjConsultados !== null && (
+        <p className="mt-3 text-sm text-muted-foreground">
+          A idade da empresa foi conferida em{" "}
+          {Math.max(0, data.cnpjConsultados - (data.cnpjFalhas ?? 0)).toLocaleString("pt-BR")} dos
+          contratos de R$ 100 mil ou mais, os de maior valor. Os outros{" "}
+          {data.cnpjCortados.toLocaleString("pt-BR")} não passaram por essa regra.
+        </p>
+      )}
       {atraso > 10 && (
         <p role="status" className="mt-3 text-sm font-bold text-destructive">
           Estes dados têm {atraso} dias e podem estar desatualizados.
         </p>
       )}
       {lista.length === 0 ? (
-        <p className="mt-4">Nenhum contrato atingiu os critérios nesta coleta.</p>
+        <p className="mt-4">
+          Nenhum contrato atingiu os critérios nesta coleta. Isso não quer dizer que está tudo
+          certo: só procuramos aditivo acima de 25% e empresa aberta há menos de 6 meses.
+        </p>
       ) : (
         <ul className="mt-4 space-y-3">
           {lista.map((a) => {

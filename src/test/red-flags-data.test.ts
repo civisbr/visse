@@ -25,6 +25,13 @@ const ok = {
 
 describe("dados de red flags", () => {
   it("aceita o formato do pipeline", () => expect(lerDados(ok)?.alertas).toHaveLength(1));
+  it("lê a cobertura de CNPJ e ignora valores inválidos", () => {
+    const d = lerDados({ ...ok, cnpjConsultados: 3000, cnpjCortados: 12 });
+    expect([d?.cnpjConsultados, d?.cnpjCortados]).toEqual([3000, 12]);
+    const ruim = lerDados({ ...ok, cnpjConsultados: -1, cnpjCortados: "x" });
+    expect([ruim?.cnpjConsultados, ruim?.cnpjCortados]).toEqual([null, null]);
+    expect(lerDados(ok)?.cnpjCortados).toBeNull();
+  });
   it("descarta alerta malformado e rejeita arquivo inválido", () => {
     expect(lerDados({ ...ok, alertas: [{ regra: "x" }, ok.alertas[0]] })?.alertas).toHaveLength(1);
     expect(lerDados({ alertas: [] })).toBeNull();

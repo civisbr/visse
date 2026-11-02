@@ -42,7 +42,8 @@ async function get<T>(url: string, tentativas = 4): Promise<T> {
   }
 }
 
-const MAX_PAGINAS = 400;
+// 60 dias de contratos do país inteiro passam de 650 páginas de 500; o teto é só proteção contra resposta absurda.
+const MAX_PAGINAS = 1000;
 
 export type Coleta = { contratos: Contrato[]; descartados: number; excluidosPessoaFisica: number };
 

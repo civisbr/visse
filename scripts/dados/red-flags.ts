@@ -1,10 +1,11 @@
 import { mkdir, writeFile } from "node:fs/promises";
 import { consultaCnpj, falhasCnpj } from "./cnpj";
 import { contratosNordeste } from "./pncp";
-import { aditivoAlto, empresaRecente, pareceCpfNoNome, type Alerta } from "./regras";
+import { filtrarPublicaveis } from "./publicar";
+import { aditivoAlto, empresaRecente, type Alerta } from "./regras";
 
-const DIAS = Number(process.env["DIAS"] ?? 14);
-const MAX_CNPJ = Number(process.env["MAX_CNPJ"] ?? 400);
+const DIAS = Number(process.env["DIAS"] ?? 30);
+const MAX_CNPJ = Number(process.env["MAX_CNPJ"] ?? 3000);
 if (!Number.isInteger(DIAS) || DIAS < 1 || DIAS > 60)
   throw new Error("DIAS deve ser inteiro entre 1 e 60");
 if (!Number.isInteger(MAX_CNPJ) || MAX_CNPJ < 0) throw new Error("MAX_CNPJ inválido");
@@ -25,7 +26,11 @@ const elegiveis = contratos
   .sort((a, b) => b.valorInicial - a.valorInicial);
 const candidatos = elegiveis.slice(0, MAX_CNPJ);
 let excluidosConsorcio = 0;
-for (const c of candidatos) {
+const falhasAteAgora = () => Object.values(falhasCnpj).reduce((a, b) => a + b, 0);
+for (const [i, c] of candidatos.entries()) {
+  // BrasilAPI degradada: abortar cedo em vez de insistir até o timeout do job.
+  if (i >= 100 && i % 50 === 0 && falhasAteAgora() > i * 0.1)
+    throw new Error(`${falhasAteAgora()} falhas de CNPJ em ${i} consultas; abortando`);
   const d = await consultaCnpj(c.cnpj);
   if (d.consorcio) {
     excluidosConsorcio++;
@@ -35,24 +40,25 @@ for (const c of candidatos) {
   if (a) alertas.push(a);
 }
 
-const falhas = Object.values(falhasCnpj).reduce((a, b) => a + b, 0);
+const falhas = falhasAteAgora();
+const cnpjsUnicos = new Set(candidatos.map((c) => c.cnpj)).size;
 // Falha silenciosa da BrasilAPI viraria "sem alerta"; acima de 10% o resultado não é confiável.
-if (falhas > candidatos.length * 0.1)
-  throw new Error(`${falhas} de ${candidatos.length} consultas de CNPJ falharam`);
+if (falhas > cnpjsUnicos * 0.1)
+  throw new Error(`${falhas} de ${cnpjsUnicos} CNPJs sem consulta válida`);
 if (falhas > 0) console.log(`::warning::${falhas} consultas de CNPJ falharam`, falhasCnpj);
 console.log(
   `CNPJ: ${candidatos.length} consultados, ${elegiveis.length - candidatos.length} cortados por MAX_CNPJ, ${excluidosConsorcio} consórcios fora da regra de empresa recente`,
 );
 
 alertas.sort((a, b) => b.prioridade - a.prioridade);
-// Só quem vai a público passa pela checagem de pessoa física; o texto livre do objeto também não pode trazer CPF.
-const publicaveis: Alerta[] = [];
-for (const a of alertas) {
-  if (publicaveis.length >= MAX_ALERTAS) break;
-  if (pareceCpfNoNome(a.contrato.objeto)) continue;
-  if ((await consultaCnpj(a.contrato.cnpj)).pessoaFisica) continue;
-  publicaveis.push(a);
-}
+const { publicaveis, descartes: porMotivo } = await filtrarPublicaveis(
+  alertas,
+  consultaCnpj,
+  MAX_ALERTAS,
+);
+console.log(
+  `Alertas: ${alertas.length} detectados, descartados na publicação ${JSON.stringify(porMotivo)}`,
+);
 await mkdir("public/data", { recursive: true });
 await writeFile(
   "public/data/red-flags.json",
@@ -68,6 +74,7 @@ await writeFile(
       cnpjCortados: elegiveis.length - candidatos.length,
       cnpjFalhas: falhas,
       alertasTotal: alertas.length,
+      alertasDescartados: porMotivo,
       alertas: publicaveis,
     },
     null,

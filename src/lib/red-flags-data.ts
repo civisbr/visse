@@ -23,6 +23,9 @@ export type DadosRedFlags = {
   geradoEm: string;
   janelaDias: number;
   analisados: number;
+  cnpjConsultados: number | null;
+  cnpjCortados: number | null;
+  cnpjFalhas: number | null;
   alertas: AlertaReal[];
 };
 
@@ -30,6 +33,8 @@ const UFS = new Set(["MA", "PI", "CE", "RN", "PB", "PE", "AL", "SE", "BA"]);
 const ISO = /^\d{4}-\d{2}-\d{2}/;
 const str = (v: unknown): v is string => typeof v === "string";
 const num = (v: unknown): v is number => typeof v === "number" && Number.isFinite(v);
+
+const contagem = (v: unknown) => (num(v) && Number.isInteger(v) && v >= 0 ? v : null);
 
 function alertaValido(a: unknown): a is AlertaReal {
   if (!a || typeof a !== "object") return false;
@@ -77,6 +82,9 @@ export function lerDados(bruto: unknown): DadosRedFlags | null {
     geradoEm: d["geradoEm"],
     janelaDias: d["janelaDias"],
     analisados: d["analisados"],
+    cnpjConsultados: contagem(d["cnpjConsultados"]),
+    cnpjCortados: contagem(d["cnpjCortados"]),
+    cnpjFalhas: contagem(d["cnpjFalhas"]),
     alertas: d["alertas"].filter(alertaValido),
   };
 }

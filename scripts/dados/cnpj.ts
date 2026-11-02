@@ -4,6 +4,8 @@ export type DadosCnpj = {
   abertura: string | null;
   pessoaFisica: boolean;
   consorcio: boolean;
+  // false quando a BrasilAPI não respondeu de forma utilizável; os demais campos são valores neutros.
+  verificado: boolean;
 };
 
 const cache = new Map<string, DadosCnpj>();
@@ -13,7 +15,12 @@ const pausa = (ms: number) => new Promise((ok) => setTimeout(ok, ms));
 
 export async function consultaCnpj(cnpj: string): Promise<DadosCnpj> {
   if (cache.has(cnpj)) return cache.get(cnpj)!;
-  let dados: DadosCnpj = { abertura: null, pessoaFisica: false, consorcio: false };
+  let dados: DadosCnpj = {
+    abertura: null,
+    pessoaFisica: false,
+    consorcio: false,
+    verificado: false,
+  };
   let status = "erro-rede";
   for (let i = 1; i <= 3; i++) {
     const r = await fetch(`https://brasilapi.com.br/api/cnpj/v1/${cnpj}`, {
@@ -40,6 +47,7 @@ export async function consultaCnpj(cnpj: string): Promise<DadosCnpj> {
         abertura,
         pessoaFisica: j.codigo_natureza_juridica === 2135 || j.opcao_pelo_mei === true,
         consorcio: naturezaSemAlertaRecente(j.codigo_natureza_juridica),
+        verificado: true,
       };
       status = "ok";
       break;
