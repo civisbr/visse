@@ -19,9 +19,9 @@ describe("regras", () => {
   it("calcula meses completos", () => {
     expect(mesesEntre("2026-03-20", "2026-08-14")).toBe(4);
   });
-  it("marca aditivo a partir de 25%", () => {
-    expect(aditivoAlto({ ...base, valorAcumulado: 249_000 })).toBeNull();
-    expect(aditivoAlto({ ...base, valorAcumulado: 250_000 })?.regra).toBe("aditivo-alto");
+  it("marca aditivo acima de 25%", () => {
+    expect(aditivoAlto({ ...base, valorAcumulado: 250_000 })).toBeNull();
+    expect(aditivoAlto({ ...base, valorAcumulado: 250_001 })?.regra).toBe("aditivo-alto");
   });
   it("marca empresa com menos de 6 meses e valor alto", () => {
     expect(empresaRecente(base, "2026-04-01")?.regra).toBe("empresa-recente");

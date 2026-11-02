@@ -1,7 +1,7 @@
 import { mkdir, writeFile } from "node:fs/promises";
-import { aberturaCnpj, falhasCnpj } from "./cnpj";
+import { consultaCnpj, falhasCnpj } from "./cnpj";
 import { contratosNordeste } from "./pncp";
-import { aditivoAlto, empresaRecente, type Alerta } from "./regras";
+import { aditivoAlto, empresaRecente, pareceCpfNoNome, type Alerta } from "./regras";
 
 const DIAS = Number(process.env["DIAS"] ?? 14);
 const MAX_CNPJ = Number(process.env["MAX_CNPJ"] ?? 400);
@@ -17,6 +17,7 @@ console.log(
 if (contratos.length === 0) throw new Error("Nenhum contrato coletado; abortando sem gravar");
 
 const alertas: Alerta[] = contratos.flatMap((c) => aditivoAlto(c) ?? []);
+const MAX_ALERTAS = 50;
 
 // A BrasilAPI limita a taxa; consulta só quem passa o corte de valor, do maior para o menor.
 const elegiveis = contratos
@@ -24,7 +25,7 @@ const elegiveis = contratos
   .sort((a, b) => b.valorInicial - a.valorInicial);
 const candidatos = elegiveis.slice(0, MAX_CNPJ);
 for (const c of candidatos) {
-  const a = empresaRecente(c, await aberturaCnpj(c.cnpj));
+  const a = empresaRecente(c, (await consultaCnpj(c.cnpj)).abertura);
   if (a) alertas.push(a);
 }
 
@@ -38,6 +39,14 @@ console.log(
 );
 
 alertas.sort((a, b) => b.prioridade - a.prioridade);
+// Só quem vai a público passa pela checagem de pessoa física; o texto livre do objeto também não pode trazer CPF.
+const publicaveis: Alerta[] = [];
+for (const a of alertas) {
+  if (publicaveis.length >= MAX_ALERTAS) break;
+  if (pareceCpfNoNome(a.contrato.objeto)) continue;
+  if ((await consultaCnpj(a.contrato.cnpj)).pessoaFisica) continue;
+  publicaveis.push(a);
+}
 await mkdir("public/data", { recursive: true });
 await writeFile(
   "public/data/red-flags.json",
@@ -52,10 +61,11 @@ await writeFile(
       cnpjConsultados: candidatos.length,
       cnpjCortados: elegiveis.length - candidatos.length,
       cnpjFalhas: falhas,
-      alertas,
+      alertasTotal: alertas.length,
+      alertas: publicaveis,
     },
     null,
     1,
   ) + "\n",
 );
-console.log(`${alertas.length} alertas gravados`);
+console.log(`${publicaveis.length} alertas gravados (${alertas.length} no total)`);

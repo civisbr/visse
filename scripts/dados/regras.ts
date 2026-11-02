@@ -45,12 +45,15 @@ export function pareceCpfNoNome(nome: string): boolean {
 
 export function aditivoAlto(c: Contrato): Alerta | null {
   if (!(c.valorInicial > 0) || !(c.valorAcumulado > c.valorInicial)) return null;
-  const aumento = c.valorAcumulado / c.valorInicial - 1;
-  if (aumento < LIMITE_ADITIVO) return null;
+  // Em centavos inteiros: a divisão em ponto flutuante poderia marcar exatamente 25%.
+  const ini = Math.round(c.valorInicial * 100);
+  const acum = Math.round(c.valorAcumulado * 100);
+  if (acum * 100 <= ini * (100 + LIMITE_ADITIVO * 100)) return null;
+  const aumento = acum / ini - 1;
   return {
     contrato: c,
     regra: "aditivo-alto",
-    detalhe: `Valor subiu ${Math.round(aumento * 100)}% sobre o contratado.`,
+    detalhe: `Valor subiu ${(Math.floor(aumento * 1000) / 10).toLocaleString("pt-BR")}% sobre o contratado.`,
     prioridade: Math.min(100, Math.round(aumento * 100)),
   };
 }
