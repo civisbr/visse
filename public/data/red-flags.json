@@ -1,12 +1,12 @@
 {
  "aviso": "Indicador estatístico automático sobre dados abertos. Não indica irregularidade nem culpa; serve apenas para priorizar conferência nas fontes oficiais.",
  "fonte": "PNCP (pncp.gov.br) e BrasilAPI (CNPJ)",
- "geradoEm": "2026-11-02T18:59:18.021Z",
+ "geradoEm": "2026-11-02T20:47:21.888Z",
  "janelaDias": 14,
  "analisados": 4943,
  "cnpjConsultados": 400,
  "cnpjCortados": 1213,
- "cnpjFalhas": 0,
+ "cnpjFalhas": 1,
  "alertasTotal": 2,
  "alertas": []
 }
