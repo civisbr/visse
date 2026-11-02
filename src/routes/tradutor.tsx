@@ -31,7 +31,7 @@ function Page() {
   );
   return (
     <ProjectPage
-      emoji="🗣️" cor="bg-sky" titulo="Entenda os gastos"
+      titulo="Entenda os gastos"
       subtitulo="Quanto sua cidade gastou com saúde e escola? Explicamos em palavras simples."
       objetivo="Ninguém precisa ser contador para entender as contas da prefeitura."
       passos={["Pegamos as contas da prefeitura", "Traduzimos para o português do dia a dia", "Você entende em 1 minuto"]}

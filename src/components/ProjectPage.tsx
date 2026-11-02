@@ -3,18 +3,14 @@ import { Link } from "@tanstack/react-router";
 import { ArrowRight, ChevronRight } from "lucide-react";
 
 export function ProjectPage({
-  emoji: _emoji,
   titulo,
   subtitulo,
-  cor: _cor,
   objetivo,
   passos,
   children,
 }: {
-  emoji: string;
   titulo: string;
   subtitulo: string;
-  cor: string;
   objetivo: string;
   passos: string[];
   children: ReactNode;

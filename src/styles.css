@@ -79,6 +79,7 @@
     border-color: var(--color-border);
   }
   body {
+    overflow-x: clip;
     background-color: var(--color-background);
     color: var(--color-foreground);
     font-family: var(--font-sans);
@@ -104,6 +105,7 @@
   }
   html {
     scrollbar-color: color-mix(in oklab, var(--ink) 50%, transparent) transparent;
+    overflow-x: clip;
   }
   a {
     text-underline-offset: 0.2em;

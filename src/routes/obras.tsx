@@ -24,7 +24,7 @@ function Page() {
   const lista = obras.filter((o) => filtro === "Todas" || o.status === filtro);
   return (
     <ProjectPage
-      emoji="🏗️" cor="bg-sun" titulo="Obras paradas"
+      titulo="Obras paradas"
       subtitulo="A prefeitura recebeu o dinheiro. A creche ficou pronta? Veja aqui."
       objetivo="Mostramos escolas, creches e postos de saúde que estão atrasados ou parados."
       passos={["Juntamos as obras da sua região", "Comparamos o dinheiro pago com a obra feita", "Você vê o que está errado e pode cobrar"]}

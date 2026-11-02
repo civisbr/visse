@@ -9,7 +9,7 @@ const raios = [
 
 export function SolSertao({ className = "" }: { className?: string }) {
   return (
-    <svg viewBox="0 0 520 280" className={className} fill="none" aria-hidden="true">
+    <svg viewBox="0 0 520 280" className={`overflow-visible ${className}`} fill="none" aria-hidden="true">
       <g stroke="var(--sun)" strokeWidth="2">
         {raios.map((a, i) => (
           <path
@@ -26,7 +26,7 @@ export function SolSertao({ className = "" }: { className?: string }) {
         d="M 208 256 A 52 52 0 0 1 312 256 Z"
         fill="var(--sun)"
       />
-      <path d="M 0 256 H 520" stroke="var(--ink)" strokeWidth="2" opacity="0.18" />
+      <path d="M 0 256 H 1800" stroke="var(--ink)" strokeWidth="2" opacity="0.18" />
     </svg>
   );
 }

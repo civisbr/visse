@@ -36,7 +36,7 @@ function Page() {
   const linhas = useMemo(() => dados.map((l) => ({ l, flags: avaliar(l) })).filter((x) => !soAlertas || x.flags.length), [soAlertas]);
   return (
     <ProjectPage
-      emoji="🚩" cor="bg-coral" titulo="Contratos suspeitos"
+      titulo="Contratos suspeitos"
       subtitulo="Avisamos quando a prefeitura faz uma compra estranha."
       objetivo="Procuramos sinais de alerta: só uma empresa disputando, empresa aberta ontem ganhando muito dinheiro, contrato que fica muito mais caro."
       passos={["Olhamos as compras da prefeitura toda semana", "Marcamos o que parece estranho", "Você recebe o alerta e pode denunciar"]}

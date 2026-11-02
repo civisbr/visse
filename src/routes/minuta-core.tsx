@@ -18,7 +18,7 @@ const exemplo: Denuncia = {
 function Page() {
   return (
     <ProjectPage
-      emoji="⚙️" cor="bg-secondary" titulo="Denúncia segura"
+      titulo="Denúncia segura"
       subtitulo="Seu nome fica só no seu celular. Ninguém do Visse? vê seus dados."
       objetivo="É o botão “Denunciar” que aparece no site todo. Ele cria o documento na hora, direto no seu aparelho."
       passos={["Toque em “Denunciar”", "Diga seu nome e cidade", "O documento é baixado na hora"]}

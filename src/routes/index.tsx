@@ -27,8 +27,8 @@ export const Route = createFileRoute("/")({
 function Index() {
   return (
     <main className="mx-auto max-w-6xl px-5 pb-10 md:pb-16">
-      <section className="relative isolate overflow-hidden pt-10 md:pt-16">
-        <SolSertao className="pointer-events-none absolute -right-16 bottom-7 -z-10 h-56 w-[26rem] opacity-60 md:-right-6 md:h-72 md:w-[33rem] md:opacity-100" />
+      <section className="relative isolate pt-10 md:pt-16">
+        <SolSertao className="pointer-events-none absolute right-0 top-4 -z-10 w-44 opacity-70 md:-right-6 md:bottom-7 md:top-auto md:h-72 md:w-[33rem] md:opacity-100" />
         <div className="grid gap-7">
           <div>
             <h1 className="font-display text-6xl font-black leading-[0.88] text-ink md:text-8xl">

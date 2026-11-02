@@ -18,7 +18,7 @@ function Page() {
   const set = (k: keyof typeof f) => (e: { target: { value: string } }) => setF({ ...f, [k]: e.target.value } as typeof f);
   return (
     <ProjectPage
-      emoji="📝" cor="bg-leaf" titulo="Faça sua denúncia"
+      titulo="Faça sua denúncia"
       subtitulo="Viu algo errado na sua cidade? Preencha, baixe o documento e envie. Sem advogado, sem custo."
       objetivo="Você tem o direito de cobrar. A gente monta o papel certinho para você."
       passos={["Conte o que aconteceu", "Baixe o documento pronto", "Envie para o Ministério Público"]}
