@@ -13,6 +13,7 @@ import { Route as IndexRouteImport } from './routes/index'
 import { Route as GeradorRouteImport } from './routes/gerador'
 import { Route as MinutaCoreRouteImport } from './routes/minuta-core'
 import { Route as ObrasRouteImport } from './routes/obras'
+import { Route as PrivacidadeRouteImport } from './routes/privacidade'
 import { Route as RedFlagsRouteImport } from './routes/red-flags'
 import { Route as TradutorRouteImport } from './routes/tradutor'
 
@@ -36,6 +37,11 @@ const ObrasRoute = ObrasRouteImport.update({
   path: '/obras',
   getParentRoute: () => rootRouteImport,
 } as any)
+const PrivacidadeRoute = PrivacidadeRouteImport.update({
+  id: '/privacidade',
+  path: '/privacidade',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const RedFlagsRoute = RedFlagsRouteImport.update({
   id: '/red-flags',
   path: '/red-flags',
@@ -52,6 +58,7 @@ export interface FileRoutesByFullPath {
   '/gerador': typeof GeradorRoute
   '/minuta-core': typeof MinutaCoreRoute
   '/obras': typeof ObrasRoute
+  '/privacidade': typeof PrivacidadeRoute
   '/red-flags': typeof RedFlagsRoute
   '/tradutor': typeof TradutorRoute
 }
@@ -60,6 +67,7 @@ export interface FileRoutesByTo {
   '/gerador': typeof GeradorRoute
   '/minuta-core': typeof MinutaCoreRoute
   '/obras': typeof ObrasRoute
+  '/privacidade': typeof PrivacidadeRoute
   '/red-flags': typeof RedFlagsRoute
   '/tradutor': typeof TradutorRoute
 }
@@ -69,21 +77,36 @@ export interface FileRoutesById {
   '/gerador': typeof GeradorRoute
   '/minuta-core': typeof MinutaCoreRoute
   '/obras': typeof ObrasRoute
+  '/privacidade': typeof PrivacidadeRoute
   '/red-flags': typeof RedFlagsRoute
   '/tradutor': typeof TradutorRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
-    '/' | '/gerador' | '/minuta-core' | '/obras' | '/red-flags' | '/tradutor'
+    | '/'
+    | '/gerador'
+    | '/minuta-core'
+    | '/obras'
+    | '/privacidade'
+    | '/red-flags'
+    | '/tradutor'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/gerador' | '/minuta-core' | '/obras' | '/red-flags' | '/tradutor'
+  to:
+    | '/'
+    | '/gerador'
+    | '/minuta-core'
+    | '/obras'
+    | '/privacidade'
+    | '/red-flags'
+    | '/tradutor'
   id:
     | '__root__'
     | '/'
     | '/gerador'
     | '/minuta-core'
     | '/obras'
+    | '/privacidade'
     | '/red-flags'
     | '/tradutor'
   fileRoutesById: FileRoutesById
@@ -93,6 +116,7 @@ export interface RootRouteChildren {
   GeradorRoute: typeof GeradorRoute
   MinutaCoreRoute: typeof MinutaCoreRoute
   ObrasRoute: typeof ObrasRoute
+  PrivacidadeRoute: typeof PrivacidadeRoute
   RedFlagsRoute: typeof RedFlagsRoute
   TradutorRoute: typeof TradutorRoute
 }
@@ -127,6 +151,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ObrasRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/privacidade': {
+      id: '/privacidade'
+      path: '/privacidade'
+      fullPath: '/privacidade'
+      preLoaderRoute: typeof PrivacidadeRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/red-flags': {
       id: '/red-flags'
       path: '/red-flags'
@@ -149,6 +180,7 @@ const rootRouteChildren: RootRouteChildren = {
   GeradorRoute: GeradorRoute,
   MinutaCoreRoute: MinutaCoreRoute,
   ObrasRoute: ObrasRoute,
+  PrivacidadeRoute: PrivacidadeRoute,
   RedFlagsRoute: RedFlagsRoute,
   TradutorRoute: TradutorRoute,
 }

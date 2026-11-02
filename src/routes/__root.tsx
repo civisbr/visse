@@ -176,11 +176,16 @@ function RootComponent() {
               Um projeto CivisBR para o Nordeste. Código e dados abertos.
             </p>
           </div>
-          <p className="md:text-right">
-            Sem partido.
-            <br />
-            Do lado de quem paga a conta.
-          </p>
+          <div className="md:text-right">
+            <p>
+              Sem partido.
+              <br />
+              Do lado de quem paga a conta.
+            </p>
+            <Link to="/privacidade" className="mt-3 inline-block underline">
+              Privacidade e contestação
+            </Link>
+          </div>
         </div>
       </footer>
     </QueryClientProvider>
