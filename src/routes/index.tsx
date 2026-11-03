@@ -4,7 +4,7 @@ import { meta } from "@/components/ProjectPage";
 import { SolSertao } from "@/components/SolSertao";
 import { ArrowUpRight, Flag, HardHat, MessageSquare, Megaphone, MapPin } from "lucide-react";
 
-const icons = [Flag, HardHat, MessageSquare, Megaphone, MapPin];
+const icons = [Flag, HardHat, MessageSquare, Megaphone];
 
 export const Route = createFileRoute("/")({
   head: () =>

@@ -14,10 +14,10 @@ import appCss from "../styles.css?url";
 import { reportLovableError } from "../lib/lovable-error-reporting";
 import { projects } from "../lib/projects";
 import { Logo } from "../components/Logo";
-import { Home, Flag, HardHat, MessageSquare, Megaphone, MapPin } from "lucide-react";
+import { Home, Flag, HardHat, MessageSquare, Megaphone } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
-const navIcons = [Flag, HardHat, MessageSquare, Megaphone, MapPin];
+const navIcons = [Flag, HardHat, MessageSquare, Megaphone];
 
 function NotFoundComponent() {
   return (

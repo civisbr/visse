@@ -1,6 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { ESTADOS } from "@/routes/onde-denunciar";
-import { CONFERIDO_EM, ouvidorias, ouvidoriasMP, type CanalMP } from "@/lib/ouvidorias";
+import { CONFERIDO_EM, ESTADOS, ouvidorias, ouvidoriasMP, type CanalMP } from "@/lib/ouvidorias";
 
 const canais = Object.entries(ouvidoriasMP) as [string, CanalMP][];
 

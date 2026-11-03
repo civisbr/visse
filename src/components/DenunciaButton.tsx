@@ -112,9 +112,9 @@ export function DenunciaButton({
                   ))}
                 </div>
                 <p className="text-sm">
-                  Telefone, e-mail e horário de cada ouvidoria em{" "}
-                  <Link to="/onde-denunciar" className="font-semibold underline">
-                    Onde denunciar
+                  Telefone, e-mail e horário de cada ouvidoria:{" "}
+                  <Link to="/gerador" hash="onde-enviar" className="font-semibold underline">
+                    veja os canais de envio
                   </Link>
                   .
                 </p>

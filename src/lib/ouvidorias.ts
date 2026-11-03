@@ -144,3 +144,15 @@ export const ouvidorias = Object.fromEntries(
     },
   ]),
 ) as Record<UF, { nome: string; url: string }>;
+
+export const ESTADOS: { uf: Exclude<UF, "MPF">; nome: string }[] = [
+  { uf: "AL", nome: "Alagoas" },
+  { uf: "BA", nome: "Bahia" },
+  { uf: "CE", nome: "Ceará" },
+  { uf: "MA", nome: "Maranhão" },
+  { uf: "PB", nome: "Paraíba" },
+  { uf: "PE", nome: "Pernambuco" },
+  { uf: "PI", nome: "Piauí" },
+  { uf: "RN", nome: "Rio Grande do Norte" },
+  { uf: "SE", nome: "Sergipe" },
+];
