@@ -137,6 +137,8 @@ jobs:
           pattern: dados-*
           merge-multiple: true
           path: public/data
+      - name: Remover acompanhamento encerrado
+        run: bun scripts/dados/encerrar-corrente.ts
       - name: Conferir os arquivos baixados
         run: |
           # Só estes arquivos podem ir para produção; o job de coleta roda dependências de terceiros e não é confiável.
@@ -179,7 +181,9 @@ jobs:
             linha Gastos "$RESULTADO_GASTOS" public/data/gastos.json \
               '"- Gastos: exercício \(.exercicio|numbers), \(.cobertura.publicados|numbers) de \(.cobertura.universo|numbers) municípios (antes: \($antes)), \(.cobertura.semPessoal|numbers) sem dados de pessoal"'
             # O arquivo da main continua no checkout; só vale como resumo se esta execução o alterou.
-            if [ "$RESULTADO_CORRENTE" = "success" ] && [ -n "$(git status --porcelain -- public/data/gastos-corrente.json)" ]; then
+            if [ ! -f public/data/gastos-corrente.json ] && [ -n "$(git status --porcelain -- public/data/gastos-corrente.json)" ]; then
+              echo "- Gastos do ano corrente: acompanhamento encerrado e removido"
+            elif [ "$RESULTADO_CORRENTE" = "success" ] && [ -n "$(git status --porcelain -- public/data/gastos-corrente.json)" ]; then
               linha "Gastos do ano corrente" "$RESULTADO_CORRENTE" public/data/gastos-corrente.json \
                 '"- Gastos \(.exercicio|numbers) (parcial): \(.cobertura.publicados|numbers) de \(.cobertura.universo|numbers) municípios, até o \(.cobertura.bimestreMax|numbers)º bimestre"'
             else
