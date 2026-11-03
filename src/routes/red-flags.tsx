@@ -1,6 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useQuery } from "@tanstack/react-query";
 import { ProjectPage, meta } from "@/components/ProjectPage";
+import { ListaPorEstado } from "@/components/ListaPorEstado";
 import { DenunciaButton } from "@/components/DenunciaButton";
 import {
   carregarRedFlags,
@@ -95,16 +96,17 @@ function DadosReais() {
           certo: só procuramos aditivo acima de 25% e empresa aberta há menos de 6 meses.
         </p>
       ) : (
-        <ul className="mt-4 space-y-3">
-          {lista.map((a) => {
+        <ListaPorEstado
+          itens={lista}
+          uf={(a) => a.contrato.uf}
+          chave={(a) => a.contrato.id + a.regra}
+          classeLista="mt-3 space-y-3"
+          renderItem={(a) => {
             const c = a.contrato;
             const href = linkSeguro(c.link);
             const uf = Object.hasOwn(ouvidorias, c.uf) ? (c.uf as UF) : undefined;
             return (
-              <li
-                key={c.id + a.regra}
-                className="rounded-lg border border-border bg-card p-4 shadow-[var(--shadow-pop)]"
-              >
+              <div className="rounded-lg border border-border bg-card p-4 shadow-[var(--shadow-pop)]">
                 <div className="flex flex-wrap items-start justify-between gap-3">
                   <div className="min-w-0">
                     <div className="font-bold">
@@ -155,10 +157,10 @@ function DadosReais() {
                     />
                   )}
                 </div>
-              </li>
+              </div>
             );
-          })}
-        </ul>
+          }}
+        />
       )}
       {data.alertas.length > MAXIMO_EXIBIDO && (
         <p className="mt-3 text-sm text-muted-foreground">

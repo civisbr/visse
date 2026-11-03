@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useRef, useState } from "react";
 import { useQuery } from "@tanstack/react-query";
-import { Flag, LocateFixed, Maximize2, Minus, Plus } from "lucide-react";
+import { ArrowDown, Flag, LocateFixed, Maximize2, Minus, Plus } from "lucide-react";
 import { nivelPessoal, type MunicipioGastos, type NivelPessoal } from "@/lib/gastos-data";
 import { carregarMapa, distanciaKm, projetar } from "@/lib/mapa-data";
 
@@ -594,6 +594,21 @@ export function MapaAlertas({
               Este município não passou dos limites e por isso não tem bandeira no mapa.
             </p>
           )}
+          <a
+            href="#contas-cidade"
+            onClick={(e) => {
+              const alvo = document.getElementById("contas-cidade");
+              if (!alvo) return;
+              e.preventDefault();
+              const reduzido = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+              alvo.scrollIntoView({ behavior: reduzido ? "auto" : "smooth", block: "start" });
+              alvo.focus({ preventScroll: true });
+            }}
+            className="mt-3 inline-flex items-center gap-1 rounded-md bg-ink px-3 py-1.5 text-sm font-bold text-areia transition-colors hover:bg-primary"
+          >
+            Ver as contas de {sel.nome}
+            <ArrowDown className="size-4" aria-hidden="true" />
+          </a>
           {selCoord && (
             <a
               className="mt-2 inline-block text-sm font-semibold underline"

@@ -78,8 +78,15 @@ function GastosReais() {
         <label htmlFor="cidade-gastos">Escolha a cidade</label>
         <CidadeCombobox id="cidade-gastos" cidades={lista} selecionada={m} onSelecionar={setCod} />
       </div>
-      <div className="mt-4 rounded-lg border border-border bg-secondary p-5">
-        <h4 className="text-xl font-bold">Em palavras simples</h4>
+      <div
+        id="contas-cidade"
+        tabIndex={-1}
+        aria-labelledby="contas-cidade-titulo"
+        className="mt-4 scroll-mt-24 rounded-lg border border-border bg-secondary p-5 focus:outline-none focus-visible:outline-2"
+      >
+        <h4 id="contas-cidade-titulo" className="text-xl font-bold">
+          Em palavras simples
+        </h4>
         <div className="mt-3 space-y-3">
           {explicarMunicipio(m, data.exercicio).map((p, i) => (
             <p key={i}>{p}</p>

@@ -1,6 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useQuery } from "@tanstack/react-query";
 import { ProjectPage, meta } from "@/components/ProjectPage";
+import { ListaPorEstado } from "@/components/ListaPorEstado";
 import { DenunciaButton } from "@/components/DenunciaButton";
 import { carregarObras } from "@/lib/obras-data";
 import { dataBr, diasDesde } from "@/lib/red-flags-data";
@@ -82,12 +83,12 @@ function ObrasReais() {
       {data.obras.length === 0 ? (
         <p className="mt-4">Nenhuma obra paralisada nesta coleta.</p>
       ) : (
-        <ul className="mt-4 grid gap-4 md:grid-cols-2">
-          {data.obras.map((o) => (
-            <li
-              key={o.id}
-              className="rounded-lg border border-border bg-card p-4 shadow-[var(--shadow-pop)]"
-            >
+        <ListaPorEstado
+          itens={[...data.obras].sort((a, b) => b.valorPrevisto - a.valorPrevisto)}
+          uf={(o) => o.uf}
+          chave={(o) => o.id}
+          renderItem={(o) => (
+            <div className="h-full rounded-lg border border-border bg-card p-4 shadow-[var(--shadow-pop)]">
               <div className="flex items-start justify-between gap-2">
                 <div className="min-w-0">
                   <div className="font-bold">{o.nome}</div>
@@ -124,9 +125,9 @@ function ObrasReais() {
                 {o.dataFinalPrevista && <>Prazo previsto: {dataBr(o.dataFinalPrevista)}. </>}
                 {o.dataSituacao && <>Situação registrada em {dataBr(o.dataSituacao)}.</>}
               </p>
-            </li>
-          ))}
-        </ul>
+            </div>
+          )}
+        />
       )}
     </section>
   );
