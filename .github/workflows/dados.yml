@@ -89,10 +89,36 @@ jobs:
           if-no-files-found: error
           retention-days: 30
 
+  gastos-corrente:
+    # Depois do ano fechado, para não somar duas coletas simultâneas contra a mesma API.
+    needs: gastos
+    if: ${{ !cancelled() }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 240
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+        with:
+          persist-credentials: false
+      - uses: oven-sh/setup-bun@0c5077e51419868618aeaa5fe8019c62421857d6 # v2
+        with:
+          bun-version: 1.4.0
+      - run: bun install --frozen-lockfile --ignore-scripts
+      - run: bun run test
+      - run: bun scripts/dados/gastos.ts corrente
+      - run: bun scripts/dados/validar.ts gastos-corrente
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
+        with:
+          name: dados-gastos-corrente
+          path: public/data/gastos-corrente.json
+          if-no-files-found: ignore
+          retention-days: 30
+
   publicar:
-    needs: [contratos, obras, gastos]
+    needs: [contratos, obras, gastos, gastos-corrente]
     # Publica o que deu certo; a fonte que falhou continua visível como job vermelho.
-    if: ${{ !cancelled() && (needs.contratos.result == 'success' || needs.obras.result == 'success' || needs.gastos.result == 'success') }}
+    if: ${{ !cancelled() && (needs.contratos.result == 'success' || needs.obras.result == 'success' || needs.gastos.result == 'success' || needs.gastos-corrente.result == 'success') }}
     runs-on: ubuntu-latest
     timeout-minutes: 10
     permissions:
@@ -113,6 +139,7 @@ jobs:
           RESULTADO_CONTRATOS: ${{ needs.contratos.result }}
           RESULTADO_OBRAS: ${{ needs.obras.result }}
           RESULTADO_GASTOS: ${{ needs.gastos.result }}
+          RESULTADO_CORRENTE: ${{ needs.gastos-corrente.result }}
         run: |
           if [ -z "$(git status --porcelain -- public/data)" ]; then exit 0; fi
           # Só resume fonte que teve sucesso nesta execução; o arquivo das demais é o antigo da main.
@@ -130,6 +157,13 @@ jobs:
               '"- Obras: \(.obras|length) registros, UFs com falha: \(.ufsComFalha|length)"'
             linha Gastos "$RESULTADO_GASTOS" public/data/gastos.json \
               '"- Gastos: exercício \(.exercicio|numbers), \(.cobertura.publicados|numbers) de \(.cobertura.universo|numbers) municípios (antes: \($antes)), \(.cobertura.semPessoal|numbers) sem dados de pessoal"'
+            # O arquivo da main continua no checkout; só vale como resumo se esta execução o alterou.
+            if [ "$RESULTADO_CORRENTE" = "success" ] && [ -n "$(git status --porcelain -- public/data/gastos-corrente.json)" ]; then
+              linha "Gastos do ano corrente" "$RESULTADO_CORRENTE" public/data/gastos-corrente.json \
+                '"- Gastos \(.exercicio|numbers) (parcial): \(.cobertura.publicados|numbers) de \(.cobertura.universo|numbers) municípios, até o \(.cobertura.bimestreMax|numbers)º bimestre"'
+            else
+              echo "- Gastos do ano corrente: não atualizado nesta execução ($RESULTADO_CORRENTE)"
+            fi
             echo
             echo "Conferir os arquivos em public/data antes de aprovar."
           )

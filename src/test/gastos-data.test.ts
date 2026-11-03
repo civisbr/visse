@@ -72,3 +72,38 @@ describe("validações e textos extras", () => {
     expect(lerGastos({ ...ok, municipios: muitos.slice(0, 2000) })?.municipios).toHaveLength(2000);
   });
 });
+
+describe("acompanhamento do ano corrente", () => {
+  const comPeriodo = {
+    ...m,
+    periodo: { bimestre: 4, pessoal: { tipo: "Q" as const, numero: 2 } },
+  };
+
+  it("lê o arquivo parcial e mantém o período de cada município", () => {
+    const d = lerGastos({ ...ok, exercicio: 2026, parcial: true, municipios: [comPeriodo] });
+    expect(d?.parcial).toBe(true);
+    expect(d?.municipios[0]?.periodo?.bimestre).toBe(4);
+  });
+  it("arquivo sem a marca é tratado como ano fechado", () => {
+    expect(lerGastos(ok)?.parcial).toBe(false);
+  });
+  it("descarta município com período impossível", () => {
+    const ruim = (periodo: unknown) =>
+      lerGastos({ ...ok, municipios: [m, { ...m, codIbge: 2604602, periodo }] })?.municipios;
+    expect(ruim({ bimestre: 7, pessoal: null })).toHaveLength(1);
+    expect(ruim({ bimestre: 4, pessoal: { tipo: "Q", numero: 4 } })).toHaveLength(1);
+    expect(ruim({ bimestre: 4, pessoal: { tipo: "S", numero: 3 } })).toHaveLength(1);
+    expect(ruim({ bimestre: 4, pessoal: { tipo: "X", numero: 1 } })).toHaveLength(1);
+    expect(ruim({ bimestre: 4, pessoal: null })).toHaveLength(2);
+  });
+  it("o texto diz até qual bimestre e de qual quadrimestre vêm os números", () => {
+    const [a, , c] = explicarMunicipio(comPeriodo, 2026);
+    expect(a).toContain("Em 2026, até o 4º bimestre (encerrado em agosto), o município de Condado");
+    expect(c).toContain("Esse percentual é do 2º quadrimestre de 2026.");
+  });
+  it("sem período o texto continua o mesmo do ano fechado", () => {
+    const [a, , c] = explicarMunicipio(m, 2025);
+    expect(a).toContain("Em 2025, o município de Condado");
+    expect(c).not.toContain("quadrimestre de");
+  });
+});

@@ -1,6 +1,6 @@
-import { appendFile, mkdir, writeFile } from "node:fs/promises";
+import { appendFile, mkdir, rm, writeFile } from "node:fs/promises";
 import { municipioValido, resumirGastos } from "../../src/lib/gastos-data";
-import { coletarGastos } from "./gastos-coleta";
+import { coletarCorrente, coletarGastos } from "./gastos-coleta";
 import { criarCliente } from "./siconfi-http";
 import { selecionarMunicipios, type Ente, type ItemSiconfi } from "./gastos-regras";
 
@@ -26,8 +26,32 @@ if (universo.length < MINIMO_UNIVERSO)
     `Só ${universo.length} municípios selecionados; esperado ao menos ${MINIMO_UNIVERSO}`,
   );
 
+// "corrente" acompanha o ano em andamento; sem argumento, publica o último ano fechado.
+const corrente = process.argv[2] === "corrente";
+const agora = new Date();
 // O ritmo das consultas é controlado pelo cliente HTTP; a pausa por trabalhador seria redundante.
-const coleta = await coletarGastos(itens, universo, new Date().getFullYear(), { pausaMs: 0 });
+const opcoesColeta = { pausaMs: 0 };
+let bimestreMax: number | undefined;
+let coleta;
+if (corrente) {
+  const c = await coletarCorrente(
+    itens,
+    universo,
+    agora.getFullYear(),
+    agora.getMonth() + 1,
+    opcoesColeta,
+  );
+  if (!c) {
+    // Sem isto o arquivo do ano anterior, versionado na main, seria validado como se fosse deste ano.
+    await rm("public/data/gastos-corrente.json", { force: true });
+    console.log("Nenhum bimestre do ano terminou ainda; nada a publicar.");
+    process.exit(0);
+  }
+  bimestreMax = c.bimestreMax;
+  coleta = c;
+} else {
+  coleta = await coletarGastos(itens, universo, agora.getFullYear(), opcoesColeta);
+}
 const { exercicio, semDespesas, semPessoal, falhas } = coleta;
 // Registro incoerente no SICONFI é descartado aqui; do contrário o validador barraria a publicação inteira.
 const municipios = coleta.municipios.filter(municipioValido);
@@ -39,17 +63,20 @@ if (rejeitados > coleta.municipios.length * 0.05)
     `${rejeitados} municípios descartados por dados incoerentes; esquema pode ter mudado`,
   );
 
-const geradoEm = new Date().toISOString();
+const geradoEm = agora.toISOString();
 await mkdir("public/data", { recursive: true });
+const arquivo = corrente ? "gastos-corrente" : "gastos";
 await writeFile(
-  "public/data/gastos.json",
+  `public/data/${arquivo}.json`,
   JSON.stringify(
     {
-      aviso:
-        "Valores liquidados e percentuais informados pelas próprias prefeituras ao Tesouro Nacional (SICONFI), que podem ser retificados e não equivalem a parecer do Tribunal de Contas. Saúde e educação são despesas por função e incluem recursos de outras esferas. A população vem do cadastro de entes mais recente. Os mínimos legais de 15% e 25% usam outra base de cálculo e não são avaliados aqui.",
+      aviso: corrente
+        ? "Valores parciais: despesas liquidadas até o último bimestre que cada prefeitura enviou ao Tesouro Nacional (SICONFI), que podem ser retificadas e não equivalem a parecer do Tribunal de Contas. Saúde e educação são despesas por função e incluem recursos de outras esferas. O percentual de pessoal vem do último quadrimestre ou semestre enviado. O ano ainda não fechou, e os mínimos legais de 15% e 25% não são avaliados aqui."
+        : "Valores liquidados e percentuais informados pelas próprias prefeituras ao Tesouro Nacional (SICONFI), que podem ser retificados e não equivalem a parecer do Tribunal de Contas. Saúde e educação são despesas por função e incluem recursos de outras esferas. A população vem do cadastro de entes mais recente. Os mínimos legais de 15% e 25% usam outra base de cálculo e não são avaliados aqui.",
       fonte: "SICONFI / Tesouro Nacional (RREO Anexo 02 e RGF Anexo 01, Poder Executivo)",
       geradoEm,
       exercicio,
+      parcial: corrente,
       cobertura: {
         universo: universo.length,
         publicados: municipios.length,
@@ -58,6 +85,7 @@ await writeFile(
         falhas: falhas.length,
         falhasRgf: coleta.falhasRgf,
         rejeitados,
+        ...(bimestreMax ? { bimestreMax } : {}),
       },
       municipios,
     },
@@ -65,15 +93,16 @@ await writeFile(
     1,
   ) + "\n",
 );
-await writeFile(
-  "public/data/gastos-resumo.json",
-  JSON.stringify(resumirGastos(municipios, exercicio, geradoEm)) + "\n",
-);
+if (!corrente)
+  await writeFile(
+    "public/data/gastos-resumo.json",
+    JSON.stringify(resumirGastos(municipios, exercicio, geradoEm)) + "\n",
+  );
 console.log(`${municipios.length} municípios gravados (${exercicio})`);
 console.log(`Cliente SICONFI: ${JSON.stringify(get.estatisticas)}`);
 const resumo = process.env["GITHUB_STEP_SUMMARY"];
 if (resumo)
   await appendFile(
     resumo,
-    `### Gastos municipais ${exercicio}\n\n- Universo: ${universo.length}\n- Publicados: ${municipios.length}\n- Sem envio de despesas: ${semDespesas}\n- Sem dados de pessoal: ${semPessoal}\n- Falhas de consulta: ${falhas.length}\n- Consultas: ${get.estatisticas.chamadas} (429: ${get.estatisticas.http429}, 503: ${get.estatisticas.http503}, tempo bloqueado: ${Math.round(get.estatisticas.bloqueadoMs / 1000)}s)\n`,
+    `### Gastos municipais ${exercicio}${corrente ? " (parcial)" : ""}\n\n- Universo: ${universo.length}\n- Publicados: ${municipios.length}\n- Sem envio de despesas: ${semDespesas}\n- Sem dados de pessoal: ${semPessoal}\n- Falhas de consulta: ${falhas.length}\n- Consultas: ${get.estatisticas.chamadas} (429: ${get.estatisticas.http429}, 503: ${get.estatisticas.http503}, tempo bloqueado: ${Math.round(get.estatisticas.bloqueadoMs / 1000)}s)\n`,
   );

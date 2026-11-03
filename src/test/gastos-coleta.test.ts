@@ -1,5 +1,10 @@
 import { describe, expect, it } from "vitest";
-import { coletarGastos, type Consulta } from "../../scripts/dados/gastos-coleta";
+import {
+  coletarCorrente,
+  coletarGastos,
+  periodosDoAno,
+  type Consulta,
+} from "../../scripts/dados/gastos-coleta";
 import type { Ente } from "../../scripts/dados/gastos-regras";
 
 const COL = "DESPESAS LIQUIDADAS ATÉ O BIMESTRE (d)";
@@ -33,6 +38,7 @@ describe("coletarGastos", () => {
     expect(r.exercicio).toBe(2025);
     expect(r.municipios).toHaveLength(4);
     expect(r.municipios[0]?.rgfPeriodicidade).toBe("quadrimestral");
+    expect(r.municipios.every((m) => m.periodo === undefined)).toBe(true);
   });
 
   it("recua para dois anos atrás quando o ano anterior não tem envio", async () => {
@@ -196,5 +202,71 @@ describe("coletarGastos", () => {
       /Falhas de rede em 2025/,
     );
     expect([...anos]).toEqual(["2025"]);
+  });
+});
+
+describe("periodosDoAno", () => {
+  it("só lista períodos já encerrados antes do mês atual", () => {
+    expect(periodosDoAno(11).bimestres).toEqual([5, 4, 3, 2, 1]);
+    expect(periodosDoAno(11).rgf.map((p) => `${p.tipo}${p.numero}`)).toEqual(["Q2", "Q1", "S1"]);
+    expect(periodosDoAno(10).bimestres).toEqual([4, 3, 2, 1]);
+    expect(periodosDoAno(1).bimestres).toEqual([]);
+    expect(periodosDoAno(1).rgf).toEqual([]);
+  });
+});
+
+describe("coletarCorrente", () => {
+  const bimestreDe = (q: Record<string, string>) => Number(q["nr_periodo"]);
+
+  it("devolve null quando nenhum bimestre do ano terminou", async () => {
+    const consulta: Consulta = async () => rreo;
+    expect(await coletarCorrente(consulta, piloto, 2026, 2, opcoes)).toBeNull();
+  });
+
+  it("usa o último bimestre que cada município já enviou", async () => {
+    const consulta: Consulta = async (rota, q) => {
+      if (rota === "rreo") {
+        const limite = q["id_ente"] === "1" ? 2 : 4;
+        return bimestreDe(q) <= limite ? rreo : [];
+      }
+      return q["in_periodicidade"] === "Q" && q["nr_periodo"] === "1" ? rgf : [];
+    };
+    const r = await coletarCorrente(consulta, piloto, 2026, 11, opcoes);
+    expect(r?.bimestreMax).toBe(4);
+    expect(r?.exercicio).toBe(2026);
+    expect(r?.municipios.map((m) => m.periodo?.bimestre)).toEqual([2, 4, 4, 4]);
+    expect(r?.municipios[0]?.periodo?.pessoal).toEqual({ tipo: "Q", numero: 1 });
+  });
+
+  it("aceita cobertura parcial e conta quem ainda não enviou nada", async () => {
+    const consulta: Consulta = async (rota, q) =>
+      rota === "rreo" ? (q["id_ente"] === "1" ? rreo : []) : rgf;
+    const r = await coletarCorrente(consulta, piloto, 2026, 11, opcoes);
+    expect(r?.municipios).toHaveLength(1);
+    expect(r?.semDespesas).toBe(3);
+  });
+
+  it("aborta quando quase nenhum município tem dados de pessoal", async () => {
+    const consulta: Consulta = async (rota) => (rota === "rreo" ? rreo : []);
+    await expect(coletarCorrente(consulta, piloto, 2026, 11, opcoes)).rejects.toThrow(
+      /sem dados de pessoal/,
+    );
+  });
+
+  it("aborta quando ninguém enviou nada", async () => {
+    const consulta: Consulta = async () => [];
+    await expect(coletarCorrente(consulta, piloto, 2026, 11, opcoes)).rejects.toThrow(
+      /Nenhum município/,
+    );
+  });
+
+  it("aborta com falha de rede em volume, sem publicar dado incompleto", async () => {
+    const consulta: Consulta = async (rota, q) => {
+      if (rota === "rreo" && q["id_ente"] === "1") throw new Error("HTTP 500");
+      return rota === "rreo" ? rreo : rgf;
+    };
+    await expect(coletarCorrente(consulta, piloto, 2026, 11, opcoes)).rejects.toThrow(
+      /Falhas de rede/,
+    );
   });
 });

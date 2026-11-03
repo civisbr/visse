@@ -6,6 +6,12 @@ export type PessoalMunicipio = {
   rcl: number | null;
 };
 
+// Só no acompanhamento do ano corrente: até qual bimestre vão as despesas e de qual período do RGF vem o pessoal.
+export type PeriodoMunicipio = {
+  bimestre: number;
+  pessoal: { tipo: "Q" | "S"; numero: number } | null;
+};
+
 export type MunicipioGastos = {
   codIbge: number;
   nome: string;
@@ -15,6 +21,7 @@ export type MunicipioGastos = {
   saude: number;
   educacao: number;
   pessoal: PessoalMunicipio | null;
+  periodo?: PeriodoMunicipio;
 };
 
 export type DadosGastos = {
@@ -22,6 +29,8 @@ export type DadosGastos = {
   fonte: string;
   geradoEm: string;
   exercicio: number;
+  // Ano ainda em curso: cada município aparece com o último período que enviou.
+  parcial: boolean;
   municipios: MunicipioGastos[];
 };
 
@@ -47,6 +56,26 @@ function pessoalValido(p: unknown): boolean {
   );
 }
 
+function periodoValido(p: unknown): boolean {
+  if (p === undefined) return true;
+  if (!p || typeof p !== "object") return false;
+  const x = p as Record<string, unknown>;
+  if (
+    !Number.isInteger(x["bimestre"]) ||
+    (x["bimestre"] as number) < 1 ||
+    (x["bimestre"] as number) > 6
+  )
+    return false;
+  const r = x["pessoal"];
+  if (r === null) return true;
+  if (!r || typeof r !== "object") return false;
+  const y = r as Record<string, unknown>;
+  const max = y["tipo"] === "Q" ? 3 : y["tipo"] === "S" ? 2 : 0;
+  return (
+    Number.isInteger(y["numero"]) && (y["numero"] as number) >= 1 && (y["numero"] as number) <= max
+  );
+}
+
 export function municipioValido(m: unknown): m is MunicipioGastos {
   if (!m || typeof m !== "object") return false;
   const x = m as Record<string, unknown>;
@@ -69,7 +98,8 @@ export function municipioValido(m: unknown): m is MunicipioGastos {
     num(x["educacao"]) &&
     x["educacao"] >= 0 &&
     x["saude"] + x["educacao"] <= x["despesaTotal"] * 1.001 &&
-    pessoalValido(x["pessoal"])
+    pessoalValido(x["pessoal"]) &&
+    periodoValido(x["periodo"])
   );
 }
 
@@ -99,13 +129,18 @@ export function lerGastos(bruto: unknown): DadosGastos | null {
     fonte: d["fonte"],
     geradoEm: d["geradoEm"],
     exercicio: d["exercicio"],
+    parcial: d["parcial"] === true,
     municipios,
   };
 }
 
+export type ArquivoGastos = "gastos" | "gastos-corrente";
+
 // null = ainda não publicado (404); falha de rede ou arquivo inválido lança.
-export async function carregarGastos(): Promise<DadosGastos | null> {
-  const r = await fetch("/data/gastos.json", {
+export async function carregarGastos(
+  arquivo: ArquivoGastos = "gastos",
+): Promise<DadosGastos | null> {
+  const r = await fetch(`/data/${arquivo}.json`, {
     headers: { accept: "application/json" },
     signal: AbortSignal.timeout(10_000),
   });
@@ -133,10 +168,15 @@ export function nivelPessoal(p: PessoalMunicipio): NivelPessoal {
 const pct = (n: number) =>
   `${n.toLocaleString("pt-BR", { minimumFractionDigits: 1, maximumFractionDigits: 1 })}%`;
 
+const FIM_BIMESTRE = ["fevereiro", "abril", "junho", "agosto", "outubro", "dezembro"];
+export const rotuloBimestre = (b: number) => `${b}º bimestre (encerrado em ${FIM_BIMESTRE[b - 1]})`;
+const rotuloPeriodoPessoal = (p: { tipo: "Q" | "S"; numero: number }) =>
+  `${p.numero}º ${p.tipo === "Q" ? "quadrimestre" : "semestre"}`;
+
 // Texto determinístico, sem juízo político: só compara com o limite da LRF, que é a única regra com base de cálculo disponível.
 export function explicarMunicipio(m: MunicipioGastos, exercicio: number): string[] {
   const out = [
-    `Em ${exercicio}, o município de ${m.nome} (${m.uf}), com cerca de ${m.populacao.toLocaleString("pt-BR")} habitantes, gastou ${brl(m.despesaTotal)}. Isso dá ${brl(m.despesaTotal / m.populacao)} por morador.`,
+    `Em ${exercicio}${m.periodo ? `, até o ${rotuloBimestre(m.periodo.bimestre)}` : ""}, o município de ${m.nome} (${m.uf}), com cerca de ${m.populacao.toLocaleString("pt-BR")} habitantes, gastou ${brl(m.despesaTotal)}. Isso dá ${brl(m.despesaTotal / m.populacao)} por morador.`,
     `Desse total, ${brl(m.saude)} (${pct((m.saude / m.despesaTotal) * 100)}) foram para a saúde, ou ${brl(m.saude / m.populacao)} por pessoa. Para a educação foram ${brl(m.educacao)} (${pct((m.educacao / m.despesaTotal) * 100)}), ou ${brl(m.educacao / m.populacao)} por pessoa.`,
   ];
   if (m.pessoal) {
@@ -148,7 +188,11 @@ export function explicarMunicipio(m: MunicipioGastos, exercicio: number): string
       ok: "dentro do limite legal",
     }[nivelPessoal(p)];
     out.push(
-      `A despesa total com pessoal do Executivo (salários, encargos e aposentadorias) somou ${pct(p.percentual)} da receita corrente líquida ajustada. A Lei de Responsabilidade Fiscal permite no máximo ${pct(p.limite)}: ${situacao}.`,
+      `A despesa total com pessoal do Executivo (salários, encargos e aposentadorias) somou ${pct(p.percentual)} da receita corrente líquida ajustada. A Lei de Responsabilidade Fiscal permite no máximo ${pct(p.limite)}: ${situacao}.${m.periodo?.pessoal ? ` Esse percentual é do ${rotuloPeriodoPessoal(m.periodo.pessoal)} de ${exercicio}.` : ""}`,
+    );
+  } else if (m.periodo) {
+    out.push(
+      `A prefeitura ainda não enviou, ou o período ainda não terminou, o relatório de gastos com pessoal de ${exercicio}.`,
     );
   } else {
     out.push(

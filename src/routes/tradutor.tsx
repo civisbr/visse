@@ -4,7 +4,7 @@ import { useMemo, useState } from "react";
 import { ProjectPage, meta } from "@/components/ProjectPage";
 import { CidadeCombobox } from "@/components/CidadeCombobox";
 import { MapaAlertas } from "@/components/MapaAlertas";
-import { carregarGastos, explicarMunicipio } from "@/lib/gastos-data";
+import { carregarGastos, explicarMunicipio, type ArquivoGastos } from "@/lib/gastos-data";
 import { dataBr, diasDesde } from "@/lib/red-flags-data";
 
 export const Route = createFileRoute("/tradutor")({
@@ -16,14 +16,85 @@ export const Route = createFileRoute("/tradutor")({
   component: Page,
 });
 
+type Ano = "fechado" | "corrente";
+const ARQUIVO: Record<Ano, ArquivoGastos> = { fechado: "gastos", corrente: "gastos-corrente" };
+
 function GastosReais() {
-  const { data, isPending, isError } = useQuery({
-    queryKey: ["gastos"],
-    queryFn: carregarGastos,
+  const corrente = useQuery({
+    queryKey: ["gastos", ARQUIVO.corrente],
+    queryFn: () => carregarGastos(ARQUIVO.corrente),
     retry: 1,
     staleTime: 3_600_000,
   });
+  const fechado = useQuery({
+    queryKey: ["gastos", ARQUIVO.fechado],
+    queryFn: () => carregarGastos(ARQUIVO.fechado),
+    retry: 1,
+    staleTime: 3_600_000,
+  });
+  const [ano, setAno] = useState<Ano>("fechado");
   const [cod, setCod] = useState<number | null>(null);
+  // Passado o fim do ano, o arquivo parcial do ano que já fechou não pode continuar como "em andamento".
+  const temCorrente =
+    !!corrente.data &&
+    !!fechado.data &&
+    corrente.data.exercicio > fechado.data.exercicio &&
+    corrente.data.exercicio === new Date().getFullYear();
+  const atual: Ano = temCorrente ? ano : "fechado";
+  const dadosAtuais = atual === "corrente" ? corrente.data : fechado.data;
+  // Cidade escolhida que ainda não enviou os dados do ano em andamento: avisa em vez de trocar de cidade calado.
+  const semDados =
+    atual === "corrente" &&
+    cod !== null &&
+    dadosAtuais &&
+    !dadosAtuais.municipios.some((x) => x.codIbge === cod)
+      ? fechado.data?.municipios.find((x) => x.codIbge === cod)?.nome
+      : undefined;
+  return (
+    <>
+      {temCorrente && corrente.data && fechado.data && (
+        <div role="group" aria-label="Ano dos dados" className="mb-5 flex flex-wrap gap-2">
+          {(["fechado", "corrente"] as const).map((a) => {
+            const d = a === "fechado" ? fechado.data : corrente.data;
+            return (
+              <button
+                key={a}
+                type="button"
+                aria-pressed={atual === a}
+                onClick={() => setAno(a)}
+                className={`rounded-md border-2 border-ink px-4 py-2 text-sm font-bold transition-colors ${atual === a ? "bg-ink text-areia" : "bg-card hover:bg-secondary"}`}
+              >
+                {d?.exercicio}
+                <span className="ml-1.5 font-normal">
+                  {a === "fechado" ? "(ano fechado)" : "(em andamento)"}
+                </span>
+              </button>
+            );
+          })}
+        </div>
+      )}
+      <Contas key={atual} arquivo={ARQUIVO[atual]} cod={cod} setCod={setCod} semDados={semDados} />
+    </>
+  );
+}
+
+function Contas({
+  arquivo,
+  cod,
+  setCod,
+  semDados,
+}: {
+  arquivo: ArquivoGastos;
+  cod: number | null;
+  setCod: (c: number) => void;
+  semDados?: string | undefined;
+}) {
+  const { data, isPending, isError } = useQuery({
+    queryKey: ["gastos", arquivo],
+    queryFn: () => carregarGastos(arquivo),
+    retry: 1,
+    staleTime: 3_600_000,
+  });
   const lista = useMemo(() => {
     const ordem = new Intl.Collator("pt-BR");
     return [...(data?.municipios ?? [])].sort(
@@ -54,7 +125,9 @@ function GastosReais() {
   return (
     <section className="mb-10" aria-labelledby="gastos-reais">
       <h3 id="gastos-reais" className="text-2xl font-bold">
-        Contas reais de {data.exercicio}
+        {data.parcial
+          ? `Contas parciais de ${data.exercicio}`
+          : `Contas reais de ${data.exercicio}`}
       </h3>
       <p className="mt-1 text-sm text-muted-foreground">
         {lista.length.toLocaleString("pt-BR")} cidades do Nordeste que já enviaram os dados de{" "}
@@ -63,6 +136,14 @@ function GastosReais() {
       <p className="mt-3 rounded-lg border border-border bg-secondary p-3 text-sm font-semibold">
         {data.aviso}
       </p>
+      {data.parcial && (
+        <p className="mt-3 rounded-lg border-2 border-ink bg-card p-3 text-sm font-semibold">
+          O ano de {data.exercicio} ainda não fechou. Cada cidade aparece com o último bimestre que
+          enviou ao Tesouro, e muitas ainda não enviaram, então o mapa mostra só parte do Nordeste.
+          O percentual de pessoal vem do último quadrimestre ou semestre enviado. Não compare estes
+          valores com os de um ano fechado.
+        </p>
+      )}
       {atraso > 40 && (
         <p role="status" className="mt-3 text-sm font-bold text-destructive">
           Estes dados têm {atraso} dias e podem estar desatualizados.
@@ -74,6 +155,11 @@ function GastosReais() {
         selecionado={m.codIbge}
         onSelecionar={setCod}
       />
+      {semDados && (
+        <p role="status" className="mt-4 rounded-lg border border-border bg-card p-3 text-sm">
+          {semDados} ainda não enviou os dados de {data.exercicio}. Mostrando {m.nome} no lugar.
+        </p>
+      )}
       <div className="mt-6 text-sm font-bold">
         <label htmlFor="cidade-gastos">Escolha a cidade</label>
         <CidadeCombobox id="cidade-gastos" cidades={lista} selecionada={m} onSelecionar={setCod} />
