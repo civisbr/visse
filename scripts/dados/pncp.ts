@@ -25,19 +25,32 @@ function linkContrato(controle: string): string {
 
 const ymd = (d: Date) => d.toISOString().slice(0, 10).replaceAll("-", "");
 
-async function get<T>(url: string, tentativas = 4): Promise<T> {
+// O PNCP responde 429 em rajadas longas; esperar o tempo que ele pede (ou crescer o recuo) em vez de desistir após 12 s.
+export function esperaRecuo(r: Pick<Response, "status" | "headers"> | null, i: number): number {
+  const limitado = r?.status === 429 || r?.status === 503;
+  const padrao = limitado ? Math.min(15_000 * i, 90_000) : 2000 * i;
+  const ra = Number(r?.headers.get("retry-after"));
+  // Retry-After curto durante uma rajada longa não pode encurtar o recuo crescente.
+  return limitado && Number.isFinite(ra) && ra > 0
+    ? Math.max(padrao, Math.min(ra, 120) * 1000)
+    : padrao;
+}
+
+async function get<T>(url: string, tentativas = 6): Promise<T> {
   for (let i = 1; ; i++) {
+    let r: Response | null = null;
     try {
-      const r = await fetch(url, { signal: AbortSignal.timeout(60_000) });
+      r = await fetch(url, { signal: AbortSignal.timeout(60_000) });
       if (r.status === 204) return { data: [], totalPaginas: 0 } as T;
       if (!r.ok) {
         if (r.status >= 400 && r.status < 500 && r.status !== 429) i = tentativas;
+        await r.body?.cancel().catch(() => {});
         throw new Error(`HTTP ${r.status}`);
       }
       return (await r.json()) as T;
     } catch (e) {
       if (i >= tentativas) throw new Error(`${url}: ${(e as Error).message}`);
-      await new Promise((ok) => setTimeout(ok, 2000 * i));
+      await new Promise((ok) => setTimeout(ok, esperaRecuo(r, i)));
     }
   }
 }
@@ -69,6 +82,7 @@ export async function contratosNordeste(dias: number, hoje = new Date()): Promis
       throw new Error(`Resposta inesperada do PNCP na página ${pagina}`);
     }
     total = r.totalPaginas;
+    await new Promise((ok) => setTimeout(ok, 200));
     for (const i of r.data) {
       if (
         !i?.orgaoEntidade ||
