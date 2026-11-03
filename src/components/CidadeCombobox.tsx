@@ -100,7 +100,9 @@ export function CidadeCombobox<T extends OpcaoCidade>({
             className="text-base sm:text-sm"
           />
           <span role="status" className="sr-only">
-            {total === 0 ? "Nenhuma cidade encontrada" : `${total} cidades`}
+            {total === 0
+              ? "Nenhuma cidade encontrada"
+              : `${total} ${total === 1 ? "cidade" : "cidades"}`}
           </span>
           <CommandList>
             <CommandEmpty>Nenhuma cidade encontrada. Confira a grafia.</CommandEmpty>

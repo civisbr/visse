@@ -4,6 +4,7 @@ import { ArrowRight, ArrowUpRight, Coins, FileText, Flag, HardHat, MapPin } from
 import { projects } from "@/lib/projects";
 import { meta } from "@/components/ProjectPage";
 import paisagem from "@/assets/paisagem-sertao.webp";
+import paisagemPequena from "@/assets/paisagem-sertao-600.webp";
 import { carregarResumoGastos } from "@/lib/gastos-data";
 import { carregarObras } from "@/lib/obras-data";
 import { carregarRedFlags } from "@/lib/red-flags-data";
@@ -128,6 +129,8 @@ function Index() {
         </div>
         <img
           src={paisagem}
+          srcSet={`${paisagemPequena} 600w, ${paisagem} 1200w`}
+          sizes="(min-width: 1152px) 594px, (min-width: 768px) 55vw, calc(100vw - 40px)"
           alt=""
           width={1200}
           height={600}

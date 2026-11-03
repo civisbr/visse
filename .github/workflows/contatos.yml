@@ -1,0 +1,49 @@
+name: Conferir contatos do MP
+
+on:
+  schedule:
+    - cron: "0 12 1 * *"
+  workflow_dispatch:
+
+permissions: {}
+
+concurrency:
+  group: contatos
+  cancel-in-progress: false
+
+jobs:
+  conferir:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+        with:
+          persist-credentials: false
+      - uses: oven-sh/setup-bun@0c5077e51419868618aeaa5fe8019c62421857d6 # v2
+        with:
+          bun-version: 1.4.0
+      # Sem bun install: o script só usa módulos do próprio repositório e o Node.
+      - run: bun scripts/dados/contatos.ts
+
+  issue:
+    needs: conferir
+    if: ${{ always() && needs.conferir.result == 'failure' }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    permissions:
+      issues: write
+    steps:
+      - env:
+          GH_TOKEN: ${{ github.token }}
+          RUN_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
+        run: |
+          titulo="Contatos do MP precisam de conferência"
+          existente=$(gh issue list --repo "$GITHUB_REPOSITORY" --state open --search "\"$titulo\" in:title" --json number --jq '.[0].number // empty')
+          corpo="A conferência mensal encontrou endereço quebrado ou conferência manual vencida. Detalhes: $RUN_URL"
+          if [ -n "$existente" ]; then
+            gh issue comment "$existente" --repo "$GITHUB_REPOSITORY" --body "$corpo"
+          else
+            gh issue create --repo "$GITHUB_REPOSITORY" --title "$titulo" --body "$corpo"
+          fi

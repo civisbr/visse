@@ -1,9 +1,9 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useRef, useState } from "react";
-import { Download } from "lucide-react";
+import { Download, FileCheck2, Lock, Scale } from "lucide-react";
 import { ProjectPage, meta } from "@/components/ProjectPage";
 import { OndeEnviar } from "@/components/OndeEnviar";
-import { gerarDenuncia } from "@/lib/minuta";
+import { gerarDenuncia, type Denuncia } from "@/lib/minuta";
 import { ESTADOS, type UF } from "@/lib/ouvidorias";
 import { Button } from "@/components/ui/button";
 
@@ -23,6 +23,19 @@ const tipos = [
   "Prefeitura não informa os gastos",
   "Outro",
 ];
+
+const exemplo: Denuncia = {
+  orgaoAlvo: "EXEMPLO FICTÍCIO, NÃO ENVIAR: Prefeitura Municipal de Exemplópolis",
+  tipoAnomalia:
+    "EXEMPLO FICTÍCIO, NÃO ENVIAR: licitação com concorrente único e empresa recém-criada",
+  dadosConcretos: {
+    licitacaoNum: "Pregão Eletrônico 012/2026",
+    valorTotal: "R$ 450.000,00",
+    cnpjVencedor: "12.345.678/0001-99",
+    dataAberturaCNPJ: "15/01/2026",
+  },
+  fundamentacaoLegal: ["Art. 37, XXI da CF/88", "Lei 14.133/2021"],
+};
 
 type Form = {
   nome: string;
@@ -58,7 +71,49 @@ function Page() {
       objetivo="Você tem o direito de cobrar. A gente monta o papel certinho e mostra para onde mandar. Seus dados ficam só no seu aparelho."
       passos={["Conte o que aconteceu", "Baixe o documento pronto", "Envie ao Ministério Público"]}
     >
-      <h3 className="text-xl font-bold">1. Conte o que aconteceu</h3>
+      <div className="grid gap-6 md:grid-cols-2">
+        <section aria-labelledby="titulo-seguro">
+          <h3 id="titulo-seguro" className="text-xl font-bold">
+            Por que é seguro
+          </h3>
+          <ul className="mt-3 space-y-2">
+            <li className="flex items-start gap-2">
+              <Lock className="mt-1 size-4 shrink-0" aria-hidden="true" />
+              Seus dados não saem do aparelho: o documento é montado no seu navegador.
+            </li>
+            <li className="flex items-start gap-2">
+              <Scale className="mt-1 size-4 shrink-0" aria-hidden="true" />
+              No formato usado em representações ao Ministério Público.
+            </li>
+            <li className="flex items-start gap-2">
+              <FileCheck2 className="mt-1 size-4 shrink-0" aria-hidden="true" />
+              Pronto em segundos, sem advogado e sem custo.
+            </li>
+          </ul>
+        </section>
+        <section aria-labelledby="titulo-exemplo">
+          <h3 id="titulo-exemplo" className="text-xl font-bold">
+            Veja como fica
+          </h3>
+          <p className="mt-2 text-muted-foreground">
+            Um documento de exemplo sobre uma compra suspeita. O caso é fictício, só para mostrar o
+            formato.
+          </p>
+          <div className="mt-4">
+            <Button
+              type="button"
+              variant="outline"
+              onClick={() =>
+                void gerarDenuncia(exemplo, { nome: "Fulano de Tal", cidade: "Exemplópolis/BA" })
+              }
+            >
+              <Download />
+              Baixar documento de exemplo
+            </Button>
+          </div>
+        </section>
+      </div>
+      <h3 className="mt-10 text-xl font-bold">1. Conte o que aconteceu</h3>
       <form
         className="mt-4 grid gap-4 md:grid-cols-2"
         onSubmit={async (e) => {
