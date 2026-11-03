@@ -44,6 +44,15 @@ type Pin = {
 };
 type Vista = { x: number; y: number; w: number; h: number };
 
+function descerParaContas(): boolean {
+  const alvo = document.getElementById("contas-cidade");
+  if (!alvo) return false;
+  const reduzido = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  alvo.scrollIntoView({ behavior: reduzido ? "auto" : "smooth", block: "start" });
+  alvo.focus({ preventScroll: true });
+  return true;
+}
+
 export function MapaAlertas({
   municipios,
   selecionado,
@@ -287,6 +296,8 @@ export function MapaAlertas({
     // Só sinaliza quando a seleção vai mudar; do contrário o efeito não roda e a marca ficaria presa.
     if (pin.m.codIbge !== selecionado) internoRef.current = true;
     onSelecionar(pin.m.codIbge);
+    // Aguarda o commit do React para o bloco já mostrar a cidade nova ao rolar.
+    requestAnimationFrame(() => descerParaContas());
   };
   const noPin = (e: React.KeyboardEvent, i: number, pin: Pin) => {
     if (e.key === "Enter" || e.key === " ") {
@@ -376,7 +387,11 @@ export function MapaAlertas({
     "flex size-9 items-center justify-center rounded-md border border-border bg-card text-ink shadow-sm transition-colors hover:bg-secondary focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ring";
 
   return (
-    <div className="mt-5">
+    <div
+      id="mapa-alertas"
+      tabIndex={-1}
+      className="mt-5 scroll-mt-24 focus:outline-none focus-visible:outline-2"
+    >
       <h4 className="text-xl font-bold">Mapa dos municípios em alerta</h4>
       <p className="mt-1 text-sm text-muted-foreground">
         Cada bandeira é um município cuja despesa com pessoal informada passou de um limite da Lei
@@ -443,7 +458,15 @@ export function MapaAlertas({
                 data-cod={p.m.codIbge}
                 transform={`translate(${p.x.toFixed(1)} ${p.y.toFixed(1)}) scale(${k.toFixed(4)})`}
                 role="button"
-                tabIndex={i === 0 ? 0 : -1}
+                tabIndex={
+                  (
+                    selecionado !== null && visiveis.some((v) => v.m.codIbge === selecionado)
+                      ? escolhido
+                      : i === 0
+                  )
+                    ? 0
+                    : -1
+                }
                 aria-label={`${p.m.nome} (${p.m.uf}): ${p.texto}`}
                 className="cursor-pointer outline-none [&:focus-visible_.anel]:opacity-100"
                 onPointerEnter={(e) => !arrastouRef.current && mostrarDica(e.currentTarget, p)}
@@ -597,12 +620,7 @@ export function MapaAlertas({
           <a
             href="#contas-cidade"
             onClick={(e) => {
-              const alvo = document.getElementById("contas-cidade");
-              if (!alvo) return;
-              e.preventDefault();
-              const reduzido = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-              alvo.scrollIntoView({ behavior: reduzido ? "auto" : "smooth", block: "start" });
-              alvo.focus({ preventScroll: true });
+              if (descerParaContas()) e.preventDefault();
             }}
             className="mt-3 inline-flex items-center gap-1 rounded-md bg-ink px-3 py-1.5 text-sm font-bold text-areia transition-colors hover:bg-primary"
           >

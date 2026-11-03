@@ -92,6 +92,12 @@ function GastosReais() {
             <p key={i}>{p}</p>
           ))}
         </div>
+        <a
+          href="#mapa-alertas"
+          className="mt-4 inline-block text-sm font-bold text-primary underline"
+        >
+          Voltar ao mapa
+        </a>
       </div>
     </section>
   );
