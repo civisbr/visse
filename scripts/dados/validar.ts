@@ -1,5 +1,5 @@
 import { readFile } from "node:fs/promises";
-import { lerGastos } from "../../src/lib/gastos-data";
+import { lerGastos, lerResumoGastos } from "../../src/lib/gastos-data";
 import { lerObras } from "../../src/lib/obras-data";
 import { lerDados } from "../../src/lib/red-flags-data";
 
@@ -29,6 +29,16 @@ if (alvo === "gastos") {
   const universo = Number(cob?.["universo"]);
   if (!(universo >= 1700) || lista.length < universo * 0.5)
     throw new Error(`gastos.json com cobertura insuficiente (${lista.length} de ${universo})`);
+  // O resumo alimenta a home; precisa bater com os dados que o originaram.
+  const resumo = lerResumoGastos(
+    JSON.parse(
+      await readFile(new URL("../../public/data/gastos-resumo.json", import.meta.url), "utf8"),
+    ),
+  );
+  if (!resumo || resumo.publicados !== lista.length || resumo.exercicio !== bruto["exercicio"])
+    throw new Error("gastos-resumo.json inválido ou diferente de gastos.json");
+  if (resumo.acimaLimite + resumo.acimaPrudencial + resumo.acimaAlerta > resumo.publicados)
+    throw new Error("gastos-resumo.json com níveis somando mais que os municípios publicados");
 }
 if (!lido) throw new Error(`${alvo}.json inválido para o front`);
 if (lido.length !== lista.length)

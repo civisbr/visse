@@ -157,3 +157,60 @@ export function explicarMunicipio(m: MunicipioGastos, exercicio: number): string
   }
   return out;
 }
+
+export type ResumoGastos = {
+  exercicio: number;
+  geradoEm: string;
+  publicados: number;
+  acimaLimite: number;
+  acimaPrudencial: number;
+  acimaAlerta: number;
+};
+
+export function resumirGastos(
+  municipios: MunicipioGastos[],
+  exercicio: number,
+  geradoEm: string,
+): ResumoGastos {
+  const r = { acimaLimite: 0, acimaPrudencial: 0, acimaAlerta: 0 };
+  for (const m of municipios) {
+    const n = m.pessoal ? nivelPessoal(m.pessoal) : "ok";
+    if (n === "limite") r.acimaLimite++;
+    else if (n === "prudencial") r.acimaPrudencial++;
+    else if (n === "alerta") r.acimaAlerta++;
+  }
+  return { exercicio, geradoEm, publicados: municipios.length, ...r };
+}
+
+export function lerResumoGastos(bruto: unknown): ResumoGastos | null {
+  if (!bruto || typeof bruto !== "object") return null;
+  const d = bruto as Record<string, unknown>;
+  const cont = (v: unknown): v is number =>
+    Number.isInteger(v) && (v as number) >= 0 && (v as number) < 100_000;
+  if (
+    !cont(d["publicados"]) ||
+    !cont(d["acimaLimite"]) ||
+    !cont(d["acimaPrudencial"]) ||
+    !cont(d["acimaAlerta"]) ||
+    !num(d["exercicio"]) ||
+    !str(d["geradoEm"])
+  )
+    return null;
+  return {
+    exercicio: d["exercicio"],
+    geradoEm: d["geradoEm"],
+    publicados: d["publicados"],
+    acimaLimite: d["acimaLimite"],
+    acimaPrudencial: d["acimaPrudencial"],
+    acimaAlerta: d["acimaAlerta"],
+  };
+}
+
+export async function carregarResumoGastos(): Promise<ResumoGastos | null> {
+  const r = await fetch("/data/gastos-resumo.json", {
+    headers: { accept: "application/json" },
+    signal: AbortSignal.timeout(10_000),
+  });
+  if (!r.ok || !(r.headers.get("content-type") ?? "").includes("json")) return null;
+  return lerResumoGastos(await r.json());
+}

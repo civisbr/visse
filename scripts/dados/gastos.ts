@@ -1,5 +1,5 @@
 import { appendFile, mkdir, writeFile } from "node:fs/promises";
-import { municipioValido } from "../../src/lib/gastos-data";
+import { municipioValido, resumirGastos } from "../../src/lib/gastos-data";
 import { coletarGastos } from "./gastos-coleta";
 import { criarCliente } from "./siconfi-http";
 import { selecionarMunicipios, type Ente, type ItemSiconfi } from "./gastos-regras";
@@ -39,6 +39,7 @@ if (rejeitados > coleta.municipios.length * 0.05)
     `${rejeitados} municípios descartados por dados incoerentes; esquema pode ter mudado`,
   );
 
+const geradoEm = new Date().toISOString();
 await mkdir("public/data", { recursive: true });
 await writeFile(
   "public/data/gastos.json",
@@ -47,7 +48,7 @@ await writeFile(
       aviso:
         "Valores liquidados e percentuais informados pelas próprias prefeituras ao Tesouro Nacional (SICONFI), que podem ser retificados e não equivalem a parecer do Tribunal de Contas. Saúde e educação são despesas por função e incluem recursos de outras esferas. A população vem do cadastro de entes mais recente. Os mínimos legais de 15% e 25% usam outra base de cálculo e não são avaliados aqui.",
       fonte: "SICONFI / Tesouro Nacional (RREO Anexo 02 e RGF Anexo 01, Poder Executivo)",
-      geradoEm: new Date().toISOString(),
+      geradoEm,
       exercicio,
       cobertura: {
         universo: universo.length,
@@ -63,6 +64,10 @@ await writeFile(
     null,
     1,
   ) + "\n",
+);
+await writeFile(
+  "public/data/gastos-resumo.json",
+  JSON.stringify(resumirGastos(municipios, exercicio, geradoEm)) + "\n",
 );
 console.log(`${municipios.length} municípios gravados (${exercicio})`);
 console.log(`Cliente SICONFI: ${JSON.stringify(get.estatisticas)}`);

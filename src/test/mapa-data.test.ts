@@ -1,7 +1,12 @@
 import { readFileSync } from "node:fs";
 import { describe, expect, it } from "vitest";
 import { distanciaKm, lerMapa, projetar } from "@/lib/mapa-data";
-import { nivelPessoal } from "@/lib/gastos-data";
+import {
+  lerResumoGastos,
+  nivelPessoal,
+  resumirGastos,
+  type MunicipioGastos,
+} from "@/lib/gastos-data";
 
 const base = {
   fonte: "IBGE",
@@ -63,5 +68,35 @@ describe("arquivo versionado da malha", () => {
     const m = lerMapa(JSON.parse(readFileSync("public/data/nordeste-mapa.json", "utf8")));
     expect(m?.estados).toHaveLength(9);
     expect(Object.keys(m?.municipios ?? {}).length).toBe(1794);
+  });
+});
+
+describe("resumo de gastos da home", () => {
+  const m = (cod: number, percentual: number | null): MunicipioGastos => ({
+    codIbge: cod,
+    nome: "X",
+    uf: "BA",
+    populacao: 1,
+    despesaTotal: 1,
+    saude: 0,
+    educacao: 0,
+    pessoal:
+      percentual === null
+        ? null
+        : { percentual, limite: 54, prudencial: 51.3, alerta: 48.6, rcl: null },
+  });
+  it("conta cada nível uma vez e ignora quem não tem dado de pessoal", () => {
+    const r = resumirGastos(
+      [m(1, 60), m(2, 52), m(3, 49), m(4, 30), m(5, null)],
+      2025,
+      "2026-11-03T00:00:00Z",
+    );
+    expect(r).toMatchObject({ publicados: 5, acimaLimite: 1, acimaPrudencial: 1, acimaAlerta: 1 });
+  });
+  it("o leitor aceita o que o gerador escreve e rejeita lixo", () => {
+    const r = resumirGastos([m(1, 60)], 2025, "2026-11-03T00:00:00Z");
+    expect(lerResumoGastos(JSON.parse(JSON.stringify(r)))).toEqual(r);
+    expect(lerResumoGastos({ ...r, acimaLimite: -1 })).toBeNull();
+    expect(lerResumoGastos("x")).toBeNull();
   });
 });
