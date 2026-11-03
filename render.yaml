@@ -1,0 +1,20 @@
+projects:
+  - name: visse
+    environments:
+      - name: producao
+        services:
+          - type: web
+            name: visse
+            runtime: node
+            plan: free
+            region: virginia
+            branch: main
+            autoDeployTrigger: commit
+            healthCheckPath: /
+            buildCommand: bun install --frozen-lockfile --ignore-scripts && NITRO_PRESET=node-server bun run build
+            startCommand: node .output/server/index.mjs
+            envVars:
+              - key: BUN_VERSION
+                value: 1.4.0
+              - key: NODE_VERSION
+                value: 22.12.0
