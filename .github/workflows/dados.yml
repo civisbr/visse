@@ -237,7 +237,8 @@ jobs:
 
   implantar:
     needs: publicar
-    if: ${{ needs.publicar.outputs.mesclado == 'true' }}
+    # success() implícito olharia também o contratos (ancestral); sem isso, fonte vermelha impede o deploy.
+    if: ${{ !cancelled() && needs.publicar.result == 'success' && needs.publicar.outputs.mesclado == 'true' }}
     runs-on: ubuntu-latest
     timeout-minutes: 5
     # Merge feito com o token do Actions não dispara o deploy; ele é chamado à mão, num job só com este escopo.
