@@ -14,7 +14,9 @@ if (
   alvo === "gastos-corrente" &&
   !existsSync(new URL("../../public/data/gastos-corrente.json", import.meta.url))
 ) {
-  console.log("gastos-corrente.json não gerado (ano sem bimestre encerrado); nada a validar");
+  console.log(
+    "gastos-corrente.json ausente (ano sem bimestre encerrado ou acompanhamento encerrado); nada a validar",
+  );
   process.exit(0);
 }
 
@@ -46,7 +48,7 @@ if (alvo === "gastos-corrente") {
     throw new Error("gastos-corrente.json sem o universo esperado");
   if (!(Number(cob?.["bimestreMax"]) >= 1)) throw new Error("gastos-corrente.json sem bimestreMax");
   if (bruto["parcial"] !== true) throw new Error("gastos-corrente.json não marcado como parcial");
-  if (bruto["exercicio"] !== new Date().getFullYear())
+  if (bruto["exercicio"] !== new Date().getUTCFullYear())
     throw new Error("gastos-corrente.json de outro ano");
 }
 if (alvo === "gastos") {

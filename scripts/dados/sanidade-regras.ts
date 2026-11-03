@@ -29,7 +29,7 @@ export function avaliarSanidade(
   arquivo: ArquivoDados,
   antes: Json,
   depois: Json,
-  anoAtual = new Date().getFullYear(),
+  anoAtual = new Date().getUTCFullYear(),
 ): string[] {
   // O coletor remove o acompanhamento do ano que já fechou; isso é esperado.
   if (depois === null) return arquivo === "gastos-corrente" ? [] : [`${arquivo}.json ausente`];
@@ -53,7 +53,9 @@ export function avaliarSanidade(
     if (!Number.isFinite(e0) || !Number.isFinite(e1))
       return [`${arquivo}.json sem exercício válido`];
     if (e1 < e0) return [`${arquivo}.json recuou de ${e0} para ${e1}`];
-    if (e1 > anoAtual) return [`${arquivo}.json com exercício ${e1}, maior que o ano atual`];
+    // O ano fechado nunca é o ano em curso; o acompanhamento nunca é o futuro.
+    const teto = arquivo === "gastos" ? anoAtual - 1 : anoAtual;
+    if (e1 > teto) return [`${arquivo}.json com exercício ${e1}, acima do permitido (${teto})`];
     if (e1 > e0) {
       // O acompanhamento começa pequeno no ano novo; o ano fechado, não.
       return arquivo === "gastos" && n1 < n0 * 0.5

@@ -1,5 +1,5 @@
 import { existsSync, readFileSync, rmSync } from "node:fs";
-import { correnteEncerrado } from "./corrente-regras";
+import { motivoEncerramento } from "./corrente-regras";
 
 // Roda no publicar: o coletor apaga o arquivo só no runner dele, então a main nunca recebia a remoção.
 const dir = new URL("../../public/data/", import.meta.url);
@@ -14,13 +14,12 @@ const exercicio = (u: URL): unknown => {
   }
 };
 
-if (
-  correnteEncerrado(
-    exercicio(corrente),
-    exercicio(new URL("gastos.json", dir)),
-    new Date().getUTCFullYear(),
-  )
-) {
+const c = exercicio(corrente);
+const f = exercicio(new URL("gastos.json", dir));
+const motivo = motivoEncerramento(c, f, new Date().getUTCFullYear());
+if (motivo) {
   rmSync(corrente);
-  console.log("gastos-corrente.json encerrado; removido da publicação");
+  console.log(
+    `gastos-corrente.json (exercício ${String(c)}) removido: ${motivo} (ano fechado: ${String(f)})`,
+  );
 }

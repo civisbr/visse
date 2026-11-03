@@ -86,13 +86,13 @@ describe("avaliarSanidade", () => {
   it("ano novo: barra gastos fechado pequeno e exercício no futuro", () => {
     const ant = lista("municipios", 1400, { exercicio: 2025 });
     expect(
-      avaliarSanidade("gastos", ant, lista("municipios", 3, { exercicio: 2026 }), 2026),
+      avaliarSanidade("gastos", ant, lista("municipios", 3, { exercicio: 2026 }), 2027),
     ).toHaveLength(1);
     expect(
-      avaliarSanidade("gastos", ant, lista("municipios", 1300, { exercicio: 2026 }), 2026),
+      avaliarSanidade("gastos", ant, lista("municipios", 1300, { exercicio: 2026 }), 2027),
     ).toEqual([]);
     expect(
-      avaliarSanidade("gastos", ant, lista("municipios", 1400, { exercicio: 2099 }), 2026),
+      avaliarSanidade("gastos", ant, lista("municipios", 1400, { exercicio: 2099 }), 2027),
     ).toHaveLength(1);
   });
 });

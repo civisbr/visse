@@ -1,11 +1,17 @@
+export type MotivoEncerramento = "ano virou" | "ano fechado alcançou";
+
+const inteiro = (x: unknown): x is number => typeof x === "number" && Number.isInteger(x);
+
 // O acompanhamento do ano em curso deixa de valer quando o ano termina ou quando o ano fechado o alcança.
-export function correnteEncerrado(
+// Exercício ilegível não é motivo para apagar: deixa a validação reprovar em vez de sumir com o arquivo.
+export function motivoEncerramento(
   exercicioCorrente: unknown,
   exercicioFechado: unknown,
   anoAtual: number,
-): boolean {
-  const c = Number(exercicioCorrente);
-  if (!Number.isInteger(c)) return true;
-  const f = Number(exercicioFechado);
-  return c < anoAtual || (Number.isInteger(f) && c <= f);
+): MotivoEncerramento | null {
+  if (!inteiro(exercicioCorrente)) return null;
+  if (exercicioCorrente < anoAtual) return "ano virou";
+  return inteiro(exercicioFechado) && exercicioCorrente <= exercicioFechado
+    ? "ano fechado alcançou"
+    : null;
 }
