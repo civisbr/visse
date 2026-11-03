@@ -18,6 +18,7 @@ function Page() {
   const set = (k: keyof typeof f) => (e: { target: { value: string } }) => setF({ ...f, [k]: e.target.value } as typeof f);
   return (
     <ProjectPage
+      nota="Os casos de exemplo são fictícios, não são denúncias reais."
       titulo="Faça sua denúncia"
       subtitulo="Viu algo errado na sua cidade? Preencha, baixe o documento e envie. Sem advogado, sem custo."
       objetivo="Você tem o direito de cobrar. A gente monta o papel certinho para você."

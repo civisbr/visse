@@ -7,12 +7,14 @@ export function ProjectPage({
   subtitulo,
   objetivo,
   passos,
+  nota,
   children,
 }: {
   titulo: string;
   subtitulo: string;
   objetivo: string;
   passos: string[];
+  nota?: string;
   children: ReactNode;
 }) {
   return (
@@ -63,9 +65,7 @@ export function ProjectPage({
       <section className="mt-12">
         <h2 className="mb-5 text-2xl font-black text-ink">Comece aqui</h2>
         <div className="pop rounded-lg bg-card p-4 md:p-8">{children}</div>
-        <p className="mt-4 text-sm text-muted-foreground">
-          Os casos de exemplo são fictícios, não são denúncias reais.
-        </p>
+        {nota && <p className="mt-4 text-sm text-muted-foreground">{nota}</p>}
       </section>
     </main>
   );

@@ -1,7 +1,7 @@
 /*
   X-Content-Type-Options: nosniff
   Referrer-Policy: strict-origin-when-cross-origin
-  Permissions-Policy: camera=(), microphone=(), geolocation=(), payment=()
+  Permissions-Policy: camera=(), microphone=(), geolocation=(self), payment=()
   Strict-Transport-Security: max-age=31536000
   Cross-Origin-Opener-Policy: same-origin-allow-popups
   Content-Security-Policy: object-src 'none'; base-uri 'self'; form-action 'self'; frame-ancestors 'self' https://*.lovable.app https://*.lovableproject.com https://lovable.dev

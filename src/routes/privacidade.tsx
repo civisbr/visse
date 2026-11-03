@@ -41,14 +41,20 @@ function Page() {
             usados por nós. Quando você prepara uma denúncia, nome e cidade ficam só no seu
             navegador e vão apenas para o PDF que você baixa.
           </p>
+          <p className="mt-2">
+            No mapa de gastos, o botão de localização é opcional: o navegador pede a sua permissão,
+            e a posição é usada só para calcular a distância no seu aparelho. Ela não é enviada nem
+            guardada.
+          </p>
         </section>
         <section>
           <h2 className="text-2xl font-bold">De onde vêm os dados dos alertas</h2>
           <p className="mt-2">
             Os contratos vêm do Portal Nacional de Contratações Públicas (PNCP), a idade do CNPJ vem
-            da BrasilAPI e as obras vêm do cadastro federal ObrasGov. São dados que o próprio poder
-            público já divulga. Nós os usamos para transparência e controle social (Lei de Acesso à
-            Informação, Lei nº 12.527/2011, e LGPD, art. 7º, §§ 3º e 4º).
+            da BrasilAPI, as obras vêm do cadastro federal ObrasGov, os gastos municipais vêm do
+            SICONFI (Tesouro Nacional) e o contorno do mapa vem do IBGE. São dados que o próprio
+            poder público já divulga. Nós os usamos para transparência e controle social (Lei de
+            Acesso à Informação, Lei nº 12.527/2011, e LGPD, art. 7º, §§ 3º e 4º).
           </p>
           <p className="mt-2">
             Não publicamos MEI nem empresário individual, e retiramos contratos cujo texto traga
@@ -60,8 +66,9 @@ function Page() {
           <p className="mt-2">
             Um alerta é um indicador estatístico automático. Ele não afirma que houve irregularidade
             nem culpa. Pode errar: por exemplo, uma empresa nova pode ser sucessora de outra antiga,
-            e um aumento de valor pode ser legal. Sempre confira na fonte oficial antes de tomar
-            qualquer atitude.
+            e um aumento de valor pode ser legal. Nos gastos, os valores são informados pelas
+            próprias prefeituras ao Tesouro e podem ser retificados depois. Sempre confira na fonte
+            oficial antes de tomar qualquer atitude.
           </p>
         </section>
         <section>

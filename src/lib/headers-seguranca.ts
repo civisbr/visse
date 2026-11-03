@@ -8,7 +8,7 @@ export const CSP =
 export const HEADERS_SEGURANCA: Record<string, string> = {
   "x-content-type-options": "nosniff",
   "referrer-policy": "strict-origin-when-cross-origin",
-  "permissions-policy": "camera=(), microphone=(), geolocation=(), payment=()",
+  "permissions-policy": "camera=(), microphone=(), geolocation=(self), payment=()",
   "strict-transport-security": "max-age=31536000",
   "cross-origin-opener-policy": "same-origin-allow-popups",
   "content-security-policy": CSP,

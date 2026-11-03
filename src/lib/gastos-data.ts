@@ -120,6 +120,16 @@ export async function carregarGastos(): Promise<DadosGastos | null> {
 const brl = (n: number) =>
   n.toLocaleString("pt-BR", { style: "currency", currency: "BRL", maximumFractionDigits: 0 });
 const arred = (n: number) => Math.round(n * 10) / 10;
+
+export type NivelPessoal = "limite" | "prudencial" | "alerta" | "ok";
+
+// Compara com os limites da LRF já arredondados a uma casa, como aparecem no texto, para pin e frase concordarem.
+export function nivelPessoal(p: PessoalMunicipio): NivelPessoal {
+  if (arred(p.percentual) > arred(p.limite)) return "limite";
+  if (p.prudencial !== null && arred(p.percentual) > arred(p.prudencial)) return "prudencial";
+  if (p.alerta !== null && arred(p.percentual) > arred(p.alerta)) return "alerta";
+  return "ok";
+}
 const pct = (n: number) =>
   `${n.toLocaleString("pt-BR", { minimumFractionDigits: 1, maximumFractionDigits: 1 })}%`;
 
@@ -131,14 +141,12 @@ export function explicarMunicipio(m: MunicipioGastos, exercicio: number): string
   ];
   if (m.pessoal) {
     const p = m.pessoal;
-    const situacao =
-      arred(p.percentual) > arred(p.limite)
-        ? "o valor informado ficou acima do limite máximo da LRF, o que merece atenção"
-        : p.prudencial !== null && arred(p.percentual) > arred(p.prudencial)
-          ? "acima do limite prudencial, perto do máximo"
-          : p.alerta !== null && arred(p.percentual) > arred(p.alerta)
-            ? "acima do limite de alerta, mas dentro do máximo"
-            : "dentro do limite legal";
+    const situacao = {
+      limite: "o valor informado ficou acima do limite máximo da LRF, o que merece atenção",
+      prudencial: "acima do limite prudencial, perto do máximo",
+      alerta: "acima do limite de alerta, mas dentro do máximo",
+      ok: "dentro do limite legal",
+    }[nivelPessoal(p)];
     out.push(
       `A despesa total com pessoal do Executivo (salários, encargos e aposentadorias) somou ${pct(p.percentual)} da receita corrente líquida ajustada. A Lei de Responsabilidade Fiscal permite no máximo ${pct(p.limite)}: ${situacao}.`,
     );

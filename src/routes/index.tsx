@@ -1,7 +1,6 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { projects } from "@/lib/projects";
 import { meta } from "@/components/ProjectPage";
-import { SwipeDeck } from "@/components/SwipeDeck";
 import { SolSertao } from "@/components/SolSertao";
 import {
   ArrowUpRight,
@@ -49,27 +48,17 @@ function Index() {
         <div className="rule-cordel mt-9 md:mt-12" />
       </section>
 
-      <div className="grid gap-12 pt-9 lg:grid-cols-[minmax(0,1fr)_304px] lg:gap-14">
+      <div className="pt-9">
         <section>
-          <div className="mb-6 flex items-baseline justify-between gap-3">
-            <h2 className="text-2xl font-black text-ink">Na sua mira</h2>
-            <span className="rounded-full border border-border bg-secondary px-3 py-1 text-xs font-semibold text-secondary-foreground">
-              Casos de exemplo
-            </span>
-          </div>
-          <SwipeDeck />
-        </section>
-
-        <aside className="lg:border-l lg:border-border lg:pl-9">
           <h2 className="text-2xl font-black text-ink">Faça sua parte</h2>
-          <div className="mt-2 divide-y divide-border">
+          <div className="mt-2 grid gap-x-12 md:grid-cols-2">
             {projects.map((p, i) => {
               const Icon = icons[i];
               return (
                 <Link
                   key={p.to}
                   to={p.to}
-                  className="group flex gap-3.5 py-5 transition-colors hover:text-primary"
+                  className="group flex gap-3.5 border-b border-border py-5 transition-colors hover:text-primary"
                 >
                   {Icon && (
                     <Icon
@@ -105,7 +94,7 @@ function Index() {
               <br />O primeiro passo é seu.
             </p>
           </div>
-        </aside>
+        </section>
       </div>
     </main>
   );
