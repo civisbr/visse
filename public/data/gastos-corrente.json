@@ -1,7 +1,7 @@
 {
  "aviso": "Valores parciais: despesas liquidadas até o último bimestre que cada prefeitura enviou ao Tesouro Nacional (SICONFI), que podem ser retificadas e não equivalem a parecer do Tribunal de Contas. Saúde e educação são despesas por função e incluem recursos de outras esferas. O percentual de pessoal vem do último quadrimestre ou semestre enviado. O ano ainda não fechou, e os mínimos legais de 15% e 25% não são avaliados aqui.",
  "fonte": "SICONFI / Tesouro Nacional (RREO Anexo 02 e RGF Anexo 01, Poder Executivo)",
- "geradoEm": "2026-11-03T15:03:13.748Z",
+ "geradoEm": "2026-11-03T21:12:10.809Z",
  "exercicio": 2026,
  "parcial": true,
  "cobertura": {
