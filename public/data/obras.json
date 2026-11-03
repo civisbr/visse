@@ -1,7 +1,7 @@
 {
  "aviso": "Dados do cadastro federal de obras (ObrasGov) como estavam na data da coleta. A situação pode ter mudado; confirme na fonte oficial antes de cobrar o órgão.",
  "fonte": "ObrasGov (obrasgov.gestao.gov.br)",
- "geradoEm": "2026-11-03T01:28:02.690Z",
+ "geradoEm": "2026-11-03T14:30:18.273Z",
  "semExecucaoFisica": 0,
  "ufsComFalha": [],
  "obras": [
@@ -16,18 +16,6 @@
    "execucaoFisica": 25,
    "dataFinalPrevista": "2026-04-01",
    "dataSituacao": "2026-06-08"
-  },
-  {
-   "id": "66835.21-10",
-   "nome": "806049 - Espaço Educativo Urbano I - 12 Salas - - Construção - Arari/MA",
-   "uf": "MA",
-   "tipo": "Escola 12 Salas",
-   "executor": "FUNDO NACIONAL DE DESENVOLVIMENTO DA EDUCAÇÃO",
-   "situacao": "Paralisada",
-   "valorPrevisto": 36234000,
-   "execucaoFisica": 1,
-   "dataFinalPrevista": "2017-12-31",
-   "dataSituacao": "2021-06-25"
   },
   {
    "id": "15166.21-11",
@@ -510,6 +498,30 @@
    "dataSituacao": "2024-04-01"
   },
   {
+   "id": "2980.29-20",
+   "nome": "26.782.3006.1C09.0029",
+   "uf": "BA",
+   "tipo": "Garantir dotação orçamentária para os contratos que envolvem 491.4000 km desta rúbrica.",
+   "executor": "DEPARTAMENTO NACIONAL DE INFRAESTRUTURA DE TRANSPORTES",
+   "situacao": "Paralisada",
+   "valorPrevisto": 562722718.89,
+   "execucaoFisica": 47,
+   "dataFinalPrevista": "2026-08-06",
+   "dataSituacao": "2026-06-08"
+  },
+  {
+   "id": "1247.29-14",
+   "nome": "05 00114/2017",
+   "uf": "BA",
+   "tipo": "Contrução/Ampliação/Reforma de 62.3000 km.",
+   "executor": "DEPARTAMENTO NACIONAL DE INFRAESTRUTURA DE TRANSPORTES",
+   "situacao": "Paralisada",
+   "valorPrevisto": 178255592.56,
+   "execucaoFisica": 35,
+   "dataFinalPrevista": "2027-03-25",
+   "dataSituacao": "2025-08-05"
+  },
+  {
    "id": "98764.29-01",
    "nome": "Saneamento Integrado na Bacia do Rio Camacari  Etapa 2",
    "uf": "BA",
@@ -570,6 +582,18 @@
    "dataSituacao": "2025-10-30"
   },
   {
+   "id": "83717.29-59",
+   "nome": "703506/10 - Colégio Estadual Antonio dos Santos Paim - Distrito Oliveira dos Campinhos",
+   "uf": "BA",
+   "tipo": "Ampliação",
+   "executor": "FUNDO NACIONAL DE DESENVOLVIMENTO DA EDUCAÇÃO",
+   "situacao": "Paralisada",
+   "valorPrevisto": 9897437.35,
+   "execucaoFisica": 18,
+   "dataFinalPrevista": "2022-02-09",
+   "dataSituacao": "2026-05-06"
+  },
+  {
    "id": "109347.29-01",
    "nome": "CONSTRUÇÃO DE UNIDADE DE ATENÇÃO ESPECIALIZADA EM SAÚDE",
    "uf": "BA",
@@ -606,30 +630,6 @@
    "dataSituacao": "2024-09-14"
   },
   {
-   "id": "42075.29-73",
-   "nome": "CR 832131/2016 - IMPLANTAÇÃO DE INFRAESTRUTURA URBANA NA LOCALIDADE DE BANCO DA VITÓRIA, ILHÉUS/BA, 3º ETAPA.",
-   "uf": "BA",
-   "tipo": " Temos ainda neste distrito de Ilhéus, pontos de venda de outros produtos de interesse turístico: artesanato, frutas, pe",
-   "executor": "SECRETARIA DE TURISMO SETUR",
-   "situacao": "Paralisada",
-   "valorPrevisto": 250000,
-   "execucaoFisica": 49,
-   "dataFinalPrevista": "2025-12-31",
-   "dataSituacao": "2024-09-14"
-  },
-  {
-   "id": "45120.29-00",
-   "nome": "Requalificação de praça no Povoado de Banco Central, no município de Ilhéus/BA",
-   "uf": "BA",
-   "tipo": "Requalificação de uma praça",
-   "executor": "COMPANHIA DE DESENVOLVIMENTO DOS VALES DO SÃO FRANCISCO E DO PARNAÍBA",
-   "situacao": "Paralisada",
-   "valorPrevisto": 202961.03,
-   "execucaoFisica": 25,
-   "dataFinalPrevista": "2025-06-03",
-   "dataSituacao": "2025-07-31"
-  },
-  {
    "id": "72153.29-84",
    "nome": "703506/10 - CE Edgard Santos- Governador Mangabeira/BA",
    "uf": "BA",
@@ -654,6 +654,18 @@
    "dataSituacao": "2025-12-11"
   },
   {
+   "id": "72156.29-43",
+   "nome": "703506/10 - CE João B. Pereira Fraga - Muritiba/BA",
+   "uf": "BA",
+   "tipo": "Escola - Projeto Próprio",
+   "executor": "FUNDO NACIONAL DE DESENVOLVIMENTO DA EDUCAÇÃO",
+   "situacao": "Paralisada",
+   "valorPrevisto": 99974.11,
+   "execucaoFisica": 67,
+   "dataFinalPrevista": "2018-09-22",
+   "dataSituacao": "2026-05-07"
+  },
+  {
    "id": "72192.29-87",
    "nome": "703506/10- CE Nossa Senhora de Lourdes - Serra Preta/BA",
    "uf": "BA",
@@ -676,18 +688,6 @@
    "execucaoFisica": 75,
    "dataFinalPrevista": "2018-09-22",
    "dataSituacao": "2026-02-27"
-  },
-  {
-   "id": "72156.29-43",
-   "nome": "703506/10 - CE João B. Pereira Fraga - Muritiba/BA",
-   "uf": "BA",
-   "tipo": "Escola - Projeto Próprio",
-   "executor": "FUNDO NACIONAL DE DESENVOLVIMENTO DA EDUCAÇÃO",
-   "situacao": "Paralisada",
-   "valorPrevisto": 99974.11,
-   "execucaoFisica": 67,
-   "dataFinalPrevista": "2018-09-22",
-   "dataSituacao": "2026-05-07"
   },
   {
    "id": "67996.29-03",

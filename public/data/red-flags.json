@@ -1,17 +1,17 @@
 {
  "aviso": "Indicador estatístico automático sobre dados abertos. Não indica irregularidade nem culpa; serve apenas para priorizar conferência nas fontes oficiais.",
  "fonte": "PNCP (pncp.gov.br) e BrasilAPI (CNPJ)",
- "geradoEm": "2026-11-03T02:46:11.829Z",
+ "geradoEm": "2026-11-03T16:13:42.783Z",
  "janelaDias": 30,
- "analisados": 9527,
- "cnpjConsultados": 2965,
- "cnpjCortados": 0,
+ "analisados": 9839,
+ "cnpjConsultados": 3000,
+ "cnpjCortados": 73,
  "cnpjFalhas": 0,
- "alertasTotal": 39,
+ "alertasTotal": 40,
  "alertasDescartados": {
   "cpfNoObjeto": 2,
   "semVerificacao": 0,
-  "pessoaFisica": 5,
+  "pessoaFisica": 6,
   "acimaDoLimite": 0
  },
  "alertas": [
@@ -143,6 +143,24 @@
   },
   {
    "contrato": {
+    "id": "01613860000163-2-000006/2025",
+    "orgao": "MUNICIPIO DE ARACOIABA",
+    "municipio": "Araçoiaba",
+    "uf": "PE",
+    "objeto": "REGISTRO DE PREÇOS PARA EVENTUAL AQUISIÇÃO DE MATERIAL DE HIGIENE E LIMPEZA, DE FORMA PARCELADA, CONFORME A NECESSIDADE, DESTINADO A ATENDER AS DEMANDAS DAS DIVERSAS SECRETARIAS E ÓRGÃOS DA ADMINISTRAÇÃO PÚBLICA DO MUNICÍPIO DE ARAÇOIABA/ PE, CONFORME ESPECIFICAÇÕES, QUANTIDADES E CONDIÇÕES ESTABELECIDAS NO TERMO DE REFERÊNCIA, PARTE INTEGRANTE DESTE EDITAL.",
+    "fornecedor": "META COMERCIO E SERVIÇOS LTDA",
+    "cnpj": "60835051000165",
+    "valorInicial": 567725.15,
+    "valorAcumulado": 567725.15,
+    "assinatura": "2025-10-21",
+    "link": "https://pncp.gov.br/app/contratos/01613860000163/2025/6"
+   },
+   "regra": "empresa-recente",
+   "detalhe": "CNPJ com início de atividade em 2025-05-14, 5 mês(es) antes da assinatura.",
+   "prioridade": 71
+  },
+  {
+   "contrato": {
     "id": "13658158000103-2-000120/2026",
     "orgao": "MUNICIPIO DE ARATACA",
     "municipio": "Arataca",
@@ -211,6 +229,24 @@
    },
    "regra": "empresa-recente",
    "detalhe": "CNPJ com início de atividade em 2025-06-03, 3 mês(es) antes da assinatura.",
+   "prioridade": 66
+  },
+  {
+   "contrato": {
+    "id": "24513574000121-2-000781/2024",
+    "orgao": "FUNDO MUNICIPAL DE SAUDE DE CAMPINA GRANDE",
+    "municipio": "Campina Grande",
+    "uf": "PB",
+    "objeto": "O contratado prestara aos habitantes do municipio de Campina Grande -PB, servicos na area de saude publica para atendimento de urgencia e emergencia, de forma complementar, em regime de atendimentos ambulatoriais, cirurgias, pareceres medicos, plantoes presenciais e/ou sobreaviso, visitas clinicas para pessoa fisica e juridica nas zonas urbana e rural do municipio de Campina Grande - PB.",
+    "fornecedor": "noronha servicos medicos ltda",
+    "cnpj": "55951423000189",
+    "valorInicial": 288000,
+    "valorAcumulado": 288000,
+    "assinatura": "2024-11-04",
+    "link": "https://pncp.gov.br/app/contratos/24513574000121/2024/781"
+   },
+   "regra": "empresa-recente",
+   "detalhe": "CNPJ com início de atividade em 2024-07-16, 3 mês(es) antes da assinatura.",
    "prioridade": 66
   },
   {
@@ -553,42 +589,6 @@
    },
    "regra": "empresa-recente",
    "detalhe": "CNPJ com início de atividade em 2026-05-19, 1 mês(es) antes da assinatura.",
-   "prioridade": 62
-  },
-  {
-   "contrato": {
-    "id": "01612535000186-2-000008/2026",
-    "orgao": "MUNICIPIO DE BARRA DE SANTANA",
-    "municipio": "Barra de Santana",
-    "uf": "PB",
-    "objeto": "SISTEMA DE REGISTRO DE PREÇOS PARA AQUISIÇÃO DE CESTAS BÁSICAS PARA ATENDER AS DEMANDAS DA PREFEITURA MUNICIPAL DE BARRA DE SANTANA",
-    "fornecedor": "JS COMERCIO E SERVICOS LTDA",
-    "cnpj": "63826152000168",
-    "valorInicial": 102000,
-    "valorAcumulado": 102000,
-    "assinatura": "2026-04-22",
-    "link": "https://pncp.gov.br/app/contratos/01612535000186/2026/8"
-   },
-   "regra": "empresa-recente",
-   "detalhe": "CNPJ com início de atividade em 2025-11-26, 4 mês(es) antes da assinatura.",
-   "prioridade": 62
-  },
-  {
-   "contrato": {
-    "id": "10462497000113-2-000235/2026",
-    "orgao": "MUNICIPIO DE VICOSA DO CEARA",
-    "municipio": "Viçosa do Ceará",
-    "uf": "CE",
-    "objeto": "CONTRATACAO DE APRESENTACAO DE SHOW ARTISTICO DE ALLE NO BEAT, A SER REALIZADO NO DIA 11 DE OUTUBRO DE 2026, COM DURACAO APROXIMADA DE 1H30MIN, DURANTE A 2a EXPOSICAO AGROPECUARIA EXPOVILA 2026, NO MUNICIPIO DE VICOSA DO CEARA/CE.",
-    "fornecedor": "ALLE NO BEAT PRODUCOES ARTISTICAS LTDA",
-    "cnpj": "68457444000194",
-    "valorInicial": 100000,
-    "valorAcumulado": 0,
-    "assinatura": "2026-09-24",
-    "link": "https://pncp.gov.br/app/contratos/10462497000113/2026/235"
-   },
-   "regra": "empresa-recente",
-   "detalhe": "CNPJ com início de atividade em 2026-08-07, 1 mês(es) antes da assinatura.",
    "prioridade": 62
   }
  ]

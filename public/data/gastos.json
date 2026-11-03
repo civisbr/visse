@@ -1,8 +1,9 @@
 {
  "aviso": "Valores liquidados e percentuais informados pelas próprias prefeituras ao Tesouro Nacional (SICONFI), que podem ser retificados e não equivalem a parecer do Tribunal de Contas. Saúde e educação são despesas por função e incluem recursos de outras esferas. A população vem do cadastro de entes mais recente. Os mínimos legais de 15% e 25% usam outra base de cálculo e não são avaliados aqui.",
  "fonte": "SICONFI / Tesouro Nacional (RREO Anexo 02 e RGF Anexo 01, Poder Executivo)",
- "geradoEm": "2026-11-03T01:52:33.636Z",
+ "geradoEm": "2026-11-03T14:17:35.657Z",
  "exercicio": 2025,
+ "parcial": false,
  "cobertura": {
   "universo": 1793,
   "publicados": 1413,
