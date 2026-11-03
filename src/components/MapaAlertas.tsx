@@ -617,26 +617,28 @@ export function MapaAlertas({
               Este município não passou dos limites e por isso não tem bandeira no mapa.
             </p>
           )}
-          <a
-            href="#contas-cidade"
-            onClick={(e) => {
-              if (descerParaContas()) e.preventDefault();
-            }}
-            className="mt-3 inline-flex items-center gap-1 rounded-md bg-ink px-3 py-1.5 text-sm font-bold text-areia transition-colors hover:bg-primary"
-          >
-            Ver as contas de {sel.nome}
-            <ArrowDown className="size-4" aria-hidden="true" />
-          </a>
-          {selCoord && (
+          <div className="mt-3 flex flex-wrap items-center gap-x-5 gap-y-2">
             <a
-              className="mt-2 inline-block text-sm font-semibold underline"
-              href={`https://www.openstreetmap.org/?mlat=${selCoord[0]}&mlon=${selCoord[1]}#map=11/${selCoord[0]}/${selCoord[1]}`}
-              target="_blank"
-              rel="noopener noreferrer"
+              href="#contas-cidade"
+              onClick={(e) => {
+                if (descerParaContas()) e.preventDefault();
+              }}
+              className="inline-flex items-center gap-1 rounded-md bg-ink px-2.5 py-1 text-xs font-bold text-areia transition-colors hover:bg-primary"
             >
-              Ver no OpenStreetMap
+              Ver as contas de {sel.nome}
+              <ArrowDown className="size-3.5" aria-hidden="true" />
             </a>
-          )}
+            {selCoord && (
+              <a
+                className="text-sm font-semibold underline"
+                href={`https://www.openstreetmap.org/?mlat=${selCoord[0]}&mlon=${selCoord[1]}#map=11/${selCoord[0]}/${selCoord[1]}`}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Ver no OpenStreetMap
+              </a>
+            )}
+          </div>
         </div>
       )}
     </div>
