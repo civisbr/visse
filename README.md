@@ -22,7 +22,7 @@ O Visse? é um projeto do **CivisBR**. Ele junta dados abertos do governo, expli
 | Ferramenta | O que faz | Fonte dos dados |
 | --- | --- | --- |
 | **Entenda os gastos** | Quanto cada cidade gastou com saúde, educação e pessoal, explicado em palavras simples. Mapa do Nordeste com uma bandeira em cada município acima dos limites da Lei de Responsabilidade Fiscal. Ano fechado e ano em andamento (parcial). | SICONFI, Tesouro Nacional |
-| **Contratos suspeitos** | Aponta contratos de prefeituras com sinais de alerta, como empresa aberta há menos de 6 meses ou valor acima de 25% do contratado. É um indício estatístico, nunca uma acusação. | PNCP e BrasilAPI (CNPJ) |
+| **Contratos suspeitos** | Aponta contratos de prefeituras com sinais de alerta, como empresa aberta há menos de 6 meses ou aditivos que elevam o valor em mais de 25% sobre o contrato original. É um indício estatístico, nunca uma acusação. | PNCP e BrasilAPI (CNPJ) |
 | **Obras paradas** | Lista obras públicas paralisadas, agrupadas por estado. | ObrasGov, governo federal |
 | **Faça sua denúncia** | Formulário que gera a representação em PDF no próprio navegador e mostra os canais do Ministério Público de cada estado (telefone, e-mail, formulário). | Sites oficiais dos MPs |
 
@@ -82,7 +82,7 @@ bun scripts/dados/validar.ts gastos    # valida antes de publicar
 ## Estrutura
 
 ```text
-src/routes/        páginas (uma por ferramenta)
+src/routes/        páginas e rotas do site
 src/components/    mapa, seletor de cidade, lista por estado, botão de denúncia
 src/lib/           leitura e validação dos dados, textos, contatos dos MPs
 scripts/dados/     coleta e validação dos dados abertos
