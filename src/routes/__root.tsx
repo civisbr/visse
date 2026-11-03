@@ -95,7 +95,7 @@ function RootShell({ children }: { children: ReactNode }) {
 }
 
 const linkBase =
-  "relative rounded-md px-3 py-2 transition-colors hover:text-primary after:absolute after:inset-x-3 after:-bottom-px after:h-0.5 after:scale-x-0 after:bg-sun after:transition-transform";
+  "relative rounded-md px-4 py-2.5 transition-colors hover:text-primary after:absolute after:inset-x-4 after:-bottom-px after:h-[3px] after:scale-x-0 after:bg-sun after:transition-transform";
 const linkAtivo = { className: "text-primary after:scale-x-100" };
 
 function RootComponent() {
@@ -103,12 +103,12 @@ function RootComponent() {
   return (
     <QueryClientProvider client={queryClient}>
       <header className="sticky top-0 z-40 border-b border-border bg-background/90 backdrop-blur">
-        <div className="mx-auto flex max-w-6xl items-center justify-between gap-4 px-5 py-4">
+        <div className="mx-auto flex max-w-6xl items-center justify-between gap-4 px-5 py-5">
           <Link to="/" aria-label="Visse? — início">
             <Logo />
           </Link>
           <nav
-            className="hidden items-center gap-1 text-sm font-semibold lg:flex"
+            className="hidden items-center gap-2 text-lg font-bold lg:flex"
             aria-label="Principal"
           >
             <Link
@@ -127,7 +127,11 @@ function RootComponent() {
                 </Link>
               ))}
           </nav>
-          <Button asChild>
+          <Button
+            asChild
+            size="lg"
+            className="h-10 px-4 text-sm sm:h-12 sm:px-6 sm:text-base [&_svg]:size-5"
+          >
             <Link to="/gerador">
               <Megaphone aria-hidden="true" />
               Denunciar

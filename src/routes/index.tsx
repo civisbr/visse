@@ -3,7 +3,7 @@ import { useQuery } from "@tanstack/react-query";
 import { ArrowRight, ArrowUpRight, Coins, FileText, Flag, HardHat, MapPin } from "lucide-react";
 import { projects } from "@/lib/projects";
 import { meta } from "@/components/ProjectPage";
-import { PaisagemSertao } from "@/components/PaisagemSertao";
+import paisagem from "@/assets/paisagem-sertao.webp";
 import { carregarResumoGastos } from "@/lib/gastos-data";
 import { carregarObras } from "@/lib/obras-data";
 import { carregarRedFlags } from "@/lib/red-flags-data";
@@ -99,7 +99,7 @@ function EmNumeros() {
 function Index() {
   return (
     <main className="mx-auto max-w-6xl px-5 pb-12 md:pb-16">
-      <section className="grid items-center gap-8 pt-8 md:grid-cols-[1.05fr_1fr] md:pt-12">
+      <section className="grid items-center gap-8 pt-8 md:grid-cols-[0.9fr_1.1fr] md:pt-12">
         <div>
           <p className="flex items-center gap-1.5 text-xs font-bold uppercase tracking-[0.16em] text-ink/70">
             <MapPin className="size-3.5 text-primary" aria-hidden="true" />
@@ -126,7 +126,14 @@ function Index() {
             </a>
           </div>
         </div>
-        <PaisagemSertao className="mx-auto w-full max-w-xl" />
+        <img
+          src={paisagem}
+          alt=""
+          width={1200}
+          height={600}
+          fetchPriority="high"
+          className="mx-auto h-auto w-full max-w-2xl"
+        />
       </section>
 
       <h2 id="como-funciona-titulo" className="sr-only">
