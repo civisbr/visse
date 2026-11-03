@@ -118,14 +118,15 @@ jobs:
   publicar:
     needs: [contratos, obras, gastos, gastos-corrente]
     # Publica o que deu certo; a fonte que falhou continua visível como job vermelho.
-    if: ${{ !cancelled() && (needs.contratos.result == 'success' || needs.obras.result == 'success' || needs.gastos.result == 'success' || needs.gastos-corrente.result == 'success') }}
+    # Disparo manual em outra branch não pode levar código para a main como se fosse atualização de dados.
+    if: ${{ github.ref == 'refs/heads/main' && !cancelled() && (needs.contratos.result == 'success' || needs.obras.result == 'success' || needs.gastos.result == 'success' || needs.gastos-corrente.result == 'success') }}
     runs-on: ubuntu-latest
     timeout-minutes: 10
     permissions:
       contents: write
       pull-requests: write
-      # Merge feito com o token do Actions não dispara o deploy; ele é chamado à mão no fim.
-      actions: write
+    outputs:
+      mesclado: ${{ steps.mesclar.outputs.mesclado }}
     steps:
       - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
       - uses: oven-sh/setup-bun@0c5077e51419868618aeaa5fe8019c62421857d6 # v2
@@ -136,10 +137,25 @@ jobs:
           pattern: dados-*
           merge-multiple: true
           path: public/data
+      - name: Conferir os arquivos baixados
+        run: |
+          # Só estes arquivos podem ir para produção; o job de coleta roda dependências de terceiros e não é confiável.
+          permitidos=" red-flags.json obras.json gastos.json gastos-resumo.json gastos-corrente.json "
+          git status --porcelain -uall -- public/data | while read -r _ arq; do
+            nome="${arq#public/data/}"
+            case "$permitidos" in *" $nome "*) ;; *) echo "::error::Arquivo inesperado: $arq"; exit 1 ;; esac
+          done
+          # Repete a validação aqui: a feita no job de coleta não vale para o que chegou por artefato.
+          for alvo in red-flags obras gastos gastos-corrente; do
+            if [ -n "$(git status --porcelain -- "public/data/$alvo.json")" ]; then
+              bun scripts/dados/validar.ts "$alvo"
+            fi
+          done
       - name: Abrir PR com os dados
         env:
           GH_TOKEN: ${{ github.token }}
           RUN_ID: ${{ github.run_id }}
+          RUN_ATTEMPT: ${{ github.run_attempt }}
           RUN_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
           RESULTADO_CONTRATOS: ${{ needs.contratos.result }}
           RESULTADO_OBRAS: ${{ needs.obras.result }}
@@ -172,7 +188,7 @@ jobs:
             echo
             echo "Mesclado sozinho quando a variação passa na checagem de sanidade (scripts/dados/sanidade.ts); caso contrário, fica aberto para conferência."
           )
-          ramo="dados/auto-$RUN_ID"
+          ramo="dados/auto-$RUN_ID-$RUN_ATTEMPT"
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git checkout -b "$ramo"
@@ -183,15 +199,47 @@ jobs:
             --title "Update public data (run $RUN_ID)" \
             --body "$resumo"
           echo "ramo=$ramo" >> "$GITHUB_ENV"
-      - name: Mesclar e publicar se a variação for normal
+          # Dados novos substituem os de PRs anteriores que ficaram abertos (sanidade reprovada ou nova tentativa).
+          gh pr list --state open --json number,headRefName \
+            --jq ".[] | select(.headRefName | startswith(\"dados/auto-\")) | select(.headRefName != \"$ramo\") | .number" |
+            while read -r n; do
+              gh pr close "$n" --delete-branch --comment "Substituído pela coleta mais recente (branch $ramo)."
+            done
+      - name: Mesclar se a variação for normal
+        id: mesclar
         env:
           GH_TOKEN: ${{ github.token }}
-          # O commit dos dados já foi feito; o pai dele é a main.
-          BASE_REF: HEAD~1
+          BASE_REF: FETCH_HEAD
         run: |
           if [ -z "$ramo" ]; then exit 0; fi
-          # Variação fora do normal: o PR fica aberto e a execução fica vermelha para chamar atenção.
-          bun scripts/dados/sanidade.ts
-          gh pr merge "$ramo" --squash
-          git push origin --delete "$ramo"
-          gh workflow run deploy.yml --ref main
+          # A coleta leva horas; compara com a main de agora, não com a do disparo.
+          git fetch -q --depth=1 origin main
+          # O PR só pode conter dados.
+          if git diff --name-only HEAD~1 HEAD | grep -qv '^public/data/'; then
+            echo "::error::O commit de dados altera arquivos fora de public/data"; exit 1
+          fi
+          # Variação fora do normal: o PR fica aberto, com o motivo registrado, e a execução fica vermelha.
+          if saida=$(bun scripts/dados/sanidade.ts 2>&1); then
+            printf 'Mesclado automaticamente pela checagem de sanidade (scripts/dados/sanidade.ts, commit %s).\n\n%s\n' "$GITHUB_SHA" "$saida" | gh pr comment "$ramo" --body-file -
+          else
+            echo "$saida"
+            printf 'Não mesclado: a variação fugiu do esperado. Conferir antes de mesclar.\n\n%s\n' "$saida" | gh pr comment "$ramo" --body-file -
+            exit 1
+          fi
+          gh pr merge "$ramo" --squash --match-head-commit "$(git rev-parse HEAD)"
+          echo "mesclado=true" >> "$GITHUB_OUTPUT"
+          git push origin --delete "$ramo" || echo "::warning::Não foi possível apagar a branch $ramo"
+
+  implantar:
+    needs: publicar
+    if: ${{ needs.publicar.outputs.mesclado == 'true' }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    # Merge feito com o token do Actions não dispara o deploy; ele é chamado à mão, num job só com este escopo.
+    permissions:
+      actions: write
+    steps:
+      - env:
+          GH_TOKEN: ${{ github.token }}
+          GH_REPO: ${{ github.repository }}
+        run: gh workflow run deploy.yml --ref main

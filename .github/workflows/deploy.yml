@@ -13,6 +13,8 @@ concurrency:
 
 jobs:
   publicar:
+    # O plano gratuito não restringe branches no ambiente; sem isto, qualquer ref disparada recebe os secrets.
+    if: github.ref == 'refs/heads/main'
     runs-on: ubuntu-latest
     timeout-minutes: 15
     environment: producao

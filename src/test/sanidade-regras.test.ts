@@ -65,4 +65,34 @@ describe("avaliarSanidade", () => {
     expect(avaliarSanidade("gastos-corrente", lista("municipios", 5), null)).toEqual([]);
     expect(avaliarSanidade("gastos", lista("municipios", 5), null)).toHaveLength(1);
   });
+
+  it("barra obras com mais UFs em falha e exercício inválido", () => {
+    expect(
+      avaliarSanidade(
+        "obras",
+        lista("obras", 50, { ufsComFalha: [] }),
+        lista("obras", 48, { ufsComFalha: ["BA"] }),
+      ),
+    ).toHaveLength(1);
+    expect(
+      avaliarSanidade(
+        "gastos",
+        lista("municipios", 10, { exercicio: 2025 }),
+        lista("municipios", 10, {}),
+      ),
+    ).toHaveLength(1);
+  });
+
+  it("ano novo: barra gastos fechado pequeno e exercício no futuro", () => {
+    const ant = lista("municipios", 1400, { exercicio: 2025 });
+    expect(
+      avaliarSanidade("gastos", ant, lista("municipios", 3, { exercicio: 2026 }), 2026),
+    ).toHaveLength(1);
+    expect(
+      avaliarSanidade("gastos", ant, lista("municipios", 1300, { exercicio: 2026 }), 2026),
+    ).toEqual([]);
+    expect(
+      avaliarSanidade("gastos", ant, lista("municipios", 1400, { exercicio: 2099 }), 2026),
+    ).toHaveLength(1);
+  });
 });

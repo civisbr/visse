@@ -25,7 +25,12 @@ const tamanho = (a: ArquivoDados, j: Json): number | null => {
 };
 
 // Devolve os motivos para NÃO publicar sozinho; lista vazia significa que a mudança está dentro do esperado.
-export function avaliarSanidade(arquivo: ArquivoDados, antes: Json, depois: Json): string[] {
+export function avaliarSanidade(
+  arquivo: ArquivoDados,
+  antes: Json,
+  depois: Json,
+  anoAtual = new Date().getFullYear(),
+): string[] {
   // O coletor remove o acompanhamento do ano que já fechou; isso é esperado.
   if (depois === null) return arquivo === "gastos-corrente" ? [] : [`${arquivo}.json ausente`];
   const n1 = tamanho(arquivo, depois);
@@ -35,12 +40,26 @@ export function avaliarSanidade(arquivo: ArquivoDados, antes: Json, depois: Json
   const n0 = tamanho(arquivo, antes);
   if (n0 === null || n0 === 0) return [];
 
+  // Coleta que perdeu estados não pode substituir uma completa só porque a queda coube no limite.
+  if (arquivo === "obras") {
+    const falhas = (j: Json) => (Array.isArray(j?.["ufsComFalha"]) ? j["ufsComFalha"].length : 0);
+    if (falhas(depois) > falhas(antes))
+      return [`${arquivo}.json com mais UFs em falha que o anterior`];
+  }
+
   if (arquivo === "gastos" || arquivo === "gastos-corrente") {
     const e0 = Number(antes["exercicio"]);
     const e1 = Number(depois["exercicio"]);
+    if (!Number.isFinite(e0) || !Number.isFinite(e1))
+      return [`${arquivo}.json sem exercício válido`];
     if (e1 < e0) return [`${arquivo}.json recuou de ${e0} para ${e1}`];
-    // Ano novo tem outro universo de envio; não há base de comparação.
-    if (e1 > e0) return [];
+    if (e1 > anoAtual) return [`${arquivo}.json com exercício ${e1}, maior que o ano atual`];
+    if (e1 > e0) {
+      // O acompanhamento começa pequeno no ano novo; o ano fechado, não.
+      return arquivo === "gastos" && n1 < n0 * 0.5
+        ? [`${arquivo}.json do exercício ${e1} com ${n1} registros, contra ${n0} do anterior`]
+        : [];
+    }
   }
 
   const { queda, alta, folga = 0 } = LIMITES[arquivo];

@@ -23,13 +23,17 @@ for (const arq of ARQUIVOS_DADOS) {
   const depois = existsSync(caminho) ? readFileSync(caminho, "utf8") : null;
   const antes = lerAntes(arq);
   if (depois === antes) continue;
-  motivos.push(
-    ...avaliarSanidade(
-      arq,
-      antes === null ? null : JSON.parse(antes),
-      depois === null ? null : JSON.parse(depois),
-    ),
-  );
+  try {
+    motivos.push(
+      ...avaliarSanidade(
+        arq,
+        antes === null ? null : JSON.parse(antes),
+        depois === null ? null : JSON.parse(depois),
+      ),
+    );
+  } catch {
+    motivos.push(`${arq}.json inválido (o novo ou o da main)`);
+  }
 }
 
 if (motivos.length > 0) {
