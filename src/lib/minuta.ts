@@ -1,16 +1,6 @@
-export const ouvidorias = {
-  MPF: { nome: "Ouvidoria do MPF", url: "https://www.mpf.mp.br/mpfservicos" },
-  BA: { nome: "MP da Bahia", url: "https://www.mpba.mp.br/ouvidoria" },
-  PE: { nome: "MP de Pernambuco", url: "https://www.mppe.mp.br/ouvidoria" },
-  CE: { nome: "MP do Ceará", url: "https://www.mpce.mp.br/ouvidoria" },
-  PB: { nome: "MP da Paraíba", url: "https://www.mppb.mp.br/ouvidoria" },
-  RN: { nome: "MP do Rio Grande do Norte", url: "https://www.mprn.mp.br/ouvidoria" },
-  AL: { nome: "MP de Alagoas", url: "https://www.mpal.mp.br/ouvidoria" },
-  SE: { nome: "MP de Sergipe", url: "https://www.mpse.mp.br/ouvidoria" },
-  PI: { nome: "MP do Piauí", url: "https://www.mppi.mp.br/ouvidoria" },
-  MA: { nome: "MP do Maranhão", url: "https://www.mpma.mp.br/ouvidoria" },
-} as const;
-export type UF = keyof typeof ouvidorias;
+import { ouvidorias, type UF } from "./ouvidorias";
+
+export { ouvidorias, type UF };
 
 export type Denuncia = {
   orgaoAlvo: string;

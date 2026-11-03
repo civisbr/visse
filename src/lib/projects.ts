@@ -3,5 +3,5 @@ export const projects = [
   { to: "/obras", emoji: "🏗️", nome: "Obras paradas", curto: "Obras", resumo: "Creches, escolas e postos que não ficaram prontos.", cor: "bg-sun" },
   { to: "/tradutor", emoji: "💬", nome: "Entenda os gastos", curto: "Gastos", resumo: "As contas da sua cidade em palavras simples.", cor: "bg-sky" },
   { to: "/gerador", emoji: "📢", nome: "Faça sua denúncia", curto: "Denunciar", resumo: "Baixe um documento pronto e envie ao Ministério Público.", cor: "bg-leaf" },
-  { to: "/minuta-core", emoji: "🔒", nome: "Denúncia segura", curto: "Segura", resumo: "Seu nome fica só no seu celular.", cor: "bg-secondary" },
+  { to: "/onde-denunciar", emoji: "📍", nome: "Onde denunciar", curto: "Onde denunciar", resumo: "Telefone, e-mail e site do Ministério Público de cada estado.", cor: "bg-secondary" },
 ] as const;

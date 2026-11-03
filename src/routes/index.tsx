@@ -2,17 +2,9 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { projects } from "@/lib/projects";
 import { meta } from "@/components/ProjectPage";
 import { SolSertao } from "@/components/SolSertao";
-import {
-  ArrowUpRight,
-  Flag,
-  HardHat,
-  MessageSquare,
-  Megaphone,
-  ShieldCheck,
-  MapPin,
-} from "lucide-react";
+import { ArrowUpRight, Flag, HardHat, MessageSquare, Megaphone, MapPin } from "lucide-react";
 
-const icons = [Flag, HardHat, MessageSquare, Megaphone, ShieldCheck];
+const icons = [Flag, HardHat, MessageSquare, Megaphone, MapPin];
 
 export const Route = createFileRoute("/")({
   head: () =>

@@ -1,3 +1,4 @@
+import { Link } from "@tanstack/react-router";
 import { useState } from "react";
 import { gerarDenuncia, ouvidorias, type Denuncia } from "@/lib/minuta";
 import { Button } from "@/components/ui/button";
@@ -110,6 +111,13 @@ export function DenunciaButton({
                     </a>
                   ))}
                 </div>
+                <p className="text-sm">
+                  Telefone, e-mail e horário de cada ouvidoria em{" "}
+                  <Link to="/onde-denunciar" className="font-semibold underline">
+                    Onde denunciar
+                  </Link>
+                  .
+                </p>
                 <Button variant="outline" onClick={() => setAberto(false)}>
                   Fechar
                 </Button>

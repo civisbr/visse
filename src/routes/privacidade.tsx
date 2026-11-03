@@ -46,6 +46,11 @@ function Page() {
             e a posição é usada só para calcular a distância no seu aparelho. Ela não é enviada nem
             guardada.
           </p>
+          <p className="mt-2">
+            Ao tocar num link para o site de um Ministério Público ou para o WhatsApp, o endereço de
+            destino passa a saber o seu IP e o seu navegador, como em qualquer link. O Visse? não
+            envia nenhum dado seu nessas visitas.
+          </p>
         </section>
         <section>
           <h2 className="text-2xl font-bold">De onde vêm os dados dos alertas</h2>
