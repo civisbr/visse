@@ -1,14 +1,14 @@
 {
  "aviso": "Valores liquidados e percentuais informados pelas próprias prefeituras ao Tesouro Nacional (SICONFI), que podem ser retificados e não equivalem a parecer do Tribunal de Contas. Saúde e educação são despesas por função e incluem recursos de outras esferas. A população vem do cadastro de entes mais recente. Os mínimos legais de 15% e 25% usam outra base de cálculo e não são avaliados aqui.",
  "fonte": "SICONFI / Tesouro Nacional (RREO Anexo 02 e RGF Anexo 01, Poder Executivo)",
- "geradoEm": "2026-11-03T20:33:48.631Z",
+ "geradoEm": "2026-11-09T19:31:17.608Z",
  "exercicio": 2025,
  "parcial": false,
  "cobertura": {
   "universo": 1793,
-  "publicados": 1413,
-  "semDespesas": 380,
-  "semPessoal": 11,
+  "publicados": 1412,
+  "semDespesas": 381,
+  "semPessoal": 9,
   "falhas": 0,
   "falhasRgf": 0,
   "rejeitados": 0
@@ -6097,23 +6097,6 @@
     "alerta": 48.6,
     "prudencial": 51.3,
     "rcl": 55970938.31
-   },
-   "rgfPeriodicidade": "quadrimestral"
-  },
-  {
-   "codIbge": 2310100,
-   "nome": "Palmácia",
-   "uf": "CE",
-   "populacao": 10252,
-   "despesaTotal": 67450667.5,
-   "saude": 14089091.36,
-   "educacao": 23560365.07,
-   "pessoal": {
-    "percentual": 48.43,
-    "limite": 54,
-    "alerta": 48.6,
-    "prudencial": 51.3,
-    "rcl": 64349033.3
    },
    "rgfPeriodicidade": "quadrimestral"
   },
@@ -20833,8 +20816,14 @@
    "despesaTotal": 173951769.71,
    "saude": 34310496.41,
    "educacao": 85921542.24,
-   "pessoal": null,
-   "rgfPeriodicidade": null
+   "pessoal": {
+    "percentual": 50.69,
+    "limite": 54,
+    "alerta": 48.6,
+    "prudencial": 51.3,
+    "rcl": 158297800.7
+   },
+   "rgfPeriodicidade": "quadrimestral"
   },
   {
    "codIbge": 2919207,
@@ -22062,8 +22051,14 @@
    "despesaTotal": 57213828.43,
    "saude": 13185781.53,
    "educacao": 21862068,
-   "pessoal": null,
-   "rgfPeriodicidade": null
+   "pessoal": {
+    "percentual": 43.55,
+    "limite": 54,
+    "alerta": 48.6,
+    "prudencial": 51.3,
+    "rcl": 56605086.04
+   },
+   "rgfPeriodicidade": "quadrimestral"
   },
   {
    "codIbge": 2924702,

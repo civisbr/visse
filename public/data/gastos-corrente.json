@@ -1,18 +1,18 @@
 {
  "aviso": "Valores parciais: despesas liquidadas até o último bimestre que cada prefeitura enviou ao Tesouro Nacional (SICONFI), que podem ser retificadas e não equivalem a parecer do Tribunal de Contas. Saúde e educação são despesas por função e incluem recursos de outras esferas. O percentual de pessoal vem do último quadrimestre ou semestre enviado. O ano ainda não fechou, e os mínimos legais de 15% e 25% não são avaliados aqui.",
  "fonte": "SICONFI / Tesouro Nacional (RREO Anexo 02 e RGF Anexo 01, Poder Executivo)",
- "geradoEm": "2026-11-03T21:12:10.809Z",
+ "geradoEm": "2026-11-09T20:12:53.905Z",
  "exercicio": 2026,
  "parcial": true,
  "cobertura": {
   "universo": 1793,
-  "publicados": 1356,
-  "semDespesas": 437,
+  "publicados": 1357,
+  "semDespesas": 436,
   "semPessoal": 5,
   "falhas": 0,
   "falhasRgf": 0,
   "rejeitados": 0,
-  "bimestreMax": 4
+  "bimestreMax": 5
  },
  "municipios": [
   {
@@ -11138,9 +11138,9 @@
    "nome": "Capim",
    "uf": "PB",
    "populacao": 7446,
-   "despesaTotal": 31971217.26,
-   "saude": 6849414.65,
-   "educacao": 11527356.78,
+   "despesaTotal": 40824611.42,
+   "saude": 8766779.93,
+   "educacao": 15259774.43,
    "pessoal": {
     "percentual": 48.63,
     "limite": 54,
@@ -11150,7 +11150,7 @@
    },
    "rgfPeriodicidade": "quadrimestral",
    "periodo": {
-    "bimestre": 4,
+    "bimestre": 5,
     "pessoal": {
      "tipo": "Q",
      "numero": 2
@@ -19226,22 +19226,22 @@
    "nome": "Canapi",
    "uf": "AL",
    "populacao": 15730,
-   "despesaTotal": 73398548.05,
-   "saude": 13560834.45,
-   "educacao": 38228074.95,
+   "despesaTotal": 109358335.73,
+   "saude": 21648237.65,
+   "educacao": 54691906.17,
    "pessoal": {
-    "percentual": 54.32,
+    "percentual": 51.37,
     "limite": 54,
     "alerta": 48.6,
     "prudencial": 51.3,
-    "rcl": 148554181.9
+    "rcl": 155061427.42
    },
    "rgfPeriodicidade": "quadrimestral",
    "periodo": {
-    "bimestre": 3,
+    "bimestre": 4,
     "pessoal": {
      "tipo": "Q",
-     "numero": 1
+     "numero": 2
     }
    }
   },
@@ -19462,6 +19462,30 @@
    }
   },
   {
+   "codIbge": 2702603,
+   "nome": "Feira Grande",
+   "uf": "AL",
+   "populacao": 23204,
+   "despesaTotal": 57088844,
+   "saude": 11972229.56,
+   "educacao": 33753484.56,
+   "pessoal": {
+    "percentual": 50.42,
+    "limite": 54,
+    "alerta": 48.6,
+    "prudencial": 51.3,
+    "rcl": 122346899.6
+   },
+   "rgfPeriodicidade": "quadrimestral",
+   "periodo": {
+    "bimestre": 4,
+    "pessoal": {
+     "tipo": "Q",
+     "numero": 2
+    }
+   }
+  },
+  {
    "codIbge": 2702702,
    "nome": "Feliz Deserto",
    "uf": "AL",
@@ -19514,22 +19538,22 @@
    "nome": "Igaci",
    "uf": "AL",
    "populacao": 24445,
-   "despesaTotal": 77154096.92,
-   "saude": 16046440.76,
-   "educacao": 28378778.98,
+   "despesaTotal": 101841250.08,
+   "saude": 21326133.31,
+   "educacao": 38936637.66,
    "pessoal": {
-    "percentual": 44.01,
+    "percentual": 44,
     "limite": 54,
     "alerta": 48.6,
     "prudencial": 51.3,
-    "rcl": 137372287.77
+    "rcl": 149952757.63
    },
    "rgfPeriodicidade": "quadrimestral",
    "periodo": {
-    "bimestre": 3,
+    "bimestre": 4,
     "pessoal": {
      "tipo": "Q",
-     "numero": 1
+     "numero": 2
     }
    }
   },
@@ -19802,9 +19826,9 @@
    "nome": "Major Isidoro",
    "uf": "AL",
    "populacao": 17828,
-   "despesaTotal": 85569194.94,
-   "saude": 16993340.92,
-   "educacao": 35709426.16,
+   "despesaTotal": 118489217.51,
+   "saude": 21951598.59,
+   "educacao": 49627393.85,
    "pessoal": {
     "percentual": 44.51,
     "limite": 54,
@@ -19814,7 +19838,7 @@
    },
    "rgfPeriodicidade": "quadrimestral",
    "periodo": {
-    "bimestre": 3,
+    "bimestre": 4,
     "pessoal": {
      "tipo": "Q",
      "numero": 1
@@ -19998,11 +20022,11 @@
    "saude": 15125482.17,
    "educacao": 30768275.03,
    "pessoal": {
-    "percentual": 62.66,
+    "percentual": 57.15,
     "limite": 54,
     "alerta": 48.6,
     "prudencial": 51.3,
-    "rcl": 99236584.04
+    "rcl": 96712338.43
    },
    "rgfPeriodicidade": "quadrimestral",
    "periodo": {
@@ -20766,11 +20790,11 @@
    "saude": 23903477.21,
    "educacao": 71754551.73,
    "pessoal": {
-    "percentual": 150.68,
+    "percentual": 51.46,
     "limite": 54,
     "alerta": 48.6,
     "prudencial": 51.3,
-    "rcl": 82268103.64
+    "rcl": 240875989.63
    },
    "rgfPeriodicidade": "quadrimestral",
    "periodo": {
@@ -23906,22 +23930,22 @@
    "nome": "Brejolândia",
    "uf": "BA",
    "populacao": 9363,
-   "despesaTotal": 24871852.44,
-   "saude": 6051181.97,
-   "educacao": 7900023.71,
+   "despesaTotal": 34963850.39,
+   "saude": 8069193.17,
+   "educacao": 11395191.32,
    "pessoal": {
-    "percentual": 34.05,
+    "percentual": 33.99,
     "limite": 54,
     "alerta": 48.6,
     "prudencial": 51.3,
-    "rcl": 49771675.6
+    "rcl": 51231334.17
    },
    "rgfPeriodicidade": "quadrimestral",
    "periodo": {
-    "bimestre": 3,
+    "bimestre": 4,
     "pessoal": {
      "tipo": "Q",
-     "numero": 1
+     "numero": 2
     }
    }
   },
