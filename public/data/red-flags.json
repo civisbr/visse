@@ -1,36 +1,108 @@
 {
  "aviso": "Indicador estatístico automático sobre dados abertos. Não indica irregularidade nem culpa; serve apenas para priorizar conferência nas fontes oficiais.",
  "fonte": "PNCP (pncp.gov.br) e BrasilAPI (CNPJ)",
- "geradoEm": "2026-11-03T16:13:42.783Z",
+ "geradoEm": "2026-11-09T23:16:06.730Z",
  "janelaDias": 30,
- "analisados": 9839,
+ "analisados": 10303,
  "cnpjConsultados": 3000,
- "cnpjCortados": 73,
- "cnpjFalhas": 0,
- "alertasTotal": 40,
+ "cnpjCortados": 305,
+ "cnpjFalhas": 8,
+ "alertasTotal": 57,
  "alertasDescartados": {
   "cpfNoObjeto": 2,
   "semVerificacao": 0,
-  "pessoaFisica": 6,
+  "pessoaFisica": 9,
   "acimaDoLimite": 0
  },
  "alertas": [
   {
    "contrato": {
-    "id": "06240352000109-2-000012/2025",
-    "orgao": "MUNICIPIO DE PRIMEIRA CRUZ",
-    "municipio": "Primeira Cruz",
-    "uf": "MA",
-    "objeto": "Contratação de empresa especializada para proposição de medidas administrativas e acompanhamento das ações judiciais contra a agencia nacional do petróleo, gás natural e biocombustíveis - ANP para referida agencia mantenha o repasses devidos ao município de Primeira Cruz - MA,",
-    "fornecedor": "COSTA NETO ADVOCACIA",
-    "cnpj": "42215166000175",
-    "valorInicial": 15000,
-    "valorAcumulado": 1800000,
-    "assinatura": "2025-01-20",
-    "link": "https://pncp.gov.br/app/contratos/06240352000109/2025/12"
+    "id": "13071253000106-2-000084/2026",
+    "orgao": "MUNICIPIO DE PRESIDENTE TANCREDO NEVES",
+    "municipio": "Presidente Tancredo Neves",
+    "uf": "BA",
+    "objeto": "Constitui objeto do presente contrato o credenciamento de empresa especializada para a Prestacao de \r\nservicos de saude aos usuarios do Sistema Unico de Saude de Presidente Tancredo Neves",
+    "fornecedor": " LABOCLIV LABORATORIO E CLINICA MEDICA DO VALE LTDA",
+    "cnpj": "04660721001312",
+    "valorInicial": 2888874,
+    "valorAcumulado": 28888874,
+    "assinatura": "2026-08-26",
+    "link": "https://pncp.gov.br/app/contratos/13071253000106/2026/84"
    },
    "regra": "aditivo-alto",
-   "detalhe": "Valor subiu 11.900% sobre o contratado.",
+   "detalhe": "Valor subiu 900% sobre o contratado.",
+   "prioridade": 100
+  },
+  {
+   "contrato": {
+    "id": "10358190000177-2-000242/2026",
+    "orgao": "MUNICIPIO DE PETROLINA",
+    "municipio": "Petrolina",
+    "uf": "PE",
+    "objeto": "Eventual contratacao de empresa para EXECUCAO DOS SERVICOS DE ENGENHARIA PARA MANUTENCAO DE PRACAS, PARQUE E JARDINS NO MUNICIPIO DE PETROLINA/PE, para atender as necessidades da Secretaria de Servicos Publicos e Defesa Civil, conforme solicitacao da...",
+    "fornecedor": "liga engenharia ltda",
+    "cnpj": "15270565000166",
+    "valorInicial": 1255453.97,
+    "valorAcumulado": 8664568.95,
+    "assinatura": "2026-05-14",
+    "link": "https://pncp.gov.br/app/contratos/10358190000177/2026/242"
+   },
+   "regra": "aditivo-alto",
+   "detalhe": "Valor subiu 590,1% sobre o contratado.",
+   "prioridade": 100
+  },
+  {
+   "contrato": {
+    "id": "13891510000148-2-000096/2026",
+    "orgao": "MUNICIPIO DE JOAO DOURADO",
+    "municipio": "João Dourado",
+    "uf": "BA",
+    "objeto": "CONTRATACAO DE EMPRESA PARA PRESTACAO DE SERVICOS DE PLANTONISTA VISANDO O ATENDIMENTO DAS DEMANDAS DO HOSPITAL MUNICIPAL DE JOAO DOURADOBA CONFORME CONDICOES ESTABELECIDAS NO PROCESSO DE CREDENCIAMENTO N 0042025",
+    "fornecedor": "LR PRESTACAO DE SERVICOS MEDICOS LTDA",
+    "cnpj": "66869312000144",
+    "valorInicial": 10747,
+    "valorAcumulado": 1074679,
+    "assinatura": "2026-10-23",
+    "link": "https://pncp.gov.br/app/contratos/13891510000148/2026/96"
+   },
+   "regra": "aditivo-alto",
+   "detalhe": "Valor subiu 9.899,8% sobre o contratado.",
+   "prioridade": 100
+  },
+  {
+   "contrato": {
+    "id": "14126981000122-2-000071/2026",
+    "orgao": "MUNICIPIO DE ENTRE RIOS",
+    "municipio": "Entre Rios",
+    "uf": "BA",
+    "objeto": "CONTRATAÇÃO DE EMPRESA ESPECIALIZADA PARA EXECUÇÃO, NA FORMA DE PRESTAÇÃO DE SERVIÇO, MENOR VALOR GLOBAL, SOB EMPREITADA POR PREÇO UNITÁRIO, DOS SERVIÇOS DE LIMPEZA URBANA NO MUNICÍPIO DE ENTRE RIOS, ESTADO DA BAHIA.",
+    "fornecedor": "CONSÓRCIO ENTRE RIOS SUSTENTÁVEL SPE LTDA",
+    "cnpj": "67991212000159",
+    "valorInicial": 14089999.92,
+    "valorAcumulado": 14089999.92,
+    "assinatura": "2026-08-03",
+    "link": "https://pncp.gov.br/app/contratos/14126981000122/2026/71"
+   },
+   "regra": "empresa-recente",
+   "detalhe": "CNPJ com início de atividade em 2026-07-13, 0 mês(es) antes da assinatura.",
+   "prioridade": 100
+  },
+  {
+   "contrato": {
+    "id": "11503081000169-2-000052/2026",
+    "orgao": "FUNDO MUNICIPAL DE SAUDE DE SAO JOSE DO EGITO",
+    "municipio": "São José do Egito",
+    "uf": "PE",
+    "objeto": "Contratação de Empresa Especializada para prestação de Serviços Médicos Complementares, por período de 12 (doze) meses, visando atender ao Fundo Municipal de Saúde de São José do Egito/PE.",
+    "fornecedor": "PLENUM INTEGRA SERVIÇOS",
+    "cnpj": "66923908000185",
+    "valorInicial": 3000000,
+    "valorAcumulado": 0,
+    "assinatura": "2026-11-03",
+    "link": "https://pncp.gov.br/app/contratos/11503081000169/2026/52"
+   },
+   "regra": "empresa-recente",
+   "detalhe": "CNPJ com início de atividade em 2026-05-21, 5 mês(es) antes da assinatura.",
    "prioridade": 100
   },
   {
@@ -53,21 +125,21 @@
   },
   {
    "contrato": {
-    "id": "13894894000152-2-000128/2026",
-    "orgao": "MUNICIPIO DE BOA NOVA",
-    "municipio": "Boa Nova",
-    "uf": "BA",
-    "objeto": "Contratação de empresa especializada para prestação, sob demanda, de serviços médicos ao Município de Boa Nova – Bahia, compreendendo consultas especializadas, exames, plantões médicos e procedimentos diagnósticos e afins, conforme itens para os quais a empresa foi regularmente habilitada no Credenciamento nº 009/2026.\r\n",
-    "fornecedor": "essencial medicina ltda",
-    "cnpj": "68626794000137",
-    "valorInicial": 1225436.9,
-    "valorAcumulado": 1225436.9,
-    "assinatura": "2026-10-06",
-    "link": "https://pncp.gov.br/app/contratos/13894894000152/2026/128"
+    "id": "11503081000169-2-000051/2026",
+    "orgao": "FUNDO MUNICIPAL DE SAUDE DE SAO JOSE DO EGITO",
+    "municipio": "São José do Egito",
+    "uf": "PE",
+    "objeto": "Contratação de Empresa Especializada para prestação de Serviços Médicos Complementares, por período de 12 (doze) meses, visando atender ao Fundo Municipal de Saúde de São José do Egito/PE.",
+    "fornecedor": "PLENUM INTEGRA SERVIÇOS",
+    "cnpj": "66851721000113",
+    "valorInicial": 2700000,
+    "valorAcumulado": 0,
+    "assinatura": "2026-11-03",
+    "link": "https://pncp.gov.br/app/contratos/11503081000169/2026/51"
    },
    "regra": "empresa-recente",
-   "detalhe": "CNPJ com início de atividade em 2026-08-07, 1 mês(es) antes da assinatura.",
-   "prioridade": 85
+   "detalhe": "CNPJ com início de atividade em 2026-05-18, 5 mês(es) antes da assinatura.",
+   "prioridade": 100
   },
   {
    "contrato": {
@@ -104,24 +176,6 @@
    "regra": "empresa-recente",
    "detalhe": "CNPJ com início de atividade em 2026-07-02, 3 mês(es) antes da assinatura.",
    "prioridade": 79
-  },
-  {
-   "contrato": {
-    "id": "08927915000159-2-000008/2026",
-    "orgao": "MUNICIPIO DE BANANEIRAS",
-    "municipio": "Bananeiras",
-    "uf": "PB",
-    "objeto": "AQUISIÇÃO DE ALIMENTOS PARA SURPRIR AS DEMANDAS DE TODAS AS SECRETARIAS DO MUNICÍPIO DE BANANEIRAS-PB PARA O EXERCÍCIO DE 2026",
-    "fornecedor": "AKIVENDAS COMERCIO E SERVICOS LTDA",
-    "cnpj": "64712021000112",
-    "valorInicial": 667110.3,
-    "valorAcumulado": 667110.3,
-    "assinatura": "2026-04-22",
-    "link": "https://pncp.gov.br/app/contratos/08927915000159/2026/8"
-   },
-   "regra": "empresa-recente",
-   "detalhe": "CNPJ com início de atividade em 2026-01-26, 2 mês(es) antes da assinatura.",
-   "prioridade": 73
   },
   {
    "contrato": {
@@ -179,57 +233,75 @@
   },
   {
    "contrato": {
-    "id": "14197586000130-2-000237/2026",
-    "orgao": "MUNICIPIO DE JACOBINA",
-    "municipio": "Jacobina",
+    "id": "13670658000152-2-000384/2026",
+    "orgao": "MUNICIPIO DE BARRA DA ESTIVA",
+    "municipio": "Barra da Estiva",
     "uf": "BA",
-    "objeto": "fornecimento parcelado e sob demanda de refeições prontas tipo “quentinhas”, pela CONTRATADA, para atendimento das necessidades da Administração Pública Municipal de Jacobina/BA, na sede, distritos, povoados e demais localidades do Município, relativamente aos itens e localidades para os quais tenha sido regularmente habilitada e credenciada, conforme as especificações e condições estabelecidas no Edital de CREDENCIAMENTO Nº 007/2026, no Termo de Referência e nos demais anexos",
-    "fornecedor": "KILO ALIMENTOS RESTAURANTE LTDA",
-    "cnpj": "67814686000125",
-    "valorInicial": 409347.1,
-    "valorAcumulado": 409347.1,
-    "assinatura": "2026-10-08",
-    "link": "https://pncp.gov.br/app/contratos/14197586000130/2026/237"
+    "objeto": "Contratação de serviços técnicos especializados de auditoria e consultoria tributária visando a identificação de créditos fiscais/tributários e a recuperação retroativa de valores não prescritos perante o(s) ente(s) devedor(es), incluindo o levantamento de dados, enquadramento legal e operacionalização direta na restituição/ compensação de valores, em favor do Município de Barra da Estiva/BA.",
+    "fornecedor": "CGD ANALYTICS LTDA",
+    "cnpj": "66616340000150",
+    "valorInicial": 391237.75,
+    "valorAcumulado": 391237.75,
+    "assinatura": "2026-11-03",
+    "link": "https://pncp.gov.br/app/contratos/13670658000152/2026/384"
    },
    "regra": "empresa-recente",
-   "detalhe": "CNPJ com início de atividade em 2026-07-01, 3 mês(es) antes da assinatura.",
+   "detalhe": "CNPJ com início de atividade em 2026-05-05, 5 mês(es) antes da assinatura.",
    "prioridade": 68
   },
   {
    "contrato": {
-    "id": "04214419000105-2-000213/2026",
-    "orgao": "MUNICIPIO DE LUIS EDUARDO MAGALHAES",
-    "municipio": "Luís Eduardo Magalhães",
-    "uf": "BA",
-    "objeto": "prestação de serviços médicos\ncontínuos e afins, que tenham habilitação para o exercício das funções\nprevistas no edital, tais como consultas, exames e procedimentos, nas\nunidades de Saúde deste Município.",
-    "fornecedor": "WBB SERVICOS MEDICOS LTDA",
-    "cnpj": "67861577000169",
-    "valorInicial": 300000,
-    "valorAcumulado": 300000,
-    "assinatura": "2026-09-04",
-    "link": "https://pncp.gov.br/app/contratos/04214419000105/2026/213"
+    "id": "01612342000125-2-000089/2026",
+    "orgao": "MUNICIPIO DE CENTRAL DO MARANHAO",
+    "municipio": "Central do Maranhão",
+    "uf": "MA",
+    "objeto": "14/2026-SRP, Processo Administrativo n° 31/2026, do tipo MENOR PREÇO POR ITEM, tendo por objeto o Registro de Preço para Eventual e Futura Contratação de empresa para prestação de serviços de organização, produção e realização de eventos no Município de Central do Maranhão – MA",
+    "fornecedor": "REYLAN C RIBEIRO DA SILVA LTDA",
+    "cnpj": "67774200000172",
+    "valorInicial": 376219,
+    "valorAcumulado": 376219,
+    "assinatura": "2026-11-04",
+    "link": "https://pncp.gov.br/app/contratos/01612342000125/2026/89"
    },
    "regra": "empresa-recente",
-   "detalhe": "CNPJ com início de atividade em 2026-07-06, 1 mês(es) antes da assinatura.",
-   "prioridade": 66
+   "detalhe": "CNPJ com início de atividade em 2026-07-01, 4 mês(es) antes da assinatura.",
+   "prioridade": 68
   },
   {
    "contrato": {
-    "id": "24513574000121-2-000441/2025",
-    "orgao": "FUNDO MUNICIPAL DE SAUDE DE CAMPINA GRANDE",
-    "municipio": "Campina Grande",
-    "uf": "PB",
-    "objeto": "O contratado prestara aos habitantes do municipio de Campina Grande -PB, servicos na area de saude publica para atendimento de urgencia e emergencia, de forma complementar, em regime de atendimentos ambulatoriais, cirurgias, pareceres medicos, plantoes presenciais e/ou sobreaviso, visitas clinicas para pessoa fisica e juridica nas zonas urbana e rural do municipio de Campina Grande - PB.",
-    "fornecedor": "ac servicos medicos ltda",
-    "cnpj": "61129517000170",
-    "valorInicial": 288000,
-    "valorAcumulado": 288000,
-    "assinatura": "2025-10-02",
-    "link": "https://pncp.gov.br/app/contratos/24513574000121/2025/441"
+    "id": "13858907000138-2-000161/2026",
+    "orgao": "MUNICIPIO DE PLANALTO",
+    "municipio": "Planalto",
+    "uf": "BA",
+    "objeto": "O presente termo tern como objeto a prestação de serviços pela CON PRATADA, em caráter complementar ao Sistema Único de Saúde — SUS, conforme o Edital de Credenciamento n° 007/2026\r\n— FMS, o Termo de Referência (Anexo II) e demais anexos: Médico Plantonista 12h (Segundo à Sexta), Plantão Médico em Hospital Geral Durante 12 horas (Sábado e domingo), Plantão médico Hospital Geral, durante 24 horas (Segunda a SextaFeira), Plantão Médico em Hospital Geral Durante 24\r\nhoras (Sábado e Domingo, Plantão Médico em Hospital Geral durante 12 horas em Feriados Nacionais e Natal e Réveillon, Plantão Hospitalar — Atendimento de Urgência e Emergência Durante 24 Horas nos Períodos de Natal. e Réveillon",
+    "fornecedor": "PESSOA PIRES SERVIÇOS MÉDICOS LTDA",
+    "cnpj": "67748956000147",
+    "valorInicial": 327400,
+    "valorAcumulado": 327400,
+    "assinatura": "2026-09-09",
+    "link": "https://pncp.gov.br/app/contratos/13858907000138/2026/161"
    },
    "regra": "empresa-recente",
-   "detalhe": "CNPJ com início de atividade em 2025-06-03, 3 mês(es) antes da assinatura.",
-   "prioridade": 66
+   "detalhe": "CNPJ com início de atividade em 2026-06-30, 2 mês(es) antes da assinatura.",
+   "prioridade": 67
+  },
+  {
+   "contrato": {
+    "id": "13858907000138-2-000162/2026",
+    "orgao": "MUNICIPIO DE PLANALTO",
+    "municipio": "Planalto",
+    "uf": "BA",
+    "objeto": "presente termo tem como objeto a prestação de serviços pela CONTRATADA, em caráter\r\ncomplementar ao Sistema Único de Saúde — SUS, conforme o Edital de Credenciarnento n° 007/2026\r\n— FMS, o Termo de Referência (Anexo 11) e demais anexos Médico Plantonista 12h (Segundo à Sexta), Plantão Médico em Hospital Geral Durante 12 horas (Sábado e domingo), Plantão médico Hospital Geral, durante 24 horas (Segunda a Sexta-feira), Plantão Médico em Hospital Geral Durante 24 horas (Sábado e Domingo), Plantão Médico em Hospital Geral durante 12 horas em Feriados Nacionais e Natal e Réveillon",
+    "fornecedor": "NORONHA SANTOS SERVIÇOS íi1ÉDICOS LT DA",
+    "cnpj": "67909148000114",
+    "valorInicial": 327400,
+    "valorAcumulado": 327400,
+    "assinatura": "2026-09-09",
+    "link": "https://pncp.gov.br/app/contratos/13858907000138/2026/162"
+   },
+   "regra": "empresa-recente",
+   "detalhe": "CNPJ com início de atividade em 2026-07-08, 2 mês(es) antes da assinatura.",
+   "prioridade": 67
   },
   {
    "contrato": {
@@ -251,39 +323,75 @@
   },
   {
    "contrato": {
-    "id": "08891830000168-2-000045/2026",
-    "orgao": "MUNICIPIO DE SERRA GRANDE",
-    "municipio": "Serra Grande",
+    "id": "24513574000121-2-000782/2024",
+    "orgao": "FUNDO MUNICIPAL DE SAUDE DE CAMPINA GRANDE",
+    "municipio": "Campina Grande",
     "uf": "PB",
-    "objeto": "AQUISIÇÃO PARCELADA DE MATERIAL PERMANENTE, ELETRÔNICOS E SUPRIMENTOS DE INFORMATICA PARA ATENDER AS NECESSIDADES DAS SECRETARIAS MUNICIPAIS DE SERRA GRANDE - PB",
-    "fornecedor": "CENTERDATA",
-    "cnpj": "68269402000120",
-    "valorInicial": 280096.57,
-    "valorAcumulado": 0,
-    "assinatura": "2026-09-18",
-    "link": "https://pncp.gov.br/app/contratos/08891830000168/2026/45"
+    "objeto": "O contratado prestara aos habitantes do municipio de Campina g Grande -PB, servicos na area de saude publica para atendimento de urgencia e emergencia, de .(5 forma complementar, em regime de atendimentos ambulatoriais, cirurgias, pareceres medicos, plantoes presenciais e/ou sobreaviso, visitas clinicas para pessoa fisica e juridica nas zonas urbana ,(2, - e rural do municipio de Campina Grande - PB",
+    "fornecedor": "rodrigo j b freire",
+    "cnpj": "55942764000198",
+    "valorInicial": 288000,
+    "valorAcumulado": 288000,
+    "assinatura": "2024-11-04",
+    "link": "https://pncp.gov.br/app/contratos/24513574000121/2024/782"
    },
    "regra": "empresa-recente",
-   "detalhe": "CNPJ com início de atividade em 2026-07-30, 1 mês(es) antes da assinatura.",
+   "detalhe": "CNPJ com início de atividade em 2024-07-16, 3 mês(es) antes da assinatura.",
    "prioridade": 66
   },
   {
    "contrato": {
-    "id": "08999716000156-2-000043/2026",
-    "orgao": "MUNICIPIO DO LASTRO",
-    "municipio": "Lastro",
+    "id": "24513574000121-2-000783/2024",
+    "orgao": "FUNDO MUNICIPAL DE SAUDE DE CAMPINA GRANDE",
+    "municipio": "Campina Grande",
     "uf": "PB",
-    "objeto": "CREDENCIAMENTO para contratação de empresa especializada para prestar os serviços Laboratoriais na especialidade em Análises Clínicas, para atender as necessidades diárias dos usuários do SUS da Secretaria de Saúde do Município de Lastro/PB",
-    "fornecedor": "VITAL CARE SERVICOS MEDICOS LTDA",
-    "cnpj": "66941703000122",
-    "valorInicial": 277969.1,
-    "valorAcumulado": 277969.1,
-    "assinatura": "2026-10-02",
-    "link": "https://pncp.gov.br/app/contratos/08999716000156/2026/43"
+    "objeto": "O contratado prestara aos habitantes do municipio de Campina Grande -PB, servicos na area de saude publica para atendimento de urgencia e emergencia, de forma complementar, em regime de atendimentos ambulatoriais, cirurgias, pareceres medicos, plantoes presenciais e/ou sobreaviso, visitas clinicas para pessoa fisica e juridica nas zonas urbana e rural do municipio de Campina Grande - PB. ",
+    "fornecedor": "gustavo arlen de freitas viana servicos medicos ltda",
+    "cnpj": "55226956000106",
+    "valorInicial": 288000,
+    "valorAcumulado": 288000,
+    "assinatura": "2024-11-04",
+    "link": "https://pncp.gov.br/app/contratos/24513574000121/2024/783"
    },
    "regra": "empresa-recente",
-   "detalhe": "CNPJ com início de atividade em 2026-05-22, 4 mês(es) antes da assinatura.",
+   "detalhe": "CNPJ com início de atividade em 2024-05-22, 5 mês(es) antes da assinatura.",
    "prioridade": 66
+  },
+  {
+   "contrato": {
+    "id": "13927801000572-2-000071/2026",
+    "orgao": "MUNICIPIO DE SALVADOR",
+    "municipio": "Salvador",
+    "uf": "BA",
+    "objeto": "PRESTAÇÃO DE SERVIÇOS MÉDICOS, NAS CATEGORIAS DE MÉDICO GENERALISTA E MÉDICO GENERALISTA COM EXPERIÊNCIA EM SAÚDE MENTAL, PARA ATENDER ÀS NECESSIDADES DA REDE DE ATENÇÃO À SAÚDE – RAS, DE MODO COMPLEMENTAR, ÀS NECESSIDADES DAS UNIDADES DE SAÚDE NO ÂMBITO DA ATENÇÃO PRIMÁRIA À SAÚDE E DA REDE DE ATENÇÃO PSICOSSOCIAL, VINCULADAS À SECRETARIA MUNICIPAL DA SAÚDE DO SALVADOR.",
+    "fornecedor": "MALU BAPO MED LTDA",
+    "cnpj": "67966711000196",
+    "valorInicial": 221805.57,
+    "valorAcumulado": 221805.57,
+    "assinatura": "2026-10-26",
+    "link": "https://pncp.gov.br/app/contratos/13927801000572/2026/71"
+   },
+   "regra": "empresa-recente",
+   "detalhe": "CNPJ com início de atividade em 2026-07-06, 3 mês(es) antes da assinatura.",
+   "prioridade": 64
+  },
+  {
+   "contrato": {
+    "id": "13927801000572-2-000072/2026",
+    "orgao": "MUNICIPIO DE SALVADOR",
+    "municipio": "Salvador",
+    "uf": "BA",
+    "objeto": "PRESTAÇÃO DE SERVIÇOS MÉDICOS, NAS CATEGORIAS DE MÉDICO GENERALISTA E MÉDICO GENERALISTA COM EXPERIÊNCIA EM SAÚDE MENTAL, PARA ATENDER ÀS NECESSIDADES DA REDE DE ATENÇÃO À SAÚDE – RAS, DE MODO COMPLEMENTAR, ÀS NECESSIDADES DAS UNIDADES DE SAÚDE NO ÂMBITO DA ATENÇÃO PRIMÁRIA À SAÚDE E DA REDE DE ATENÇÃO PSICOSSOCIAL, VINCULADAS À SECRETARIA MUNICIPAL DA SAÚDE DO SALVADOR.",
+    "fornecedor": "SCHULZE MEDICINA LTDA",
+    "cnpj": "69091327000112",
+    "valorInicial": 221805.57,
+    "valorAcumulado": 221805.57,
+    "assinatura": "2026-10-26",
+    "link": "https://pncp.gov.br/app/contratos/13927801000572/2026/72"
+   },
+   "regra": "empresa-recente",
+   "detalhe": "CNPJ com início de atividade em 2026-09-09, 1 mês(es) antes da assinatura.",
+   "prioridade": 64
   },
   {
    "contrato": {
@@ -323,6 +431,42 @@
   },
   {
    "contrato": {
+    "id": "13646005000138-2-000161/2026",
+    "orgao": "MUNICIPIO DE ALAGOINHAS",
+    "municipio": "Alagoinhas",
+    "uf": "BA",
+    "objeto": "CREDENCIAMENTO DE PESSOAS FÍSICAS E/OU JURÍDICAS PARA A PRESTAÇÃO DE SERVIÇOS MÉDICOS, NAS ESPECIALIDADES DE CLÍNICA GERAL, REUMATOLOGIA, NEUROPEDIATRIA, HEMATOLOGIA, GASTROENTEROLOGIA, GASTROPEDIATRIA, ANGIOLOGIA, MEDICINA DO TRABALHO E MÉDICO SOCORRISTA, DESTINADO AO PREENCHIMENTO DAS VAGAS REMANESCENTES DO CREDENCIAMENTO ANTERIORMENTE REALIZADO POR MEIO DO EDITAL Nº 001/2025, DECORRENTES DA AUSÊNCIA DE INTERESSADOS HABILITADOS E/OU DO DESLIGAMENTO DE PROFISSIONAIS ANTERIORMENTE CREDENCIADOS, VISANDO ATENDER ÀS NECESSIDADES DA REDE MUNICIPAL DE SAÚDE E ASSEGURAR A CONTINUIDADE, A REGULARIDADE E A AMPLIAÇÃO DA ASSISTÊNCIA MÉDICA À POPULAÇÃO",
+    "fornecedor": "SERVIÇOS MEDICOS FM LTDA",
+    "cnpj": "68111143000104",
+    "valorInicial": 192000,
+    "valorAcumulado": 192000,
+    "assinatura": "2026-10-29",
+    "link": "https://pncp.gov.br/app/contratos/13646005000138/2026/161"
+   },
+   "regra": "empresa-recente",
+   "detalhe": "CNPJ com início de atividade em 2026-07-20, 3 mês(es) antes da assinatura.",
+   "prioridade": 64
+  },
+  {
+   "contrato": {
+    "id": "13646005000138-2-000162/2026",
+    "orgao": "MUNICIPIO DE ALAGOINHAS",
+    "municipio": "Alagoinhas",
+    "uf": "BA",
+    "objeto": "CREDENCIAMENTO DE PESSOAS FÍSICAS E/OU JURÍDICAS PARA A PRESTAÇÃO DE SERVIÇOS MÉDICOS, NAS ESPECIALIDADES DE CLÍNICA GERAL, REUMATOLOGIA, NEUROPEDIATRIA, HEMATOLOGIA, GASTROENTEROLOGIA, GASTROPEDIATRIA, ANGIOLOGIA, MEDICINA DO TRABALHO E MÉDICO SOCORRISTA, DESTINADO AO PREENCHIMENTO DAS VAGAS REMANESCENTES DO CREDENCIAMENTO ANTERIORMENTE REALIZADO POR MEIO DO EDITAL Nº 001/2025, DECORRENTES DA AUSÊNCIA DE INTERESSADOS HABILITADOS E/OU DO DESLIGAMENTO DE PROFISSIONAIS ANTERIORMENTE CREDENCIADOS, VISANDO ATENDER ÀS NECESSIDADES DA REDE MUNICIPAL DE SAÚDE E ASSEGURAR A CONTINUIDADE, A REGULARIDADE E A AMPLIAÇÃO DA ASSISTÊNCIA MÉDICA À POPULAÇÃO",
+    "fornecedor": "SERVIÇOS MEDICOS FM LTDA",
+    "cnpj": "68111143000104",
+    "valorInicial": 192000,
+    "valorAcumulado": 192000,
+    "assinatura": "2026-10-29",
+    "link": "https://pncp.gov.br/app/contratos/13646005000138/2026/162"
+   },
+   "regra": "empresa-recente",
+   "detalhe": "CNPJ com início de atividade em 2026-07-20, 3 mês(es) antes da assinatura.",
+   "prioridade": 64
+  },
+  {
+   "contrato": {
     "id": "14105191000160-2-000085/2026",
     "orgao": "MUNICIPIO DE RIACHO DE SANTANA",
     "municipio": "Riacho de Santana",
@@ -337,6 +481,42 @@
    },
    "regra": "empresa-recente",
    "detalhe": "CNPJ com início de atividade em 2026-07-29, 1 mês(es) antes da assinatura.",
+   "prioridade": 64
+  },
+  {
+   "contrato": {
+    "id": "13751102000190-2-000082/2026",
+    "orgao": "MUNICIPIO DE ITAPETINGA",
+    "municipio": "Itapetinga",
+    "uf": "BA",
+    "objeto": "Constitui objeto do presente instrumento, a contratação emergencial de Empresa para higienização de enxoval hospitalar, envolvendo o processamento de roupas e tecidos em geral em todas as suas etapas, desde o recebimento até a entrega das roupas para o Hospital Municipal Virginia Hagge. SEC. SAÚDE.",
+    "fornecedor": "HIGILAV LANVANDERIA HOSPITALAR LTDA",
+    "cnpj": "66637568000126",
+    "valorInicial": 187500,
+    "valorAcumulado": 187500,
+    "assinatura": "2026-09-30",
+    "link": "https://pncp.gov.br/app/contratos/13751102000190/2026/82"
+   },
+   "regra": "empresa-recente",
+   "detalhe": "CNPJ com início de atividade em 2026-05-05, 4 mês(es) antes da assinatura.",
+   "prioridade": 64
+  },
+  {
+   "contrato": {
+    "id": "07443708000166-2-000294/2026",
+    "orgao": "MUNICIPIO DE JAGUARIBE",
+    "municipio": "Jaguaribe",
+    "uf": "CE",
+    "objeto": "REGISTRO DE PREÇOS VISANDO À FUTURA E EVENTUAL AQUISIÇÃO DE MATERIAIS DE EXPEDIENTE PARA ATENDER AS NECESSIDADES DA PREFEITURA MUNICIPAL DE JAGUARIBE, ATRAVÉS DA SECRETARIA DE EDUCAÇÃO E CULTURA DO MUNICÍPIO DE JAGUARIBE/CE.",
+    "fornecedor": "CAMILO COMERCIAL LTDA",
+    "cnpj": "67061870000141",
+    "valorInicial": 183229.1,
+    "valorAcumulado": 183229.1,
+    "assinatura": "2026-09-25",
+    "link": "https://pncp.gov.br/app/contratos/07443708000166/2026/294"
+   },
+   "regra": "empresa-recente",
+   "detalhe": "CNPJ com início de atividade em 2026-05-29, 3 mês(es) antes da assinatura.",
    "prioridade": 64
   },
   {
@@ -413,38 +593,56 @@
   },
   {
    "contrato": {
-    "id": "13647185000172-2-000410/2026",
-    "orgao": "MUNICIPIO DE INHAMBUPE",
-    "municipio": "Inhambupe",
+    "id": "13071253000106-2-000086/2026",
+    "orgao": "MUNICIPIO DE PRESIDENTE TANCREDO NEVES",
+    "municipio": "Presidente Tancredo Neves",
     "uf": "BA",
-    "objeto": "Credenciamento de pessoas jurídicas para a prestação de serviços médicos, sem vínculo empregatício, em caráter complementar ao Sistema Único de Saúde – SUS, destinados ao atendimento das necessidades da Secretaria Municipal de Saúde de Inhambupe/BA",
-    "fornecedor": "MARCUS IVIENDES SERVIÇOS MEDICOS LTDA",
-    "cnpj": "66285781000116",
-    "valorInicial": 159100,
-    "valorAcumulado": 159100,
-    "assinatura": "2026-10-01",
-    "link": "https://pncp.gov.br/app/contratos/13647185000172/2026/410"
+    "objeto": "CREDENCIAMENTO DE SERVICOS MEDICOS \r\nESPECIALIZADOS PARA A PRESTACAO DE SERVICOS TECNICOS PROFISSIONAIS NA \r\nSUA AREA DE FORMACAO A FIM DE ATENDER OS USUARIOS DO SERVICO PUBLICO DE \r\nSAUDE DO MUNICIPIO DE PRESIDENTE TANCREDO NEVES BAHIA",
+    "fornecedor": "FSSOUZA SERVICOS MEDICOS LTDA",
+    "cnpj": "67297362000167",
+    "valorInicial": 162000,
+    "valorAcumulado": 162000,
+    "assinatura": "2026-08-27",
+    "link": "https://pncp.gov.br/app/contratos/13071253000106/2026/86"
    },
    "regra": "empresa-recente",
-   "detalhe": "CNPJ com início de atividade em 2026-04-14, 5 mês(es) antes da assinatura.",
+   "detalhe": "CNPJ com início de atividade em 2026-06-12, 2 mês(es) antes da assinatura.",
    "prioridade": 63
   },
   {
    "contrato": {
-    "id": "13647185000172-2-000412/2026",
-    "orgao": "MUNICIPIO DE INHAMBUPE",
-    "municipio": "Inhambupe",
-    "uf": "BA",
-    "objeto": "Credenciamento de pessoas jurídicas para a prestação de serviços médicos, sem vínculo empregatício, em caráter complementar ao Sistema Único de Saúde – SUS, destinados ao atendimento das necessidades da Secretaria Municipal de Saúde de Inhambupe/BA",
-    "fornecedor": "MARCUS MENDES SERVIÇOS MEDICOS LTDA",
-    "cnpj": "66285781000116",
-    "valorInicial": 159100,
-    "valorAcumulado": 159100,
-    "assinatura": "2026-10-01",
-    "link": "https://pncp.gov.br/app/contratos/13647185000172/2026/412"
+    "id": "07443708000166-2-000302/2026",
+    "orgao": "MUNICIPIO DE JAGUARIBE",
+    "municipio": "Jaguaribe",
+    "uf": "CE",
+    "objeto": "REGISTRO DE PREÇOS VISANDO À FUTURA E EVENTUAL AQUISIÇÃO DE MATERIAL DE LIMPEZA E HIGIENIZAÇÃO PARA ATENDER ÀS NECESSIDADES DAS UNIDADES ADMINISTRATIVAS DO MUNICÍPIO DE JAGUARIBE/CE",
+    "fornecedor": "CAMILO COMERCIAL LTDA",
+    "cnpj": "67061870000141",
+    "valorInicial": 153950.74,
+    "valorAcumulado": 153950.74,
+    "assinatura": "2026-09-21",
+    "link": "https://pncp.gov.br/app/contratos/07443708000166/2026/302"
    },
    "regra": "empresa-recente",
-   "detalhe": "CNPJ com início de atividade em 2026-04-14, 5 mês(es) antes da assinatura.",
+   "detalhe": "CNPJ com início de atividade em 2026-05-29, 3 mês(es) antes da assinatura.",
+   "prioridade": 63
+  },
+  {
+   "contrato": {
+    "id": "07443708000166-2-000305/2026",
+    "orgao": "MUNICIPIO DE JAGUARIBE",
+    "municipio": "Jaguaribe",
+    "uf": "CE",
+    "objeto": "REGISTRO DE PREÇOS VISANDO À FUTURA E EVENTUAL AQUISIÇÃO DE MATERIAL DE LIMPEZA E HIGIENIZAÇÃO PARA ATENDER ÀS NECESSIDADES DAS UNIDADES ADMINISTRATIVAS DO MUNICÍPIO DE JAGUARIBE/CE",
+    "fornecedor": "CAMILO COMERCIAL LTDA",
+    "cnpj": "67061870000141",
+    "valorInicial": 150036.07,
+    "valorAcumulado": 150036.07,
+    "assinatura": "2026-09-24",
+    "link": "https://pncp.gov.br/app/contratos/07443708000166/2026/305"
+   },
+   "regra": "empresa-recente",
+   "detalhe": "CNPJ com início de atividade em 2026-05-29, 3 mês(es) antes da assinatura.",
    "prioridade": 63
   },
   {
@@ -521,6 +719,42 @@
   },
   {
    "contrato": {
+    "id": "16430381000189-2-000006/2026",
+    "orgao": "CAMARA MUNICIPAL DE SANTANA",
+    "municipio": "Santana",
+    "uf": "BA",
+    "objeto": "[LICITANET] - Prestação de serviços técnicos especializados de assessoria e consultoria contábil especializada em CONTABILIDADE APLICADA AO SETOR PÚBLICO (CASP) e FINANÇAS PÚBLICAS, compreendendo o acompanhamento dos registros contábeis patrimoniais, orçamentários e de controle, o assessoramento na execução orçamentária e gestão financeira, com verificação do cumprimento dos limites e condições estabelecidos pela Constituição Federal e Lei de Responsabilidade Fiscal, elaboração das prestações de contas mensais e anuais, nos aspectos de natureza contábil, orientação na elaboração e revisão dos relatórios da Lei de Responsabilidade Fiscal e defesa das notificações do Tribunal de Contas dos Municípios nos aspectos contábeis, para a Câmara Municipal de Santana - BA.",
+    "fornecedor": "ALVES ASSESSORIA CONTABIL LTDA",
+    "cnpj": "63666139000199",
+    "valorInicial": 144000,
+    "valorAcumulado": 0,
+    "assinatura": "2026-01-05",
+    "link": "https://pncp.gov.br/app/contratos/16430381000189/2026/6"
+   },
+   "regra": "empresa-recente",
+   "detalhe": "CNPJ com início de atividade em 2025-11-14, 1 mês(es) antes da assinatura.",
+   "prioridade": 63
+  },
+  {
+   "contrato": {
+    "id": "07443708000166-2-000295/2026",
+    "orgao": "MUNICIPIO DE JAGUARIBE",
+    "municipio": "Jaguaribe",
+    "uf": "CE",
+    "objeto": "REGISTRO DE PREÇOS VISANDO À FUTURA E EVENTUAL AQUISIÇÃO DE MATERIAIS DE EXPEDIENTE PARA ATENDER AS NECESSIDADES DA PREFEITURA MUNICIPAL DE JAGUARIBE, ATRAVÉS DA SECRETARIA DE EDUCAÇÃO E CULTURA DO MUNICÍPIO DE JAGUARIBE/CE.",
+    "fornecedor": "CAMILO COMERCIAL LTDA",
+    "cnpj": "67061870000141",
+    "valorInicial": 143960.73,
+    "valorAcumulado": 143960.73,
+    "assinatura": "2026-09-25",
+    "link": "https://pncp.gov.br/app/contratos/07443708000166/2026/295"
+   },
+   "regra": "empresa-recente",
+   "detalhe": "CNPJ com início de atividade em 2026-05-29, 3 mês(es) antes da assinatura.",
+   "prioridade": 63
+  },
+  {
+   "contrato": {
     "id": "08882730000175-2-000049/2026",
     "orgao": "MUNICIPIO DE SAO JOSE DE ESPINHARAS",
     "municipio": "São José de Espinharas",
@@ -557,6 +791,24 @@
   },
   {
    "contrato": {
+    "id": "06184253000149-2-000193/2026",
+    "orgao": "MUNICIPIO DE PEDREIRAS",
+    "municipio": "Pedreiras",
+    "uf": "MA",
+    "objeto": "Locacao de um imovel, localizada na Rua Eurico Ribeiro, no 400, Bairro Centro, destinado ao funcionamento da Estacao TECH, em atendimento a necessidade apresentada pela Secretaria Municipal de Educacao.",
+    "fornecedor": "RT ATIVOS IMOBILIARIOS LTDA",
+    "cnpj": "68547357000128",
+    "valorInicial": 132000,
+    "valorAcumulado": 0,
+    "assinatura": "2026-10-09",
+    "link": "https://pncp.gov.br/app/contratos/06184253000149/2026/193"
+   },
+   "regra": "empresa-recente",
+   "detalhe": "CNPJ com início de atividade em 2026-08-12, 1 mês(es) antes da assinatura.",
+   "prioridade": 63
+  },
+  {
+   "contrato": {
     "id": "13892187000127-2-000092/2026",
     "orgao": "MUNICIPIO DE NOVA ITARANA",
     "municipio": "Nova Itarana",
@@ -575,21 +827,21 @@
   },
   {
    "contrato": {
-    "id": "11354180000126-2-000146/2026",
-    "orgao": "MUNICIPIO DE SAO JOSE DO EGITO",
-    "municipio": "São José do Egito",
-    "uf": "PE",
-    "objeto": "Contratação de Empresa Especializada para prestação de serviços de Locação de Máquina, Caçambas e Veículos para desenvolver as atividades de condução de Equipes, Transporte de Equipamentos e Executar serviços de Obras, por período de 12 (doze) meses, visando atender as Secretarias Municipais de Obras, Agricultura, InfraEstrutura e Educação de São José do Egito/PE.",
-    "fornecedor": "EP CONSTRUTORA E EMPREE",
-    "cnpj": "66870744000175",
-    "valorInicial": 120000,
-    "valorAcumulado": 0,
-    "assinatura": "2026-07-10",
-    "link": "https://pncp.gov.br/app/contratos/11354180000126/2026/146"
+    "id": "07443708000166-2-000304/2026",
+    "orgao": "MUNICIPIO DE JAGUARIBE",
+    "municipio": "Jaguaribe",
+    "uf": "CE",
+    "objeto": "REGISTRO DE PREÇOS VISANDO À FUTURA E EVENTUAL AQUISIÇÃO DE MATERIAL DE LIMPEZA E HIGIENIZAÇÃO PARA ATENDER ÀS NECESSIDADES DAS UNIDADES ADMINISTRATIVAS DO MUNICÍPIO DE JAGUARIBE/CE",
+    "fornecedor": "CAMILO COMERCIAL LTDA",
+    "cnpj": "67061870000141",
+    "valorInicial": 126529.21,
+    "valorAcumulado": 126529.21,
+    "assinatura": "2026-09-21",
+    "link": "https://pncp.gov.br/app/contratos/07443708000166/2026/304"
    },
    "regra": "empresa-recente",
-   "detalhe": "CNPJ com início de atividade em 2026-05-19, 1 mês(es) antes da assinatura.",
-   "prioridade": 62
+   "detalhe": "CNPJ com início de atividade em 2026-05-29, 3 mês(es) antes da assinatura.",
+   "prioridade": 63
   }
  ]
 }
