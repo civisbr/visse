@@ -1,10 +1,34 @@
 {
  "aviso": "Dados do cadastro federal de obras (ObrasGov) como estavam na data da coleta. A situação pode ter mudado; confirme na fonte oficial antes de cobrar o órgão.",
  "fonte": "ObrasGov (obrasgov.gestao.gov.br)",
- "geradoEm": "2026-11-09T19:36:23.475Z",
- "semExecucaoFisica": 0,
+ "geradoEm": "2026-11-16T19:34:24.600Z",
+ "semExecucaoFisica": 11,
  "ufsComFalha": [],
  "obras": [
+  {
+   "id": "36124.21-19",
+   "nome": "15 00627/2023",
+   "uf": "MA",
+   "tipo": "Contrução/Ampliação/Reforma de 32.1500 km.",
+   "executor": "DEPARTAMENTO NACIONAL DE INFRAESTRUTURA DE TRANSPORTES",
+   "situacao": "Paralisada",
+   "valorPrevisto": 136691178.6,
+   "execucaoFisica": 25,
+   "dataFinalPrevista": "2026-04-01",
+   "dataSituacao": "2026-06-08"
+  },
+  {
+   "id": "66835.21-10",
+   "nome": "806049 - Espaço Educativo Urbano I - 12 Salas - - Construção - Arari/MA",
+   "uf": "MA",
+   "tipo": "Escola 12 Salas",
+   "executor": "FUNDO NACIONAL DE DESENVOLVIMENTO DA EDUCAÇÃO",
+   "situacao": "Paralisada",
+   "valorPrevisto": 36234000,
+   "execucaoFisica": 1,
+   "dataFinalPrevista": "2017-12-31",
+   "dataSituacao": "2021-06-25"
+  },
   {
    "id": "15166.21-11",
    "nome": "CR 891854/2019 - CONSTRUÇÃO DE UMA PRAÇA DE EVENTOS NO MUNICÍPIO DE CAJARI/MA",
@@ -16,6 +40,18 @@
    "execucaoFisica": 90,
    "dataFinalPrevista": "2026-10-31",
    "dataSituacao": "2025-11-13"
+  },
+  {
+   "id": "48620.21-12",
+   "nome": "CONSTRUÇÃO DE UNIDADE DE ATENÇÃO ESPECIALIZADA EM SAÚDE",
+   "uf": "MA",
+   "tipo": "CONSTRUÇÃO DE UNIDADE DE ATENÇÃO ESPECIALIZADA EM SAÚDE",
+   "executor": "MUNICIPIO DE IMPERATRIZ - FUNDO MUNICIPAL DE SAUDE",
+   "situacao": "Paralisada",
+   "valorPrevisto": 758000,
+   "execucaoFisica": 74,
+   "dataFinalPrevista": "2025-12-06",
+   "dataSituacao": "2026-01-16"
   },
   {
    "id": "2825.22-00",
@@ -49,7 +85,7 @@
    "executor": "DEPARTAMENTO NAC.DE OBRAS CONTRA AS SECAS",
    "situacao": "Paralisada",
    "valorPrevisto": 676905595.04,
-   "execucaoFisica": 57,
+   "execucaoFisica": null,
    "dataFinalPrevista": "2024-07-01",
    "dataSituacao": "2024-12-06"
   },
@@ -61,7 +97,7 @@
    "executor": "MUNICIPIO DE TABULEIRO DO NORTE",
    "situacao": "Paralisada",
    "valorPrevisto": 934985.06,
-   "execucaoFisica": 45,
+   "execucaoFisica": null,
    "dataFinalPrevista": "2026-12-26",
    "dataSituacao": "2024-04-29"
   },
@@ -73,7 +109,7 @@
    "executor": "FUNDO NACIONAL DE DESENVOLVIMENTO DA EDUCAÇÃO",
    "situacao": "Paralisada",
    "valorPrevisto": 922519.48,
-   "execucaoFisica": 0,
+   "execucaoFisica": null,
    "dataFinalPrevista": "2013-06-15",
    "dataSituacao": "2015-07-10"
   },
@@ -85,7 +121,7 @@
    "executor": "MUNICIPIO DE NOVA OLINDA",
    "situacao": "Paralisada",
    "valorPrevisto": 915000,
-   "execucaoFisica": 64,
+   "execucaoFisica": null,
    "dataFinalPrevista": "2026-10-31",
    "dataSituacao": "2025-03-15"
   },
@@ -97,7 +133,7 @@
    "executor": "MUNICIPIO DE JAGUARETAMA",
    "situacao": "Paralisada",
    "valorPrevisto": 908766.51,
-   "execucaoFisica": 80,
+   "execucaoFisica": null,
    "dataFinalPrevista": "2026-09-30",
    "dataSituacao": "2025-10-17"
   },
@@ -265,7 +301,7 @@
    "executor": "MUNICIPIO DE OLINDA",
    "situacao": "Paralisada",
    "valorPrevisto": 76620000,
-   "execucaoFisica": 42,
+   "execucaoFisica": null,
    "dataFinalPrevista": "2025-12-30",
    "dataSituacao": "2025-10-30"
   },
@@ -277,7 +313,7 @@
    "executor": "ESTADO DE PERNAMBUCO",
    "situacao": "Paralisada",
    "valorPrevisto": 42999399.27,
-   "execucaoFisica": 32,
+   "execucaoFisica": null,
    "dataFinalPrevista": "2026-12-30",
    "dataSituacao": "2025-10-30"
   },
@@ -289,7 +325,7 @@
    "executor": "MUNICIPIO DE OLINDA",
    "situacao": "Paralisada",
    "valorPrevisto": 22882578.34,
-   "execucaoFisica": 50,
+   "execucaoFisica": null,
    "dataFinalPrevista": "2025-12-30",
    "dataSituacao": "2025-10-30"
   },
@@ -313,7 +349,7 @@
    "executor": "DEPARTAMENTO NACIONAL DE INFRAESTRUTURA DE TRANSPORTES",
    "situacao": "Paralisada",
    "valorPrevisto": 6768975.29,
-   "execucaoFisica": 0,
+   "execucaoFisica": null,
    "dataFinalPrevista": "2026-07-10",
    "dataSituacao": "2025-07-31"
   },
@@ -445,7 +481,7 @@
    "executor": "MUNICIPIO DE SAO MIGUEL DOS CAMPOS",
    "situacao": "Paralisada",
    "valorPrevisto": 1039387.24,
-   "execucaoFisica": 57,
+   "execucaoFisica": null,
    "dataFinalPrevista": "2026-08-31",
    "dataSituacao": "2024-09-14"
   },
@@ -457,7 +493,7 @@
    "executor": "MUNICIPIO DE IBATEGUARA",
    "situacao": "Paralisada",
    "valorPrevisto": 367372.24,
-   "execucaoFisica": 52,
+   "execucaoFisica": null,
    "dataFinalPrevista": "2026-09-30",
    "dataSituacao": "2024-03-01"
   },
@@ -474,18 +510,6 @@
    "dataSituacao": "2024-04-01"
   },
   {
-   "id": "2980.29-20",
-   "nome": "26.782.3006.1C09.0029",
-   "uf": "BA",
-   "tipo": "Garantir dotação orçamentária para os contratos que envolvem 491.4000 km desta rúbrica.",
-   "executor": "DEPARTAMENTO NACIONAL DE INFRAESTRUTURA DE TRANSPORTES",
-   "situacao": "Paralisada",
-   "valorPrevisto": 562722718.89,
-   "execucaoFisica": 47,
-   "dataFinalPrevista": "2026-08-06",
-   "dataSituacao": "2026-06-08"
-  },
-  {
    "id": "609.29-26",
    "nome": "05 00858/2014",
    "uf": "BA",
@@ -496,6 +520,18 @@
    "execucaoFisica": 21,
    "dataFinalPrevista": "2027-01-28",
    "dataSituacao": "2026-06-08"
+  },
+  {
+   "id": "1247.29-14",
+   "nome": "05 00114/2017",
+   "uf": "BA",
+   "tipo": "Contrução/Ampliação/Reforma de 62.3000 km.",
+   "executor": "DEPARTAMENTO NACIONAL DE INFRAESTRUTURA DE TRANSPORTES",
+   "situacao": "Paralisada",
+   "valorPrevisto": 178255592.56,
+   "execucaoFisica": 35,
+   "dataFinalPrevista": "2027-03-25",
+   "dataSituacao": "2025-08-05"
   },
   {
    "id": "98764.29-01",
@@ -556,18 +592,6 @@
    "execucaoFisica": 61,
    "dataFinalPrevista": "2026-02-27",
    "dataSituacao": "2025-10-30"
-  },
-  {
-   "id": "83717.29-59",
-   "nome": "703506/10 - Colégio Estadual Antonio dos Santos Paim - Distrito Oliveira dos Campinhos",
-   "uf": "BA",
-   "tipo": "Ampliação",
-   "executor": "FUNDO NACIONAL DE DESENVOLVIMENTO DA EDUCAÇÃO",
-   "situacao": "Paralisada",
-   "valorPrevisto": 9897437.35,
-   "execucaoFisica": 18,
-   "dataFinalPrevista": "2022-02-09",
-   "dataSituacao": "2026-05-06"
   },
   {
    "id": "109347.29-01",
@@ -654,6 +678,18 @@
    "dataSituacao": "2026-02-27"
   },
   {
+   "id": "72193.29-33",
+   "nome": "703506/10 - Col. Est. Reitor Miguel Calmon - Simões Filho/BA",
+   "uf": "BA",
+   "tipo": "Ampliação",
+   "executor": "FUNDO NACIONAL DE DESENVOLVIMENTO DA EDUCAÇÃO",
+   "situacao": "Paralisada",
+   "valorPrevisto": 99974.11,
+   "execucaoFisica": 24,
+   "dataFinalPrevista": "2022-02-09",
+   "dataSituacao": "2025-12-11"
+  },
+  {
    "id": "72192.29-87",
    "nome": "703506/10- CE Nossa Senhora de Lourdes - Serra Preta/BA",
    "uf": "BA",
@@ -676,18 +712,6 @@
    "execucaoFisica": 75,
    "dataFinalPrevista": "2018-09-22",
    "dataSituacao": "2026-02-27"
-  },
-  {
-   "id": "72193.29-33",
-   "nome": "703506/10 - Col. Est. Reitor Miguel Calmon - Simões Filho/BA",
-   "uf": "BA",
-   "tipo": "Ampliação",
-   "executor": "FUNDO NACIONAL DE DESENVOLVIMENTO DA EDUCAÇÃO",
-   "situacao": "Paralisada",
-   "valorPrevisto": 99974.11,
-   "execucaoFisica": 24,
-   "dataFinalPrevista": "2022-02-09",
-   "dataSituacao": "2025-12-11"
   },
   {
    "id": "67996.29-03",

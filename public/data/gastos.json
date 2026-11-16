@@ -1,14 +1,14 @@
 {
  "aviso": "Valores liquidados e percentuais informados pelas próprias prefeituras ao Tesouro Nacional (SICONFI), que podem ser retificados e não equivalem a parecer do Tribunal de Contas. Saúde e educação são despesas por função e incluem recursos de outras esferas. A população vem do cadastro de entes mais recente. Os mínimos legais de 15% e 25% usam outra base de cálculo e não são avaliados aqui.",
  "fonte": "SICONFI / Tesouro Nacional (RREO Anexo 02 e RGF Anexo 01, Poder Executivo)",
- "geradoEm": "2026-11-09T19:31:17.608Z",
+ "geradoEm": "2026-11-16T19:18:41.858Z",
  "exercicio": 2025,
  "parcial": false,
  "cobertura": {
   "universo": 1793,
-  "publicados": 1412,
-  "semDespesas": 381,
-  "semPessoal": 9,
+  "publicados": 1413,
+  "semDespesas": 380,
+  "semPessoal": 8,
   "falhas": 0,
   "falhasRgf": 0,
   "rejeitados": 0
@@ -6101,6 +6101,23 @@
    "rgfPeriodicidade": "quadrimestral"
   },
   {
+   "codIbge": 2310100,
+   "nome": "Palmácia",
+   "uf": "CE",
+   "populacao": 10252,
+   "despesaTotal": 67450667.5,
+   "saude": 14089091.36,
+   "educacao": 23560365.07,
+   "pessoal": {
+    "percentual": 48.43,
+    "limite": 54,
+    "alerta": 48.6,
+    "prudencial": 51.3,
+    "rcl": 64349033.3
+   },
+   "rgfPeriodicidade": "quadrimestral"
+  },
+  {
    "codIbge": 2310209,
    "nome": "Paracuru",
    "uf": "CE",
@@ -7655,8 +7672,14 @@
    "despesaTotal": 47791231.12,
    "saude": 14240994.64,
    "educacao": 15444443.53,
-   "pessoal": null,
-   "rgfPeriodicidade": null
+   "pessoal": {
+    "percentual": 56.05,
+    "limite": 54,
+    "alerta": 48.6,
+    "prudencial": 51.3,
+    "rcl": 46254563.3
+   },
+   "rgfPeriodicidade": "quadrimestral"
   },
   {
    "codIbge": 2409902,
