@@ -1,8 +1,8 @@
 {
  "aviso": "Dados do cadastro federal de obras (ObrasGov) como estavam na data da coleta. A situação pode ter mudado; confirme na fonte oficial antes de cobrar o órgão.",
  "fonte": "ObrasGov (obrasgov.gestao.gov.br)",
- "geradoEm": "2026-11-16T19:34:24.600Z",
- "semExecucaoFisica": 11,
+ "geradoEm": "2026-11-23T21:16:55.260Z",
+ "semExecucaoFisica": 6,
  "ufsComFalha": [],
  "obras": [
   {
@@ -85,7 +85,7 @@
    "executor": "DEPARTAMENTO NAC.DE OBRAS CONTRA AS SECAS",
    "situacao": "Paralisada",
    "valorPrevisto": 676905595.04,
-   "execucaoFisica": null,
+   "execucaoFisica": 57,
    "dataFinalPrevista": "2024-07-01",
    "dataSituacao": "2024-12-06"
   },
@@ -97,7 +97,7 @@
    "executor": "MUNICIPIO DE TABULEIRO DO NORTE",
    "situacao": "Paralisada",
    "valorPrevisto": 934985.06,
-   "execucaoFisica": null,
+   "execucaoFisica": 45,
    "dataFinalPrevista": "2026-12-26",
    "dataSituacao": "2024-04-29"
   },
@@ -109,7 +109,7 @@
    "executor": "FUNDO NACIONAL DE DESENVOLVIMENTO DA EDUCAÇÃO",
    "situacao": "Paralisada",
    "valorPrevisto": 922519.48,
-   "execucaoFisica": null,
+   "execucaoFisica": 0,
    "dataFinalPrevista": "2013-06-15",
    "dataSituacao": "2015-07-10"
   },
@@ -121,7 +121,7 @@
    "executor": "MUNICIPIO DE NOVA OLINDA",
    "situacao": "Paralisada",
    "valorPrevisto": 915000,
-   "execucaoFisica": null,
+   "execucaoFisica": 64,
    "dataFinalPrevista": "2026-10-31",
    "dataSituacao": "2025-03-15"
   },
@@ -133,7 +133,7 @@
    "executor": "MUNICIPIO DE JAGUARETAMA",
    "situacao": "Paralisada",
    "valorPrevisto": 908766.51,
-   "execucaoFisica": null,
+   "execucaoFisica": 80,
    "dataFinalPrevista": "2026-09-30",
    "dataSituacao": "2025-10-17"
   },
@@ -169,7 +169,7 @@
    "executor": "COMPANHIA DE DESENVOLVIMENTO DOS VALES DO SÃO FRANCISCO E DO PARNAÍBA",
    "situacao": "Paralisada",
    "valorPrevisto": 3500000,
-   "execucaoFisica": 30,
+   "execucaoFisica": null,
    "dataFinalPrevista": "2023-11-30",
    "dataSituacao": "2024-01-15"
   },
@@ -181,7 +181,7 @@
    "executor": "INSTITUTO FEDERAL DE EDUCAÇÃO, CIÊNCIA E TECNOLOGIA DO RIO GRANDE DO NORTE",
    "situacao": "Paralisada",
    "valorPrevisto": 1798550.8,
-   "execucaoFisica": 32,
+   "execucaoFisica": null,
    "dataFinalPrevista": "2025-06-27",
    "dataSituacao": "2025-06-27"
   },
@@ -205,7 +205,7 @@
    "executor": "MUNICIPIO DE ITAJA",
    "situacao": "Paralisada",
    "valorPrevisto": 1005000,
-   "execucaoFisica": 43,
+   "execucaoFisica": null,
    "dataFinalPrevista": "2026-08-27",
    "dataSituacao": "2025-06-27"
   },
@@ -217,7 +217,7 @@
    "executor": "UNIVERSIDADE FEDERAL RURAL DO SEMI-ÁRIDO",
    "situacao": "Paralisada",
    "valorPrevisto": 799041.11,
-   "execucaoFisica": 89,
+   "execucaoFisica": null,
    "dataFinalPrevista": "2022-12-10",
    "dataSituacao": "2023-01-17"
   },
@@ -301,7 +301,7 @@
    "executor": "MUNICIPIO DE OLINDA",
    "situacao": "Paralisada",
    "valorPrevisto": 76620000,
-   "execucaoFisica": null,
+   "execucaoFisica": 42,
    "dataFinalPrevista": "2025-12-30",
    "dataSituacao": "2025-10-30"
   },
@@ -313,7 +313,7 @@
    "executor": "ESTADO DE PERNAMBUCO",
    "situacao": "Paralisada",
    "valorPrevisto": 42999399.27,
-   "execucaoFisica": null,
+   "execucaoFisica": 32,
    "dataFinalPrevista": "2026-12-30",
    "dataSituacao": "2025-10-30"
   },
@@ -325,7 +325,7 @@
    "executor": "MUNICIPIO DE OLINDA",
    "situacao": "Paralisada",
    "valorPrevisto": 22882578.34,
-   "execucaoFisica": null,
+   "execucaoFisica": 50,
    "dataFinalPrevista": "2025-12-30",
    "dataSituacao": "2025-10-30"
   },
@@ -481,7 +481,7 @@
    "executor": "MUNICIPIO DE SAO MIGUEL DOS CAMPOS",
    "situacao": "Paralisada",
    "valorPrevisto": 1039387.24,
-   "execucaoFisica": null,
+   "execucaoFisica": 57,
    "dataFinalPrevista": "2026-08-31",
    "dataSituacao": "2024-09-14"
   },
@@ -493,7 +493,7 @@
    "executor": "MUNICIPIO DE IBATEGUARA",
    "situacao": "Paralisada",
    "valorPrevisto": 367372.24,
-   "execucaoFisica": null,
+   "execucaoFisica": 52,
    "dataFinalPrevista": "2026-09-30",
    "dataSituacao": "2024-03-01"
   },
@@ -505,9 +505,21 @@
    "executor": "MUNICIPIO DE LARANJEIRAS",
    "situacao": "Paralisada",
    "valorPrevisto": 1014314,
-   "execucaoFisica": 22,
+   "execucaoFisica": null,
    "dataFinalPrevista": "2026-12-31",
    "dataSituacao": "2024-04-01"
+  },
+  {
+   "id": "2980.29-20",
+   "nome": "26.782.3006.1C09.0029",
+   "uf": "BA",
+   "tipo": "Garantir dotação orçamentária para os contratos que envolvem 491.4000 km desta rúbrica.",
+   "executor": "DEPARTAMENTO NACIONAL DE INFRAESTRUTURA DE TRANSPORTES",
+   "situacao": "Paralisada",
+   "valorPrevisto": 562722718.89,
+   "execucaoFisica": 47,
+   "dataFinalPrevista": "2026-08-06",
+   "dataSituacao": "2026-06-08"
   },
   {
    "id": "609.29-26",
@@ -544,18 +556,6 @@
    "execucaoFisica": 6,
    "dataFinalPrevista": "2026-08-14",
    "dataSituacao": "2025-10-30"
-  },
-  {
-   "id": "66064.29-66",
-   "nome": "700283 - EE Prof. Maria Bastos Melo - - Ampliação e Reforma - Ipirá/BA",
-   "uf": "BA",
-   "tipo": "Ampliação",
-   "executor": "FUNDO NACIONAL DE DESENVOLVIMENTO DA EDUCAÇÃO",
-   "situacao": "Paralisada",
-   "valorPrevisto": 34772023.79,
-   "execucaoFisica": 31,
-   "dataFinalPrevista": "2018-06-26",
-   "dataSituacao": "2026-05-03"
   },
   {
    "id": "1244.29-22",
