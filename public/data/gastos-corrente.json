@@ -1,13 +1,13 @@
 {
  "aviso": "Valores parciais: despesas liquidadas até o último bimestre que cada prefeitura enviou ao Tesouro Nacional (SICONFI), que podem ser retificadas e não equivalem a parecer do Tribunal de Contas. Saúde e educação são despesas por função e incluem recursos de outras esferas. O percentual de pessoal vem do último quadrimestre ou semestre enviado. O ano ainda não fechou, e os mínimos legais de 15% e 25% não são avaliados aqui.",
  "fonte": "SICONFI / Tesouro Nacional (RREO Anexo 02 e RGF Anexo 01, Poder Executivo)",
- "geradoEm": "2026-11-16T20:08:23.966Z",
+ "geradoEm": "2026-11-23T21:31:12.499Z",
  "exercicio": 2026,
  "parcial": true,
  "cobertura": {
   "universo": 1793,
-  "publicados": 1358,
-  "semDespesas": 435,
+  "publicados": 1359,
+  "semDespesas": 434,
   "semPessoal": 5,
   "falhas": 0,
   "falhasRgf": 0,
@@ -744,11 +744,11 @@
    "saude": 13201572.39,
    "educacao": 25364367.02,
    "pessoal": {
-    "percentual": 48.16,
+    "percentual": 50.26,
     "limite": 54,
     "alerta": 48.6,
     "prudencial": 51.3,
-    "rcl": 88705565.31
+    "rcl": 84999293.31
    },
    "rgfPeriodicidade": "quadrimestral",
    "periodo": {
@@ -884,9 +884,9 @@
    "nome": "Icatu",
    "uf": "MA",
    "populacao": 25332,
-   "despesaTotal": 96576886.92,
-   "saude": 23855795.07,
-   "educacao": 48348214.65,
+   "despesaTotal": 127161393.68,
+   "saude": 32699303.6,
+   "educacao": 62150552.88,
    "pessoal": {
     "percentual": 46.81,
     "limite": 54,
@@ -896,7 +896,7 @@
    },
    "rgfPeriodicidade": "quadrimestral",
    "periodo": {
-    "bimestre": 4,
+    "bimestre": 5,
     "pessoal": {
      "tipo": "Q",
      "numero": 2
@@ -2747,9 +2747,9 @@
    "nome": "Coronel José Dias",
    "uf": "PI",
    "populacao": 4291,
-   "despesaTotal": 33308956.77,
-   "saude": 6922973.1,
-   "educacao": 13931696.49,
+   "despesaTotal": 42108460.4,
+   "saude": 8113239.1,
+   "educacao": 16965138.7,
    "pessoal": {
     "percentual": 35.42,
     "limite": 54,
@@ -2759,7 +2759,7 @@
    },
    "rgfPeriodicidade": "quadrimestral",
    "periodo": {
-    "bimestre": 4,
+    "bimestre": 5,
     "pessoal": {
      "tipo": "Q",
      "numero": 2
@@ -2987,9 +2987,9 @@
    "nome": "Guaribas",
    "uf": "PI",
    "populacao": 4344,
-   "despesaTotal": 30066699.39,
-   "saude": 4565451.53,
-   "educacao": 13516830.5,
+   "despesaTotal": 37756803.4,
+   "saude": 5771968.7,
+   "educacao": 16835563.5,
    "pessoal": {
     "percentual": 44.9,
     "limite": 54,
@@ -2999,7 +2999,7 @@
    },
    "rgfPeriodicidade": "quadrimestral",
    "periodo": {
-    "bimestre": 4,
+    "bimestre": 5,
     "pessoal": {
      "tipo": "Q",
      "numero": 2
@@ -3251,9 +3251,9 @@
    "nome": "Landri Sales",
    "uf": "PI",
    "populacao": 5309,
-   "despesaTotal": 34193734.25,
-   "saude": 7627383.55,
-   "educacao": 12552000.28,
+   "despesaTotal": 42906273.46,
+   "saude": 9653713.56,
+   "educacao": 15297744.57,
    "pessoal": {
     "percentual": 42.94,
     "limite": 54,
@@ -3263,7 +3263,7 @@
    },
    "rgfPeriodicidade": "quadrimestral",
    "periodo": {
-    "bimestre": 4,
+    "bimestre": 5,
     "pessoal": {
      "tipo": "Q",
      "numero": 2
@@ -3794,9 +3794,9 @@
    "nome": "Regeneração",
    "uf": "PI",
    "populacao": 17400,
-   "despesaTotal": 92166481.82,
-   "saude": 20713688.23,
-   "educacao": 39955239.03,
+   "despesaTotal": 119875273.66,
+   "saude": 25449549.98,
+   "educacao": 54664347,
    "pessoal": {
     "percentual": 50.93,
     "limite": 54,
@@ -3806,7 +3806,7 @@
    },
    "rgfPeriodicidade": "quadrimestral",
    "periodo": {
-    "bimestre": 4,
+    "bimestre": 5,
     "pessoal": {
      "tipo": "Q",
      "numero": 2
@@ -5186,9 +5186,9 @@
    "nome": "Caucaia",
    "uf": "CE",
    "populacao": 378406,
-   "despesaTotal": 230642690.22,
-   "saude": 64253718.79,
-   "educacao": 102623910.81,
+   "despesaTotal": 1514430486.97,
+   "saude": 366402138.81,
+   "educacao": 624937823.31,
    "pessoal": {
     "percentual": 46.64,
     "limite": 54,
@@ -5198,7 +5198,7 @@
    },
    "rgfPeriodicidade": "quadrimestral",
    "periodo": {
-    "bimestre": 1,
+    "bimestre": 5,
     "pessoal": {
      "tipo": "Q",
      "numero": 2
@@ -7374,11 +7374,11 @@
    "saude": 10551578.15,
    "educacao": 19337845.12,
    "pessoal": {
-    "percentual": 63.21,
+    "percentual": 59.75,
     "limite": 54,
     "alerta": 48.6,
     "prudencial": 51.3,
-    "rcl": 64183192.46
+    "rcl": 65405511.96
    },
    "rgfPeriodicidade": "quadrimestral",
    "periodo": {
@@ -8258,9 +8258,9 @@
    "nome": "Caicó",
    "uf": "RN",
    "populacao": 63338,
-   "despesaTotal": 194902517.62,
-   "saude": 69195480.74,
-   "educacao": 57866269.28,
+   "despesaTotal": 244226841.87,
+   "saude": 87321183.56,
+   "educacao": 72728027.14,
    "pessoal": {
     "percentual": 59.91,
     "limite": 54,
@@ -8270,7 +8270,7 @@
    },
    "rgfPeriodicidade": "quadrimestral",
    "periodo": {
-    "bimestre": 4,
+    "bimestre": 5,
     "pessoal": {
      "tipo": "Q",
      "numero": 2
@@ -9434,9 +9434,9 @@
    "nome": "Santana do Seridó",
    "uf": "RN",
    "populacao": 2796,
-   "despesaTotal": 19866621.8,
-   "saude": 4858726.65,
-   "educacao": 4718932.95,
+   "despesaTotal": 24774032.41,
+   "saude": 6283897.06,
+   "educacao": 5773834.86,
    "pessoal": {
     "percentual": 35.69,
     "limite": 54,
@@ -9446,7 +9446,7 @@
    },
    "rgfPeriodicidade": "quadrimestral",
    "periodo": {
-    "bimestre": 4,
+    "bimestre": 5,
     "pessoal": {
      "tipo": "Q",
      "numero": 2
@@ -9626,9 +9626,9 @@
    "nome": "São Vicente",
    "uf": "RN",
    "populacao": 6530,
-   "despesaTotal": 30616069.42,
-   "saude": 10062569.52,
-   "educacao": 6763363.91,
+   "despesaTotal": 40772938.1,
+   "saude": 13018329.52,
+   "educacao": 8448761.13,
    "pessoal": {
     "percentual": 44.12,
     "limite": 54,
@@ -9638,7 +9638,7 @@
    },
    "rgfPeriodicidade": "quadrimestral",
    "periodo": {
-    "bimestre": 4,
+    "bimestre": 5,
     "pessoal": {
      "tipo": "Q",
      "numero": 2
@@ -10010,9 +10010,9 @@
    "nome": "Água Branca",
    "uf": "PB",
    "populacao": 9580,
-   "despesaTotal": 49937655,
-   "saude": 12501565.16,
-   "educacao": 15628051.45,
+   "despesaTotal": 62794849.35,
+   "saude": 15709254.33,
+   "educacao": 20123620.65,
    "pessoal": {
     "percentual": 45.3,
     "limite": 54,
@@ -10022,7 +10022,7 @@
    },
    "rgfPeriodicidade": "quadrimestral",
    "periodo": {
-    "bimestre": 4,
+    "bimestre": 5,
     "pessoal": {
      "tipo": "Q",
      "numero": 2
@@ -10106,9 +10106,9 @@
    "nome": "Alagoinha",
    "uf": "PB",
    "populacao": 14140,
-   "despesaTotal": 64815378.11,
-   "saude": 16538752.19,
-   "educacao": 19569798.13,
+   "despesaTotal": 82739203.75,
+   "saude": 21776317.88,
+   "educacao": 24274741.21,
    "pessoal": {
     "percentual": 48.1,
     "limite": 54,
@@ -10118,7 +10118,7 @@
    },
    "rgfPeriodicidade": "quadrimestral",
    "periodo": {
-    "bimestre": 4,
+    "bimestre": 5,
     "pessoal": {
      "tipo": "Q",
      "numero": 2
@@ -10178,9 +10178,9 @@
    "nome": "Alhandra",
    "uf": "PB",
    "populacao": 23065,
-   "despesaTotal": 144479922.49,
-   "saude": 39177668.03,
-   "educacao": 39498192.43,
+   "despesaTotal": 182491753.64,
+   "saude": 49281960.78,
+   "educacao": 50103254.27,
    "pessoal": {
     "percentual": 60.3,
     "limite": 54,
@@ -10190,7 +10190,7 @@
    },
    "rgfPeriodicidade": "quadrimestral",
    "periodo": {
-    "bimestre": 4,
+    "bimestre": 5,
     "pessoal": {
      "tipo": "Q",
      "numero": 2
@@ -10226,9 +10226,9 @@
    "nome": "Araçagi",
    "uf": "PB",
    "populacao": 16991,
-   "despesaTotal": 67472162.35,
-   "saude": 16294558.51,
-   "educacao": 26737575.57,
+   "despesaTotal": 85715849.18,
+   "saude": 21293779.99,
+   "educacao": 33739566.61,
    "pessoal": {
     "percentual": 53.76,
     "limite": 54,
@@ -10238,7 +10238,7 @@
    },
    "rgfPeriodicidade": "quadrimestral",
    "periodo": {
-    "bimestre": 4,
+    "bimestre": 5,
     "pessoal": {
      "tipo": "Q",
      "numero": 2
@@ -10370,9 +10370,9 @@
    "nome": "Aroeiras",
    "uf": "PB",
    "populacao": 19142,
-   "despesaTotal": 88413955.6,
-   "saude": 26697327.84,
-   "educacao": 40937919.32,
+   "despesaTotal": 108979923.43,
+   "saude": 32276956.31,
+   "educacao": 50574073.49,
    "pessoal": {
     "percentual": 45.81,
     "limite": 54,
@@ -10382,7 +10382,7 @@
    },
    "rgfPeriodicidade": "quadrimestral",
    "periodo": {
-    "bimestre": 4,
+    "bimestre": 5,
     "pessoal": {
      "tipo": "Q",
      "numero": 2
@@ -10394,9 +10394,9 @@
    "nome": "Assunção",
    "uf": "PB",
    "populacao": 4383,
-   "despesaTotal": 30772524.84,
-   "saude": 6495446.84,
-   "educacao": 9639303.7,
+   "despesaTotal": 38169552.09,
+   "saude": 8380057.87,
+   "educacao": 12424311,
    "pessoal": {
     "percentual": 43.77,
     "limite": 54,
@@ -10406,7 +10406,7 @@
    },
    "rgfPeriodicidade": "quadrimestral",
    "periodo": {
-    "bimestre": 4,
+    "bimestre": 5,
     "pessoal": {
      "tipo": "Q",
      "numero": 2
@@ -10538,9 +10538,9 @@
    "nome": "Bayeux",
    "uf": "PB",
    "populacao": 83862,
-   "despesaTotal": 246252675.1,
-   "saude": 62786622.68,
-   "educacao": 63533306.51,
+   "despesaTotal": 308156478.29,
+   "saude": 78700731.36,
+   "educacao": 78615555.43,
    "pessoal": {
     "percentual": 70.38,
     "limite": 54,
@@ -10550,7 +10550,7 @@
    },
    "rgfPeriodicidade": "quadrimestral",
    "periodo": {
-    "bimestre": 4,
+    "bimestre": 5,
     "pessoal": {
      "tipo": "Q",
      "numero": 2
@@ -10970,9 +10970,9 @@
    "nome": "Cacimba de Dentro",
    "uf": "PB",
    "populacao": 16332,
-   "despesaTotal": 54569863.54,
-   "saude": 13899116.17,
-   "educacao": 18415932.08,
+   "despesaTotal": 71403267.82,
+   "saude": 17904162.8,
+   "educacao": 25256079.08,
    "pessoal": {
     "percentual": 47.16,
     "limite": 54,
@@ -10982,7 +10982,7 @@
    },
    "rgfPeriodicidade": "quadrimestral",
    "periodo": {
-    "bimestre": 4,
+    "bimestre": 5,
     "pessoal": {
      "tipo": "Q",
      "numero": 2
@@ -11018,9 +11018,9 @@
    "nome": "Caiçara",
    "uf": "PB",
    "populacao": 6684,
-   "despesaTotal": 31602271.44,
-   "saude": 8182769.92,
-   "educacao": 11917349.03,
+   "despesaTotal": 39293137.4,
+   "saude": 10500185.29,
+   "educacao": 14887524.19,
    "pessoal": {
     "percentual": 45.45,
     "limite": 54,
@@ -11030,7 +11030,7 @@
    },
    "rgfPeriodicidade": "quadrimestral",
    "periodo": {
-    "bimestre": 4,
+    "bimestre": 5,
     "pessoal": {
      "tipo": "Q",
      "numero": 2
@@ -11114,9 +11114,9 @@
    "nome": "Camalaú",
    "uf": "PB",
    "populacao": 6327,
-   "despesaTotal": 28914037.69,
-   "saude": 7059436,
-   "educacao": 9864715.66,
+   "despesaTotal": 36057375.94,
+   "saude": 9070227.73,
+   "educacao": 12352426.75,
    "pessoal": {
     "percentual": 46.36,
     "limite": 54,
@@ -11126,7 +11126,7 @@
    },
    "rgfPeriodicidade": "quadrimestral",
    "periodo": {
-    "bimestre": 4,
+    "bimestre": 5,
     "pessoal": {
      "tipo": "Q",
      "numero": 2
@@ -11354,9 +11354,9 @@
    "nome": "Congo",
    "uf": "PB",
    "populacao": 5124,
-   "despesaTotal": 33137586.49,
-   "saude": 9315983.11,
-   "educacao": 10842825,
+   "despesaTotal": 41382050.14,
+   "saude": 11847170.52,
+   "educacao": 13665301.06,
    "pessoal": {
     "percentual": 40.54,
     "limite": 54,
@@ -11366,7 +11366,7 @@
    },
    "rgfPeriodicidade": "quadrimestral",
    "periodo": {
-    "bimestre": 4,
+    "bimestre": 5,
     "pessoal": {
      "tipo": "Q",
      "numero": 2
@@ -11834,9 +11834,9 @@
    "nome": "Gado Bravo",
    "uf": "PB",
    "populacao": 8398,
-   "despesaTotal": 46541006.7,
-   "saude": 10197148.18,
-   "educacao": 25211579.26,
+   "despesaTotal": 58631143.85,
+   "saude": 12773203.52,
+   "educacao": 31552414.96,
    "pessoal": {
     "percentual": 50.09,
     "limite": 54,
@@ -11846,7 +11846,7 @@
    },
    "rgfPeriodicidade": "quadrimestral",
    "periodo": {
-    "bimestre": 4,
+    "bimestre": 5,
     "pessoal": {
      "tipo": "Q",
      "numero": 2
@@ -12002,9 +12002,9 @@
    "nome": "Itaporanga",
    "uf": "PB",
    "populacao": 24766,
-   "despesaTotal": 85712875.29,
-   "saude": 24968511.31,
-   "educacao": 28056832.33,
+   "despesaTotal": 107518361.34,
+   "saude": 31991487.6,
+   "educacao": 34787010.49,
    "pessoal": {
     "percentual": 47.24,
     "limite": 54,
@@ -12014,7 +12014,7 @@
    },
    "rgfPeriodicidade": "quadrimestral",
    "periodo": {
-    "bimestre": 4,
+    "bimestre": 5,
     "pessoal": {
      "tipo": "Q",
      "numero": 2
@@ -12914,9 +12914,9 @@
    "nome": "Nova Palmeira",
    "uf": "PB",
    "populacao": 4359,
-   "despesaTotal": 31410937.44,
-   "saude": 7801059.56,
-   "educacao": 6742491.03,
+   "despesaTotal": 38944638.24,
+   "saude": 9687062.77,
+   "educacao": 8457448.58,
    "pessoal": {
     "percentual": 45.26,
     "limite": 54,
@@ -12926,7 +12926,7 @@
    },
    "rgfPeriodicidade": "quadrimestral",
    "periodo": {
-    "bimestre": 4,
+    "bimestre": 5,
     "pessoal": {
      "tipo": "Q",
      "numero": 2
@@ -13130,9 +13130,9 @@
    "nome": "Pedras de Fogo",
    "uf": "PB",
    "populacao": 31356,
-   "despesaTotal": 141525231.17,
-   "saude": 29128224.81,
-   "educacao": 51837771.18,
+   "despesaTotal": 179430231.79,
+   "saude": 35106581.02,
+   "educacao": 65627548.95,
    "pessoal": {
     "percentual": 56.98,
     "limite": 54,
@@ -13142,7 +13142,7 @@
    },
    "rgfPeriodicidade": "quadrimestral",
    "periodo": {
-    "bimestre": 4,
+    "bimestre": 5,
     "pessoal": {
      "tipo": "Q",
      "numero": 2
@@ -13418,9 +13418,9 @@
    "nome": "Princesa Isabel",
    "uf": "PB",
    "populacao": 21674,
-   "despesaTotal": 94925330.09,
-   "saude": 35602466.44,
-   "educacao": 25100387.46,
+   "despesaTotal": 119803965.15,
+   "saude": 45497774.13,
+   "educacao": 31677378.97,
    "pessoal": {
     "percentual": 36.81,
     "limite": 54,
@@ -13430,7 +13430,7 @@
    },
    "rgfPeriodicidade": "quadrimestral",
    "periodo": {
-    "bimestre": 4,
+    "bimestre": 5,
     "pessoal": {
      "tipo": "Q",
      "numero": 2
@@ -13514,9 +13514,9 @@
    "nome": "Remígio",
    "uf": "PB",
    "populacao": 18399,
-   "despesaTotal": 89132139.21,
-   "saude": 22237978.92,
-   "educacao": 29001323.8,
+   "despesaTotal": 112190446.11,
+   "saude": 28460651.95,
+   "educacao": 36717825.22,
    "pessoal": {
     "percentual": 49.26,
     "limite": 54,
@@ -13526,7 +13526,7 @@
    },
    "rgfPeriodicidade": "quadrimestral",
    "periodo": {
-    "bimestre": 4,
+    "bimestre": 5,
     "pessoal": {
      "tipo": "Q",
      "numero": 2
@@ -13658,9 +13658,9 @@
    "nome": "Riacho dos Cavalos",
    "uf": "PB",
    "populacao": 8788,
-   "despesaTotal": 44161045.96,
-   "saude": 9356560.53,
-   "educacao": 18570664.1,
+   "despesaTotal": 54783225.94,
+   "saude": 11750693.31,
+   "educacao": 23196545.04,
    "pessoal": {
     "percentual": 48.69,
     "limite": 54,
@@ -13670,7 +13670,7 @@
    },
    "rgfPeriodicidade": "quadrimestral",
    "periodo": {
-    "bimestre": 4,
+    "bimestre": 5,
     "pessoal": {
      "tipo": "Q",
      "numero": 2
@@ -14042,9 +14042,9 @@
    "nome": "São Bentinho",
    "uf": "PB",
    "populacao": 4490,
-   "despesaTotal": 25415728.94,
-   "saude": 6812492.21,
-   "educacao": 7330463.69,
+   "despesaTotal": 32711882.87,
+   "saude": 8965322.42,
+   "educacao": 9870986.52,
    "pessoal": {
     "percentual": 47.21,
     "limite": 54,
@@ -14054,7 +14054,7 @@
    },
    "rgfPeriodicidade": "quadrimestral",
    "periodo": {
-    "bimestre": 4,
+    "bimestre": 5,
     "pessoal": {
      "tipo": "Q",
      "numero": 2
@@ -14306,9 +14306,9 @@
    "nome": "São José dos Cordeiros",
    "uf": "PB",
    "populacao": 3462,
-   "despesaTotal": 23680184.07,
-   "saude": 6586035.45,
-   "educacao": 5386086.78,
+   "despesaTotal": 32182836.44,
+   "saude": 8663698.6,
+   "educacao": 6854935.88,
    "pessoal": {
     "percentual": 30.32,
     "limite": 54,
@@ -14318,7 +14318,7 @@
    },
    "rgfPeriodicidade": "quadrimestral",
    "periodo": {
-    "bimestre": 4,
+    "bimestre": 5,
     "pessoal": {
      "tipo": "Q",
      "numero": 2
@@ -14378,9 +14378,9 @@
    "nome": "São Sebastião de Lagoa de Roça",
    "uf": "PB",
    "populacao": 11387,
-   "despesaTotal": 44164134.85,
-   "saude": 9481630.28,
-   "educacao": 12101458.39,
+   "despesaTotal": 55973786.39,
+   "saude": 12044514.01,
+   "educacao": 16064477.95,
    "pessoal": {
     "percentual": 61.14,
     "limite": 54,
@@ -14390,7 +14390,7 @@
    },
    "rgfPeriodicidade": "quadrimestral",
    "periodo": {
-    "bimestre": 4,
+    "bimestre": 5,
     "pessoal": {
      "tipo": "Q",
      "numero": 2
@@ -14426,9 +14426,9 @@
    "nome": "Sapé",
    "uf": "PB",
    "populacao": 53457,
-   "despesaTotal": 170998561.33,
-   "saude": 45804256.75,
-   "educacao": 53089761.98,
+   "despesaTotal": 215152639.05,
+   "saude": 57673195.38,
+   "educacao": 67779363.3,
    "pessoal": {
     "percentual": 66.68,
     "limite": 54,
@@ -14438,7 +14438,7 @@
    },
    "rgfPeriodicidade": "quadrimestral",
    "periodo": {
-    "bimestre": 4,
+    "bimestre": 5,
     "pessoal": {
      "tipo": "Q",
      "numero": 2
@@ -14762,9 +14762,9 @@
    "nome": "Tavares",
    "uf": "PB",
    "populacao": 14473,
-   "despesaTotal": 59771004.9,
-   "saude": 16810823.48,
-   "educacao": 20227762.67,
+   "despesaTotal": 75376503.36,
+   "saude": 21807405.5,
+   "educacao": 25288147.73,
    "pessoal": {
     "percentual": 44.86,
     "limite": 54,
@@ -14774,7 +14774,7 @@
    },
    "rgfPeriodicidade": "quadrimestral",
    "periodo": {
-    "bimestre": 4,
+    "bimestre": 5,
     "pessoal": {
      "tipo": "Q",
      "numero": 2
@@ -14882,9 +14882,9 @@
    "nome": "Umbuzeiro",
    "uf": "PB",
    "populacao": 9274,
-   "despesaTotal": 52273160.27,
-   "saude": 10850647.63,
-   "educacao": 28620981.74,
+   "despesaTotal": 66209713.04,
+   "saude": 13864869.53,
+   "educacao": 36054002.76,
    "pessoal": {
     "percentual": 50.62,
     "limite": 54,
@@ -14894,7 +14894,7 @@
    },
    "rgfPeriodicidade": "quadrimestral",
    "periodo": {
-    "bimestre": 4,
+    "bimestre": 5,
     "pessoal": {
      "tipo": "Q",
      "numero": 2
@@ -16322,9 +16322,9 @@
    "nome": "Ferreiros",
    "uf": "PE",
    "populacao": 15955,
-   "despesaTotal": 52474879.12,
-   "saude": 13014704.96,
-   "educacao": 12317680.31,
+   "despesaTotal": 66570894.08,
+   "saude": 15881930.43,
+   "educacao": 15826538.69,
    "pessoal": {
     "percentual": 48.3,
     "limite": 54,
@@ -16334,7 +16334,7 @@
    },
    "rgfPeriodicidade": "quadrimestral",
    "periodo": {
-    "bimestre": 4,
+    "bimestre": 5,
     "pessoal": {
      "tipo": "Q",
      "numero": 2
@@ -17930,9 +17930,9 @@
    "nome": "Ribeirão",
    "uf": "PE",
    "populacao": 33843,
-   "despesaTotal": 121469614.96,
-   "saude": 25232412.68,
-   "educacao": 29607261.47,
+   "despesaTotal": 158484271.49,
+   "saude": 31872064.17,
+   "educacao": 40673035.63,
    "pessoal": {
     "percentual": 51.67,
     "limite": 54,
@@ -17942,7 +17942,7 @@
    },
    "rgfPeriodicidade": "quadrimestral",
    "periodo": {
-    "bimestre": 4,
+    "bimestre": 5,
     "pessoal": {
      "tipo": "Q",
      "numero": 2
@@ -18122,9 +18122,9 @@
    "nome": "Santa Maria da Boa Vista",
    "uf": "PE",
    "populacao": 42782,
-   "despesaTotal": 158177078.21,
-   "saude": 26165402.65,
-   "educacao": 70877173.44,
+   "despesaTotal": 205040900.3,
+   "saude": 33474593.53,
+   "educacao": 92962127.99,
    "pessoal": {
     "percentual": 52.55,
     "limite": 54,
@@ -18134,7 +18134,7 @@
    },
    "rgfPeriodicidade": "quadrimestral",
    "periodo": {
-    "bimestre": 4,
+    "bimestre": 5,
     "pessoal": {
      "tipo": "Q",
      "numero": 2
@@ -18746,9 +18746,9 @@
    "nome": "Tracunhaém",
    "uf": "PE",
    "populacao": 14439,
-   "despesaTotal": 54312442.16,
-   "saude": 10154996.29,
-   "educacao": 12730750.24,
+   "despesaTotal": 70662681.44,
+   "saude": 14479168.49,
+   "educacao": 16435009.54,
    "pessoal": {
     "percentual": 48.07,
     "limite": 54,
@@ -18758,7 +18758,7 @@
    },
    "rgfPeriodicidade": "quadrimestral",
    "periodo": {
-    "bimestre": 4,
+    "bimestre": 5,
     "pessoal": {
      "tipo": "Q",
      "numero": 2
@@ -18770,9 +18770,9 @@
    "nome": "Trindade",
    "uf": "PE",
    "populacao": 32257,
-   "despesaTotal": 104266575.14,
-   "saude": 22730884.84,
-   "educacao": 34804315.37,
+   "despesaTotal": 136187244.71,
+   "saude": 30072186.74,
+   "educacao": 44676060.08,
    "pessoal": {
     "percentual": 48.26,
     "limite": 54,
@@ -18782,7 +18782,7 @@
    },
    "rgfPeriodicidade": "quadrimestral",
    "periodo": {
-    "bimestre": 4,
+    "bimestre": 5,
     "pessoal": {
      "tipo": "Q",
      "numero": 2
@@ -19534,6 +19534,30 @@
    }
   },
   {
+   "codIbge": 2702900,
+   "nome": "Girau do Ponciano",
+   "uf": "AL",
+   "populacao": 37337,
+   "despesaTotal": 114917478.58,
+   "saude": 26358347.99,
+   "educacao": 66268742.12,
+   "pessoal": {
+    "percentual": 49.93,
+    "limite": 54,
+    "alerta": 48.6,
+    "prudencial": 51.3,
+    "rcl": 314102456.88
+   },
+   "rgfPeriodicidade": "quadrimestral",
+   "periodo": {
+    "bimestre": 4,
+    "pessoal": {
+     "tipo": "Q",
+     "numero": 2
+    }
+   }
+  },
+  {
    "codIbge": 2703007,
    "nome": "Ibateguara",
    "uf": "AL",
@@ -19854,18 +19878,18 @@
    "saude": 21951598.59,
    "educacao": 49627393.85,
    "pessoal": {
-    "percentual": 44.51,
+    "percentual": 38.2,
     "limite": 54,
     "alerta": 48.6,
     "prudencial": 51.3,
-    "rcl": 161372172.5
+    "rcl": 195386052.35
    },
    "rgfPeriodicidade": "quadrimestral",
    "periodo": {
     "bimestre": 4,
     "pessoal": {
      "tipo": "Q",
-     "numero": 1
+     "numero": 2
     }
    }
   },
@@ -20574,18 +20598,18 @@
    "saude": 29214232.6,
    "educacao": 40791772.76,
    "pessoal": {
-    "percentual": 38.88,
+    "percentual": 37.41,
     "limite": 54,
     "alerta": 48.6,
     "prudencial": 51.3,
-    "rcl": 163103775.32
+    "rcl": 176008046.15
    },
    "rgfPeriodicidade": "quadrimestral",
    "periodo": {
     "bimestre": 4,
     "pessoal": {
      "tipo": "Q",
-     "numero": 1
+     "numero": 2
     }
    }
   },
@@ -20786,9 +20810,9 @@
    "nome": "Teotônio Vilela",
    "uf": "AL",
    "populacao": 39143,
-   "despesaTotal": 231132360.81,
-   "saude": 46948704.8,
-   "educacao": 104710696.68,
+   "despesaTotal": 296114982.65,
+   "saude": 60269287.07,
+   "educacao": 136593613.33,
    "pessoal": {
     "percentual": 57.77,
     "limite": 54,
@@ -20798,7 +20822,7 @@
    },
    "rgfPeriodicidade": "quadrimestral",
    "periodo": {
-    "bimestre": 4,
+    "bimestre": 5,
     "pessoal": {
      "tipo": "Q",
      "numero": 2
@@ -22682,9 +22706,9 @@
    "nome": "Abaíra",
    "uf": "BA",
    "populacao": 7407,
-   "despesaTotal": 30134118.12,
-   "saude": 8632265.57,
-   "educacao": 8234843.44,
+   "despesaTotal": 38671670,
+   "saude": 11416350.92,
+   "educacao": 10389713.87,
    "pessoal": {
     "percentual": 37.86,
     "limite": 54,
@@ -22694,7 +22718,7 @@
    },
    "rgfPeriodicidade": "quadrimestral",
    "periodo": {
-    "bimestre": 4,
+    "bimestre": 5,
     "pessoal": {
      "tipo": "Q",
      "numero": 2
@@ -22802,9 +22826,9 @@
    "nome": "Érico Cardoso",
    "uf": "BA",
    "populacao": 10947,
-   "despesaTotal": 50842680.19,
-   "saude": 9520052.92,
-   "educacao": 21302770.61,
+   "despesaTotal": 63360835.34,
+   "saude": 11982973.09,
+   "educacao": 27221166.07,
    "pessoal": {
     "percentual": 49.57,
     "limite": 54,
@@ -22814,7 +22838,7 @@
    },
    "rgfPeriodicidade": "quadrimestral",
    "periodo": {
-    "bimestre": 4,
+    "bimestre": 5,
     "pessoal": {
      "tipo": "Q",
      "numero": 2
@@ -23474,9 +23498,9 @@
    "nome": "Barra da Estiva",
    "uf": "BA",
    "populacao": 27743,
-   "despesaTotal": 90595006.3,
-   "saude": 18978458.29,
-   "educacao": 34558790.77,
+   "despesaTotal": 116863687.9,
+   "saude": 23965141.01,
+   "educacao": 46960106.91,
    "pessoal": {
     "percentual": 39.04,
     "limite": 54,
@@ -23486,7 +23510,7 @@
    },
    "rgfPeriodicidade": "quadrimestral",
    "periodo": {
-    "bimestre": 4,
+    "bimestre": 5,
     "pessoal": {
      "tipo": "Q",
      "numero": 2
@@ -23570,9 +23594,9 @@
    "nome": "Barreiras",
    "uf": "BA",
    "populacao": 171634,
-   "despesaTotal": 558082150.91,
-   "saude": 149003972.07,
-   "educacao": 189574178.74,
+   "despesaTotal": 742843733.6,
+   "saude": 198710606.15,
+   "educacao": 261416728.56,
    "pessoal": {
     "percentual": 45.52,
     "limite": 54,
@@ -23582,7 +23606,7 @@
    },
    "rgfPeriodicidade": "quadrimestral",
    "periodo": {
-    "bimestre": 4,
+    "bimestre": 5,
     "pessoal": {
      "tipo": "Q",
      "numero": 2
@@ -23690,9 +23714,9 @@
    "nome": "Belo Campo",
    "uf": "BA",
    "populacao": 19074,
-   "despesaTotal": 90652703.66,
-   "saude": 22070219.42,
-   "educacao": 38020742.67,
+   "despesaTotal": 110408122.18,
+   "saude": 27129464.59,
+   "educacao": 46822803.08,
    "pessoal": {
     "percentual": 42.73,
     "limite": 54,
@@ -23702,7 +23726,7 @@
    },
    "rgfPeriodicidade": "quadrimestral",
    "periodo": {
-    "bimestre": 4,
+    "bimestre": 5,
     "pessoal": {
      "tipo": "Q",
      "numero": 2
@@ -23738,9 +23762,9 @@
    "nome": "Boa Nova",
    "uf": "BA",
    "populacao": 14008,
-   "despesaTotal": 64783358.81,
-   "saude": 13198489.07,
-   "educacao": 27799790.35,
+   "despesaTotal": 87370906.2,
+   "saude": 17311963.06,
+   "educacao": 39925152.97,
    "pessoal": {
     "percentual": 45.55,
     "limite": 54,
@@ -23750,7 +23774,7 @@
    },
    "rgfPeriodicidade": "quadrimestral",
    "periodo": {
-    "bimestre": 4,
+    "bimestre": 5,
     "pessoal": {
      "tipo": "Q",
      "numero": 2
@@ -23810,9 +23834,9 @@
    "nome": "Bom Jesus da Serra",
    "uf": "BA",
    "populacao": 10018,
-   "despesaTotal": 46302756.48,
-   "saude": 9977814.58,
-   "educacao": 20595842.45,
+   "despesaTotal": 57748941.52,
+   "saude": 12462225.02,
+   "educacao": 26093308.12,
    "pessoal": {
     "percentual": 41.83,
     "limite": 54,
@@ -23822,7 +23846,7 @@
    },
    "rgfPeriodicidade": "quadrimestral",
    "periodo": {
-    "bimestre": 4,
+    "bimestre": 5,
     "pessoal": {
      "tipo": "Q",
      "numero": 2
@@ -24146,9 +24170,9 @@
    "nome": "Caculé",
    "uf": "BA",
    "populacao": 23293,
-   "despesaTotal": 93668710.88,
-   "saude": 18688349.5,
-   "educacao": 43173023.1,
+   "despesaTotal": 118282790.47,
+   "saude": 24483767.97,
+   "educacao": 53878810.95,
    "pessoal": {
     "percentual": 39.4,
     "limite": 54,
@@ -24158,7 +24182,7 @@
    },
    "rgfPeriodicidade": "quadrimestral",
    "periodo": {
-    "bimestre": 4,
+    "bimestre": 5,
     "pessoal": {
      "tipo": "Q",
      "numero": 2
@@ -24410,9 +24434,9 @@
    "nome": "Canápolis",
    "uf": "BA",
    "populacao": 10641,
-   "despesaTotal": 37497428.25,
-   "saude": 8206870.26,
-   "educacao": 14877761.93,
+   "despesaTotal": 48208956.04,
+   "saude": 10424662.43,
+   "educacao": 19136364.35,
    "pessoal": {
     "percentual": 46.88,
     "limite": 54,
@@ -24422,7 +24446,7 @@
    },
    "rgfPeriodicidade": "quadrimestral",
    "periodo": {
-    "bimestre": 4,
+    "bimestre": 5,
     "pessoal": {
      "tipo": "Q",
      "numero": 2
@@ -24530,9 +24554,9 @@
    "nome": "Candiba",
    "uf": "BA",
    "populacao": 13417,
-   "despesaTotal": 42234621.29,
-   "saude": 10129325.46,
-   "educacao": 13736043.98,
+   "despesaTotal": 54971549.19,
+   "saude": 13229584.41,
+   "educacao": 19209653.97,
    "pessoal": {
     "percentual": 49.29,
     "limite": 54,
@@ -24542,7 +24566,7 @@
    },
    "rgfPeriodicidade": "quadrimestral",
    "periodo": {
-    "bimestre": 4,
+    "bimestre": 5,
     "pessoal": {
      "tipo": "Q",
      "numero": 2
@@ -24554,9 +24578,9 @@
    "nome": "Cândido Sales",
    "uf": "BA",
    "populacao": 26469,
-   "despesaTotal": 89778359.46,
-   "saude": 19830556.54,
-   "educacao": 43528899.91,
+   "despesaTotal": 119037593.88,
+   "saude": 25526911.48,
+   "educacao": 59580331.57,
    "pessoal": {
     "percentual": 45.13,
     "limite": 54,
@@ -24566,7 +24590,7 @@
    },
    "rgfPeriodicidade": "quadrimestral",
    "periodo": {
-    "bimestre": 4,
+    "bimestre": 5,
     "pessoal": {
      "tipo": "Q",
      "numero": 2
@@ -24674,9 +24698,9 @@
    "nome": "Caraíbas",
    "uf": "BA",
    "populacao": 10259,
-   "despesaTotal": 47647732.97,
-   "saude": 9179288.1,
-   "educacao": 20724528.34,
+   "despesaTotal": 58999368.39,
+   "saude": 11756473.95,
+   "educacao": 25018097.23,
    "pessoal": {
     "percentual": 38.01,
     "limite": 54,
@@ -24686,7 +24710,7 @@
    },
    "rgfPeriodicidade": "quadrimestral",
    "periodo": {
-    "bimestre": 4,
+    "bimestre": 5,
     "pessoal": {
      "tipo": "Q",
      "numero": 2
@@ -24866,9 +24890,9 @@
    "nome": "Caturama",
    "uf": "BA",
    "populacao": 9108,
-   "despesaTotal": 45270391.43,
-   "saude": 8859162.66,
-   "educacao": 23678408.47,
+   "despesaTotal": 59301257.98,
+   "saude": 11337096.81,
+   "educacao": 31868706.35,
    "pessoal": {
     "percentual": 46.47,
     "limite": 54,
@@ -24878,7 +24902,7 @@
    },
    "rgfPeriodicidade": "quadrimestral",
    "periodo": {
-    "bimestre": 4,
+    "bimestre": 5,
     "pessoal": {
      "tipo": "Q",
      "numero": 2
@@ -25082,9 +25106,9 @@
    "nome": "Conceição do Coité",
    "uf": "BA",
    "populacao": 71601,
-   "despesaTotal": 196314128.32,
-   "saude": 42941185.34,
-   "educacao": 88502797.85,
+   "despesaTotal": 250275769.3,
+   "saude": 55527390.18,
+   "educacao": 113312998.02,
    "pessoal": {
     "percentual": 44.47,
     "limite": 54,
@@ -25094,7 +25118,7 @@
    },
    "rgfPeriodicidade": "quadrimestral",
    "periodo": {
-    "bimestre": 4,
+    "bimestre": 5,
     "pessoal": {
      "tipo": "Q",
      "numero": 2
@@ -25226,9 +25250,9 @@
    "nome": "Cordeiros",
    "uf": "BA",
    "populacao": 7748,
-   "despesaTotal": 30004456.93,
-   "saude": 7188297.17,
-   "educacao": 12257194.06,
+   "despesaTotal": 38906949.17,
+   "saude": 8989709.88,
+   "educacao": 16402088.59,
    "pessoal": {
     "percentual": 39.62,
     "limite": 54,
@@ -25238,7 +25262,7 @@
    },
    "rgfPeriodicidade": "quadrimestral",
    "periodo": {
-    "bimestre": 4,
+    "bimestre": 5,
     "pessoal": {
      "tipo": "Q",
      "numero": 2
@@ -25586,9 +25610,9 @@
    "nome": "Encruzilhada",
    "uf": "BA",
    "populacao": 19450,
-   "despesaTotal": 102502518.84,
-   "saude": 26147446.7,
-   "educacao": 34655808.37,
+   "despesaTotal": 131083967.49,
+   "saude": 33104114.41,
+   "educacao": 44887683.89,
    "pessoal": {
     "percentual": 36.91,
     "limite": 54,
@@ -25598,7 +25622,7 @@
    },
    "rgfPeriodicidade": "quadrimestral",
    "periodo": {
-    "bimestre": 4,
+    "bimestre": 5,
     "pessoal": {
      "tipo": "Q",
      "numero": 2
@@ -26153,9 +26177,9 @@
    "nome": "Ibicoara",
    "uf": "BA",
    "populacao": 21827,
-   "despesaTotal": 114332478.16,
-   "saude": 20709775.16,
-   "educacao": 52022572.7,
+   "despesaTotal": 144425947.15,
+   "saude": 26556966.62,
+   "educacao": 65117623.55,
    "pessoal": {
     "percentual": 46.42,
     "limite": 54,
@@ -26165,7 +26189,7 @@
    },
    "rgfPeriodicidade": "quadrimestral",
    "periodo": {
-    "bimestre": 4,
+    "bimestre": 5,
     "pessoal": {
      "tipo": "Q",
      "numero": 2
@@ -26345,9 +26369,9 @@
    "nome": "Ibitiara",
    "uf": "BA",
    "populacao": 15049,
-   "despesaTotal": 60380281.95,
-   "saude": 14262667.22,
-   "educacao": 20603474.29,
+   "despesaTotal": 74105311.45,
+   "saude": 17689204.55,
+   "educacao": 25897377.5,
    "pessoal": {
     "percentual": 52.36,
     "limite": 54,
@@ -26357,7 +26381,7 @@
    },
    "rgfPeriodicidade": "quadrimestral",
    "periodo": {
-    "bimestre": 4,
+    "bimestre": 5,
     "pessoal": {
      "tipo": "Q",
      "numero": 2
@@ -26633,9 +26657,9 @@
    "nome": "Ipupiara",
    "uf": "BA",
    "populacao": 10349,
-   "despesaTotal": 48877291.66,
-   "saude": 12073841.65,
-   "educacao": 16358928.02,
+   "despesaTotal": 64053358.02,
+   "saude": 15649235.89,
+   "educacao": 22388767.13,
    "pessoal": {
     "percentual": 48.31,
     "limite": 54,
@@ -26645,7 +26669,7 @@
    },
    "rgfPeriodicidade": "quadrimestral",
    "periodo": {
-    "bimestre": 4,
+    "bimestre": 5,
     "pessoal": {
      "tipo": "Q",
      "numero": 2
@@ -26921,9 +26945,9 @@
    "nome": "Itagimirim",
    "uf": "BA",
    "populacao": 6490,
-   "despesaTotal": 44897671.97,
-   "saude": 9829347.54,
-   "educacao": 16331097.49,
+   "despesaTotal": 55960150.52,
+   "saude": 11988537.1,
+   "educacao": 20652862.9,
    "pessoal": {
     "percentual": 50.43,
     "limite": 54,
@@ -26933,7 +26957,7 @@
    },
    "rgfPeriodicidade": "quadrimestral",
    "periodo": {
-    "bimestre": 4,
+    "bimestre": 5,
     "pessoal": {
      "tipo": "Q",
      "numero": 2
@@ -27176,9 +27200,9 @@
    "nome": "Itapebi",
    "uf": "BA",
    "populacao": 9464,
-   "despesaTotal": 50029097.73,
-   "saude": 9440435.58,
-   "educacao": 16898803.55,
+   "despesaTotal": 63684855.78,
+   "saude": 12023433.25,
+   "educacao": 20722533.26,
    "pessoal": {
     "percentual": 36.55,
     "limite": 54,
@@ -27188,7 +27212,7 @@
    },
    "rgfPeriodicidade": "quadrimestral",
    "periodo": {
-    "bimestre": 4,
+    "bimestre": 5,
     "pessoal": {
      "tipo": "Q",
      "numero": 2
@@ -27392,9 +27416,9 @@
    "nome": "Itororó",
    "uf": "BA",
    "populacao": 16849,
-   "despesaTotal": 75369176.94,
-   "saude": 14985896.55,
-   "educacao": 28569848.89,
+   "despesaTotal": 92616508.75,
+   "saude": 18802466.66,
+   "educacao": 35607643.23,
    "pessoal": {
     "percentual": 47.76,
     "limite": 54,
@@ -27404,7 +27428,7 @@
    },
    "rgfPeriodicidade": "quadrimestral",
    "periodo": {
-    "bimestre": 4,
+    "bimestre": 5,
     "pessoal": {
      "tipo": "Q",
      "numero": 2
@@ -27416,9 +27440,9 @@
    "nome": "Ituaçu",
    "uf": "BA",
    "populacao": 18506,
-   "despesaTotal": 75226750.92,
-   "saude": 17395500.76,
-   "educacao": 30820462.69,
+   "despesaTotal": 95009624.3,
+   "saude": 21862970.59,
+   "educacao": 38693118.35,
    "pessoal": {
     "percentual": 41.22,
     "limite": 54,
@@ -27428,7 +27452,7 @@
    },
    "rgfPeriodicidade": "quadrimestral",
    "periodo": {
-    "bimestre": 4,
+    "bimestre": 5,
     "pessoal": {
      "tipo": "Q",
      "numero": 2
@@ -27512,9 +27536,9 @@
    "nome": "Jacaraci",
    "uf": "BA",
    "populacao": 14910,
-   "despesaTotal": 67339381.42,
-   "saude": 12875241.68,
-   "educacao": 37514238.4,
+   "despesaTotal": 86283084.87,
+   "saude": 16609175.53,
+   "educacao": 47083182.9,
    "pessoal": {
     "percentual": 40.28,
     "limite": 54,
@@ -27524,7 +27548,7 @@
    },
    "rgfPeriodicidade": "quadrimestral",
    "periodo": {
-    "bimestre": 4,
+    "bimestre": 5,
     "pessoal": {
      "tipo": "Q",
      "numero": 2
@@ -27704,9 +27728,9 @@
    "nome": "Jiquiriçá",
    "uf": "BA",
    "populacao": 14063,
-   "despesaTotal": 73706711.01,
-   "saude": 13723225.86,
-   "educacao": 29510255.5,
+   "despesaTotal": 92986823.97,
+   "saude": 17263898.78,
+   "educacao": 38434506.93,
    "pessoal": {
     "percentual": 40.91,
     "limite": 54,
@@ -27716,7 +27740,7 @@
    },
    "rgfPeriodicidade": "quadrimestral",
    "periodo": {
-    "bimestre": 4,
+    "bimestre": 5,
     "pessoal": {
      "tipo": "Q",
      "numero": 2
@@ -28151,9 +28175,9 @@
    "nome": "Livramento de Nossa Senhora",
    "uf": "BA",
    "populacao": 46376,
-   "despesaTotal": 185079909.49,
-   "saude": 39384325.98,
-   "educacao": 97092889.3,
+   "despesaTotal": 230589004.26,
+   "saude": 49063693.79,
+   "educacao": 120281509.21,
    "pessoal": {
     "percentual": 53.19,
     "limite": 54,
@@ -28163,7 +28187,7 @@
    },
    "rgfPeriodicidade": "quadrimestral",
    "periodo": {
-    "bimestre": 4,
+    "bimestre": 5,
     "pessoal": {
      "tipo": "Q",
      "numero": 2
@@ -28175,9 +28199,9 @@
    "nome": "Luís Eduardo Magalhães",
    "uf": "BA",
    "populacao": 118382,
-   "despesaTotal": 710234332.63,
-   "saude": 152305150.81,
-   "educacao": 199391378.64,
+   "despesaTotal": 868351818.96,
+   "saude": 187664475.76,
+   "educacao": 243751378.43,
    "pessoal": {
     "percentual": 40.47,
     "limite": 54,
@@ -28187,7 +28211,7 @@
    },
    "rgfPeriodicidade": "quadrimestral",
    "periodo": {
-    "bimestre": 4,
+    "bimestre": 5,
     "pessoal": {
      "tipo": "Q",
      "numero": 2
@@ -28223,9 +28247,9 @@
    "nome": "Macarani",
    "uf": "BA",
    "populacao": 22768,
-   "despesaTotal": 65404141.39,
-   "saude": 16137712.73,
-   "educacao": 21596480.18,
+   "despesaTotal": 81306553.44,
+   "saude": 20490874.21,
+   "educacao": 27236744.18,
    "pessoal": {
     "percentual": 51.87,
     "limite": 54,
@@ -28235,7 +28259,7 @@
    },
    "rgfPeriodicidade": "quadrimestral",
    "periodo": {
-    "bimestre": 4,
+    "bimestre": 5,
     "pessoal": {
      "tipo": "Q",
      "numero": 2
@@ -28319,9 +28343,9 @@
    "nome": "Maetinga",
    "uf": "BA",
    "populacao": 7218,
-   "despesaTotal": 34670102.19,
-   "saude": 9527557.67,
-   "educacao": 12603090.34,
+   "despesaTotal": 43258698.49,
+   "saude": 12064584.48,
+   "educacao": 16302847.8,
    "pessoal": {
     "percentual": 53.36,
     "limite": 54,
@@ -28331,7 +28355,7 @@
    },
    "rgfPeriodicidade": "quadrimestral",
    "periodo": {
-    "bimestre": 4,
+    "bimestre": 5,
     "pessoal": {
      "tipo": "Q",
      "numero": 2
@@ -28847,9 +28871,9 @@
    "nome": "Mortugaba",
    "uf": "BA",
    "populacao": 11477,
-   "despesaTotal": 50591967.47,
-   "saude": 12623071.68,
-   "educacao": 20905578.21,
+   "despesaTotal": 64850917.3,
+   "saude": 15892952.37,
+   "educacao": 27742354.67,
    "pessoal": {
     "percentual": 40.46,
     "limite": 54,
@@ -28859,7 +28883,7 @@
    },
    "rgfPeriodicidade": "quadrimestral",
    "periodo": {
-    "bimestre": 4,
+    "bimestre": 5,
     "pessoal": {
      "tipo": "Q",
      "numero": 2
@@ -29231,9 +29255,9 @@
    "nome": "Nova Redenção",
    "uf": "BA",
    "populacao": 7670,
-   "despesaTotal": 35370663.94,
-   "saude": 7968034.11,
-   "educacao": 13666842.24,
+   "despesaTotal": 46376652.69,
+   "saude": 10804653.83,
+   "educacao": 18568399.13,
    "pessoal": {
     "percentual": 57.06,
     "limite": 54,
@@ -29243,7 +29267,7 @@
    },
    "rgfPeriodicidade": "quadrimestral",
    "periodo": {
-    "bimestre": 4,
+    "bimestre": 5,
     "pessoal": {
      "tipo": "Q",
      "numero": 2
@@ -29591,9 +29615,9 @@
    "nome": "Paulo Afonso",
    "uf": "BA",
    "populacao": 119418,
-   "despesaTotal": 396884070.11,
-   "saude": 124384405.25,
-   "educacao": 128180738.55,
+   "despesaTotal": 503141216.83,
+   "saude": 155181808.77,
+   "educacao": 156740211.61,
    "pessoal": {
     "percentual": 50.69,
     "limite": 54,
@@ -29603,7 +29627,7 @@
    },
    "rgfPeriodicidade": "quadrimestral",
    "periodo": {
-    "bimestre": 4,
+    "bimestre": 5,
     "pessoal": {
      "tipo": "Q",
      "numero": 2
@@ -29615,9 +29639,9 @@
    "nome": "Pé de Serra",
    "uf": "BA",
    "populacao": 13677,
-   "despesaTotal": 75774931.18,
-   "saude": 15159148.06,
-   "educacao": 39556230.59,
+   "despesaTotal": 96051315.45,
+   "saude": 19030468.96,
+   "educacao": 50522187.58,
    "pessoal": {
     "percentual": 54.97,
     "limite": 54,
@@ -29627,7 +29651,7 @@
    },
    "rgfPeriodicidade": "quadrimestral",
    "periodo": {
-    "bimestre": 4,
+    "bimestre": 5,
     "pessoal": {
      "tipo": "Q",
      "numero": 2
@@ -29639,9 +29663,9 @@
    "nome": "Pedrão",
    "uf": "BA",
    "populacao": 6403,
-   "despesaTotal": 35303497.76,
-   "saude": 6876563.68,
-   "educacao": 13611924.76,
+   "despesaTotal": 44930163.66,
+   "saude": 8840230.28,
+   "educacao": 17484715.54,
    "pessoal": {
     "percentual": 39.99,
     "limite": 54,
@@ -29651,7 +29675,7 @@
    },
    "rgfPeriodicidade": "quadrimestral",
    "periodo": {
-    "bimestre": 4,
+    "bimestre": 5,
     "pessoal": {
      "tipo": "Q",
      "numero": 2
@@ -29831,9 +29855,9 @@
    "nome": "Piripá",
    "uf": "BA",
    "populacao": 9143,
-   "despesaTotal": 42287074.62,
-   "saude": 10169372.7,
-   "educacao": 16173576.56,
+   "despesaTotal": 55255636.81,
+   "saude": 12908185.53,
+   "educacao": 21790768.57,
    "pessoal": {
     "percentual": 43.6,
     "limite": 54,
@@ -29843,7 +29867,7 @@
    },
    "rgfPeriodicidade": "quadrimestral",
    "periodo": {
-    "bimestre": 4,
+    "bimestre": 5,
     "pessoal": {
      "tipo": "Q",
      "numero": 2
@@ -29903,9 +29927,9 @@
    "nome": "Planalto",
    "uf": "BA",
    "populacao": 24026,
-   "despesaTotal": 85687247.93,
-   "saude": 23411120.73,
-   "educacao": 34029646.49,
+   "despesaTotal": 107040129.75,
+   "saude": 28865529.3,
+   "educacao": 42812424.52,
    "pessoal": {
     "percentual": 41.04,
     "limite": 54,
@@ -29915,7 +29939,7 @@
    },
    "rgfPeriodicidade": "quadrimestral",
    "periodo": {
-    "bimestre": 4,
+    "bimestre": 5,
     "pessoal": {
      "tipo": "Q",
      "numero": 2
@@ -30143,9 +30167,9 @@
    "nome": "Queimadas",
    "uf": "BA",
    "populacao": 27429,
-   "despesaTotal": 112226210.88,
-   "saude": 22727976.12,
-   "educacao": 55834323.94,
+   "despesaTotal": 147384066.29,
+   "saude": 29356978.52,
+   "educacao": 73929464.46,
    "pessoal": {
     "percentual": 45.81,
     "limite": 54,
@@ -30155,7 +30179,7 @@
    },
    "rgfPeriodicidade": "quadrimestral",
    "periodo": {
-    "bimestre": 4,
+    "bimestre": 5,
     "pessoal": {
      "tipo": "Q",
      "numero": 2
@@ -30479,9 +30503,9 @@
    "nome": "Rio do Pires",
    "uf": "BA",
    "populacao": 10781,
-   "despesaTotal": 53020755.11,
-   "saude": 11109126.61,
-   "educacao": 25855496.02,
+   "despesaTotal": 70192775.16,
+   "saude": 14758797.59,
+   "educacao": 35284883,
    "pessoal": {
     "percentual": 53.53,
     "limite": 54,
@@ -30491,7 +30515,7 @@
    },
    "rgfPeriodicidade": "quadrimestral",
    "periodo": {
-    "bimestre": 4,
+    "bimestre": 5,
     "pessoal": {
      "tipo": "Q",
      "numero": 2
@@ -30503,9 +30527,9 @@
    "nome": "Rio Real",
    "uf": "BA",
    "populacao": 36966,
-   "despesaTotal": 163025806.86,
-   "saude": 34514576.11,
-   "educacao": 76378566.93,
+   "despesaTotal": 220126094.15,
+   "saude": 45718878,
+   "educacao": 106454391.9,
    "pessoal": {
     "percentual": 49.88,
     "limite": 54,
@@ -30515,7 +30539,7 @@
    },
    "rgfPeriodicidade": "quadrimestral",
    "periodo": {
-    "bimestre": 4,
+    "bimestre": 5,
     "pessoal": {
      "tipo": "Q",
      "numero": 2
@@ -31391,9 +31415,9 @@
    "nome": "Sebastião Laranjeiras",
    "uf": "BA",
    "populacao": 9581,
-   "despesaTotal": 49089798.8,
-   "saude": 9391189.56,
-   "educacao": 22918285.45,
+   "despesaTotal": 64654088.4,
+   "saude": 12447362.4,
+   "educacao": 29789144.67,
    "pessoal": {
     "percentual": 49.25,
     "limite": 54,
@@ -31403,7 +31427,7 @@
    },
    "rgfPeriodicidade": "quadrimestral",
    "periodo": {
-    "bimestre": 4,
+    "bimestre": 5,
     "pessoal": {
      "tipo": "Q",
      "numero": 2
@@ -31535,9 +31559,9 @@
    "nome": "Serrinha",
    "uf": "BA",
    "populacao": 84690,
-   "despesaTotal": 301219858.27,
-   "saude": 62182807.8,
-   "educacao": 155149931.88,
+   "despesaTotal": 386999955.32,
+   "saude": 80552646.15,
+   "educacao": 194554112.99,
    "pessoal": {
     "percentual": 50.54,
     "limite": 54,
@@ -31547,7 +31571,7 @@
    },
    "rgfPeriodicidade": "quadrimestral",
    "periodo": {
-    "bimestre": 4,
+    "bimestre": 5,
     "pessoal": {
      "tipo": "Q",
      "numero": 2
@@ -31703,9 +31727,9 @@
    "nome": "Tabocas do Brejo Velho",
    "uf": "BA",
    "populacao": 12368,
-   "despesaTotal": 59449180.25,
-   "saude": 12205172.58,
-   "educacao": 19407980.25,
+   "despesaTotal": 76365642.99,
+   "saude": 16293523.45,
+   "educacao": 24466231.68,
    "pessoal": {
     "percentual": 44.12,
     "limite": 54,
@@ -31715,7 +31739,7 @@
    },
    "rgfPeriodicidade": "quadrimestral",
    "periodo": {
-    "bimestre": 4,
+    "bimestre": 5,
     "pessoal": {
      "tipo": "Q",
      "numero": 2
@@ -31727,9 +31751,9 @@
    "nome": "Tanhaçu",
    "uf": "BA",
    "populacao": 21787,
-   "despesaTotal": 105867388.24,
-   "saude": 18485644.35,
-   "educacao": 54589152.76,
+   "despesaTotal": 135906813.23,
+   "saude": 23279630.5,
+   "educacao": 72559109.13,
    "pessoal": {
     "percentual": 45.89,
     "limite": 54,
@@ -31739,7 +31763,7 @@
    },
    "rgfPeriodicidade": "quadrimestral",
    "periodo": {
-    "bimestre": 4,
+    "bimestre": 5,
     "pessoal": {
      "tipo": "Q",
      "numero": 2
@@ -31751,9 +31775,9 @@
    "nome": "Tanque Novo",
    "uf": "BA",
    "populacao": 17812,
-   "despesaTotal": 77355494.5,
-   "saude": 19713981.39,
-   "educacao": 33572102.2,
+   "despesaTotal": 68222560.34,
+   "saude": 15293754.84,
+   "educacao": 30167461.63,
    "pessoal": {
     "percentual": 62.86,
     "limite": 54,
@@ -31763,7 +31787,7 @@
    },
    "rgfPeriodicidade": "quadrimestral",
    "periodo": {
-    "bimestre": 4,
+    "bimestre": 5,
     "pessoal": {
      "tipo": "Q",
      "numero": 2
@@ -32039,9 +32063,9 @@
    "nome": "Ubaíra",
    "uf": "BA",
    "populacao": 19142,
-   "despesaTotal": 91337805.78,
-   "saude": 14973129.15,
-   "educacao": 37504868.63,
+   "despesaTotal": 129427017.52,
+   "saude": 20555125.62,
+   "educacao": 56652799.16,
    "pessoal": {
     "percentual": 40.8,
     "limite": 54,
@@ -32051,7 +32075,7 @@
    },
    "rgfPeriodicidade": "quadrimestral",
    "periodo": {
-    "bimestre": 4,
+    "bimestre": 5,
     "pessoal": {
      "tipo": "Q",
      "numero": 2
@@ -32135,9 +32159,9 @@
    "nome": "Umburanas",
    "uf": "BA",
    "populacao": 13785,
-   "despesaTotal": 75358599.21,
-   "saude": 16308108.4,
-   "educacao": 28197227.39,
+   "despesaTotal": 95222093.23,
+   "saude": 20168078.39,
+   "educacao": 35815630.03,
    "pessoal": {
     "percentual": 55.73,
     "limite": 54,
@@ -32147,7 +32171,7 @@
    },
    "rgfPeriodicidade": "quadrimestral",
    "periodo": {
-    "bimestre": 4,
+    "bimestre": 5,
     "pessoal": {
      "tipo": "Q",
      "numero": 2
@@ -32183,9 +32207,9 @@
    "nome": "Urandi",
    "uf": "BA",
    "populacao": 15776,
-   "despesaTotal": 90068469.16,
-   "saude": 21516802.08,
-   "educacao": 40785188.8,
+   "despesaTotal": 115355316.27,
+   "saude": 28412574.03,
+   "educacao": 50543946.13,
    "pessoal": {
     "percentual": 38.89,
     "limite": 54,
@@ -32195,7 +32219,7 @@
    },
    "rgfPeriodicidade": "quadrimestral",
    "periodo": {
-    "bimestre": 4,
+    "bimestre": 5,
     "pessoal": {
      "tipo": "Q",
      "numero": 2
